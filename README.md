@@ -59,12 +59,12 @@ or
 
 The serial C implementation of the NAS benchmark suite (NPB3.3-SER-C) can be
 found here [5]. However, since a registration is required to download the
-benchmark suite in the first place, we added the sources including a modified
-configuration file to the resource folder (*resources/NPB3.3-SER-C*).
+benchmark suite, we provide the sources, including a modified configuration
+file, to the resource folder (*resources/NPB3.3-SER-C*).
 
 
 SPEC2000 and SPEC2006 have to be acquired separately. Once they are, they should
-be placed in the same folder which we denote as *${SPEC_SRC}*. This folder should contain
+be placed in a folder which we denote as *${SPEC_SRC}*. This folder should contain
 the following directory structure with the actual benchmarks residing in the
 CINT/CFP/CPU folders:
 ```
@@ -78,6 +78,10 @@ CINT/CFP/CPU folders:
 ```
 This particular arrangement will allow us to run the benchmarks together with
 the LLVM test suite using the LNT tool that is introduced in the following.
+
+
+Note: Use `docker cp <src_path> <container>:<dst_path>` to copy files/folder
+(e.g., SPEC) from the host system to a docker container.
 
 
 For the benchmarks we used the following versions, though other versions should
@@ -103,25 +107,28 @@ The include `#include <cstring>` is missing in:
 
 
 
-### Testing environments: LNT driver
+### Testing environments: LNT & NPB driver
 
-The installation of LNT is described online [6] and performed by the
-"setup_lnt.py" script. The NPB benchmarks will be "run in-place".
+We will use LNT to execute the LLVM test suite as well as SPEC. The installation
+of LNT is described online [6]. If `virtualenv` version 2.X is installed, the *setup_lnt.py*
+script can be used to set up LNT and a sandbox. The NPB benchmarks will be "run
+in-place" using the `make suite` command..
 
 
 ### Testing:
 
 The *runtests.py* script performs the following steps interactively. In general
-we have two test drivers:
+we have three test drivers that can be executed separatly.
 
-  - [NPB] for the SNU NPB benchmarks.
-  - [lnt] for the LLVM test-suite and SPEC.
+  - *NPB* for the SNU NPB benchmarks.
+  - *LNT* for the LLVM test-suite.
+  - *LNT* for the SPEC.
 
 
 We will assume the following environment variables are initialized according to
 their description. If the provided scripts were used, all configuration values
 have been written to the *config.py* file located in the scripts directory. This
-file is also read by the *runtest.py" script.
+file is also read by the *runtest.py* script.
 
 Variable   | Description
 -----------|--------------------------------------------------------------------
@@ -132,18 +139,20 @@ SPEC_SRC   | Path to the SPEC benchmarks as described above.
 NPB_SRC    | Path to the NPB serial C benchmarks.
 JOBS       | Number of jobs to use during evaluation.
 
-##### [NPB] driver
-The NPB driver can be run via `make suite` in the NPB source folder.
+##### *NPB* driver
+The NPB driver can be run via `make suite` in the NPB source folder. The
+compile time options are configured in the *config/make.defs*. The benchmarks
+and input sizes are defined in the *config/suite.def*. We recommend size **W**.
 
-##### [lnt] driver
+##### *LNT* driver
 
-To use the lnt driver we first set up a sandbox environment:
+To use the LNT driver we first set up a sandbox environment:
 
 ```
 source ${SANDBOX}/bin/activate
 ```
 
-Then we can run the lnt "nt" test driver:
+Then we can run the LNT "nt" test driver:
 
 ```
   lnt runtest nt --sandbox ${SANDBOX} \
@@ -165,24 +174,24 @@ Then we can run the lnt "nt" test driver:
 Option             | Description
 -------------------|------------------------------------------------------------
 -O3                |is required as polly does not run otherwise and some test do
-                   |not specify an optimization level or use a different one.
+                    not specify an optimization level or use a different one.
 -mllvm             |will cause clang to pass the following option to llvm
 -polly             |will enable the polly pipeline
 -polly-run-inliner |will run a moderate inliner pass prior to the polly pipeline
 -polly-invariant-load-hoisting=true  |Enable invariant load hoisting.
 -polly-allow-error-blocks=false      |Disable the speculative expansion of SCoPs
-                                     |that often results in statically
-                                     |infeasible assumptions. Error blocks are a
-                                     |new feature that is not yet tuned and
-                                     |often too aggressive.
+                                      that often results in statically
+                                      infeasible assumptions. Error blocks are a
+                                      new feature that is not yet tuned and
+                                      often too aggressive.
 -polly-unprofitable-scalar-accs=false|Assume scalar accesses in statements are
-                                     |optimize able. This is generally true
-                                     |though the support in Polly was dropped at
-                                     |some point in favor of a replacement
-                                     |mechanism that is still not available.
-                                     |Therefore, Polly will currently not assume
-                                     |statements with scalar accesses are
-                                     |optimizeable while they generally are.
+                                      optimize able. This is generally true
+                                      though the support in Polly was dropped at
+                                      some point in favor of a replacement
+                                      mechanism that is still not available.
+                                      Therefore, Polly will currently not assume
+                                      statements with scalar accesses are
+                                      optimizeable while they generally are.
 
 
 
@@ -192,14 +201,12 @@ Experiments and data collection
 
 ### Statistics and remarks:
 
-Statistics can be collected using the command line addition:
-  `-mllvm -stats`
-
+Statistics are collected if clang is run with `-mllvm -stats`.
 A debug build or release build with assertions is needed to do this.
 The statistics will be printed to the standard error output or logs depending on
 the benchmark. To collect them one can extract the statistics key (SK) from the
-error output or logs using `grep` or a similar command. For the SK **"Number of
-valid Scops"** the command would be
+error output or logs using `grep` or a similar command. For the SK *"Number of
+valid Scops"* the command would be
   `grep "Number of valid Scops"`
 applied to the standard error stream or log file. To summarize the outputs of
 multiple input files we provide the python script *summarize_stats.py*. It will
@@ -222,14 +229,14 @@ actual message.
 
 ##### Number of loop nests analyzed [with assumptions, #S]:
 
-..* (a) feasible assumptions:
+* (a) feasible assumptions:
 ... SK `"Number of valid Scops"`
 
 ... Alternatively one could enable the remarks system [see below] and check if
     the following line is in the output:
     `remark: SCoP ends here.`
 
-..* (b) statically infeasible assumptions:
+* (b) statically infeasible assumptions:
 ... SK `"Number of SCoPs with statically infeasible context"`
 
 ... Alternatively one could enable the remarks system and check if the
@@ -262,12 +269,12 @@ actual message.
 
   Numbers collected from the error stream (or logs) of the test cases.
 
-..* (a) passing runtime checks:
+*   (a) passing runtime checks:
 ... Extract lines containing `'__RTC: '` followed by a non zero number from the
     error stream (or logs), command:
       `grep -E '__RTC: [1-9]'`
 
-..* (b) failing runtime checks:
+*   (b) failing runtime checks:
 ... Extract lines containing `'__RTC: 0'` from the error stream (or logs),
     command:
       `grep '__RTC: 0'`
@@ -291,6 +298,7 @@ actual message.
   The assumptions taken are emitted to the standard error stream using the
   remarks system of clang/llvm. The assumptions evaluated here have the
   following names in the remarks output:
+
     Statistics Key    |  Paper Section
     ------------------|:-------------:
     "Invariant load"  |  4.1

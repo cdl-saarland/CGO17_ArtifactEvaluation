@@ -98,8 +98,8 @@ format_and_print("""NOTE: Use `docker cp <src_path> <container>:<dst_path>` to
                  copy files/folder (e.g., SPEC) from the host system to a
                  docker container.""")
 
-SPEC_2000_SRC = get_value("SPEC_2000_SRC", [str], lambda: setup_SPEC("2000"))
-SPEC_2006_SRC = get_value("SPEC_2006_SRC", [str], lambda: setup_SPEC("2006"))
+SPEC_2000_SRC = setup_SPEC("2000")
+SPEC_2006_SRC = setup_SPEC("2006")
 
 YEAR = 2000
 for SPECCPU_SRC in [SPEC_2000_SRC, SPEC_2006_SRC]:
