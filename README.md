@@ -317,6 +317,11 @@ the error stream (or logs), command: `grep '__RTC: 0'`
 Implementation notes:
 --------------------
 
+Polly only has a "in-code" documentation. In addition to actual comments in the
+code, function declarations are often well documented. Either check the
+declarations in the header files or use the [doxygen documentation
+online](http://polly.llvm.org/doxygen/).
+
 ### Runtime Check Generation (Section 6)
 
 #### Algorithm 1:
@@ -333,15 +338,29 @@ check generation and combined with the runtime check result.
 
 ####  Algorithm 2:
 
-The parameter generation is implemented in the IslNodeBuilder
+The parameter generation is implemented in the
+`IslNodeBuilder::preloadInvariantLoads()` function. It is called in the
+`CodeGeneration` before the runtime check or the optimized code version are
+generated.
 
 
 ### Assumption computation
 
+Assumption computation is spread over multiple functions in `ScopInfo.cpp` and
+`SCEVAffinator.cpp`. To identify the functions one can look for calls to
+`recordAssumption(...)` as well as `addAssumption(...)`.
+
 
 ### Assumption simplification
 
-
+The assumption simplification is partially performed during/after the assumption
+computation (e.g., using `isl_set_coalesce`) but also explicitly in the
+`Scop::simplifyContexts()` function. The distinction between *assumptions* and
+*restrictions* is implemented using the enum `AssumptionSign` in `ScopInfo.h`.
+Assumptions and respectively restrictions are collected in the
+`Scop::AssumedContext` and `Scop::InvalidContext`. Overapproximations are
+performed usign the `isl_set_remove_divs` function, e.g., in the
+`buildMinMaxAccess` function that is used to derive runtime alias checks.
 
 
 [0] http://llvm.org/docs/GettingStarted.html
