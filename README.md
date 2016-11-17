@@ -2,9 +2,14 @@ Optimistic Loop Optimization
 ============================
 
 tl;dr
-The *artifact_eval.py* script is a driver that interactively performs all steps
-described in this documents. The commands as well as an explanation for each
-step are provided.
+The *scripts/artifact_eval.py* script is a driver that interactively performs
+all steps described in this documents. The commands as well as an explanation
+for each step are provided.
+
+Docker container
+================
+
+We provide a docker container ... TODO
 
 
 Setup and requirements
