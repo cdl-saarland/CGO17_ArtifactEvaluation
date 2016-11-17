@@ -2,9 +2,9 @@ Optimistic Loop Optimization
 ============================
 
 tl;dr
-The *artifact_eval.py* script is a driver that will interactively perform all
-steps described in this documents. The commands as well as an
-explanation for each step are provided.
+The *artifact_eval.py* script is a driver that interactively performs all steps
+described in this documents. The commands as well as an explanation for each
+step are provided.
 
 
 Setup and requirements
@@ -45,16 +45,15 @@ collect most information without modifying the source code manually:
 
 ### Benchmarks: LLVM Test Suite, NAS Benchmark Suite, SPEC2000, SPEC2006
 
-The *setup_benchmarks.py* script will perform the following steps interactively.
+The *setup_benchmarks.py* script performs the following steps interactively.
 
 Checkout the LLVM test suite in the folder *test_suite* via:
-```
-  git clone http://llvm.org/git/test-suite test_suite
-```
+
+`git clone http://llvm.org/git/test-suite test_suite`
+
 or
-```
-  svn co http://llvm.org/svn/llvm-project/test-suite/trunk test_suite
-```
+
+`svn co http://llvm.org/svn/llvm-project/test-suite/trunk test_suite`
 
 
 The serial C implementation of the NAS benchmark suite (NPB3.3-SER-C) can be
@@ -76,7 +75,7 @@ CINT2000/CFP2000/CPU2006 folders:
   ${SPEC_SRC}/speccpu2006/benchspec/
   ${SPEC_SRC}/speccpu2006/benchspec/CPU2006/
 ```
-This particular arrangement will allow us to run the benchmarks together with
+This particular arrangement allows us to run the benchmarks together with
 the LLVM test suite using the LNT tool that is introduced in the following.
 
 
@@ -126,7 +125,7 @@ We have three test drivers that can be executed separatly:
   - *LNT* for the SPEC.
 
 
-We will assume the following environment variables are initialized according to
+We assume the following environment variables are initialized according to
 their description. If the provided scripts were used, all configuration values
 have been written to the *scripts/config.py*. This file is also read by the
 *runtest.py* script.
@@ -180,12 +179,12 @@ benchmarks are run.
 Option             | Description
 -------------------|------------------------------------------------------------
 -O3                | Required to run polly.
--mllvm             | Will cause clang to pass the following option to llvm.
--polly             | Will enable the polly pipeline.
--polly-run-inliner | Will run a moderate inliner pass prior to the polly pipeline
+-mllvm             | Cause clang to pass the following option to llvm.
+-polly             | Enable the polly pipeline.
+-polly-run-inliner | Run a moderate inliner pass prior to the polly pipeline
 -polly-invariant-load-hoisting=true  | Enable invariant load hoisting.
 -polly-allow-error-blocks=false      | Disable the speculative expansion of SCoPs that often results in statically infeasible assumptions. Error blocks are a feature that is not yet tuned and often too aggressive.
--polly-unprofitable-scalar-accs=false| Assume scalar accesses in statements are optimize able. This is generally true though the support in Polly was dropped at some point in favor of a replacement mechanism that is still not available. Therefore, Polly will currently not assume statements with scalar accesses are optimizeable while they generally are.
+-polly-unprofitable-scalar-accs=false| Assume scalar accesses in statements are optimize able. This is generally true though the support in Polly was dropped at some point in favor of a replacement mechanism that is still not available. Therefore, Polly currently not assume statements with scalar accesses are optimizeable while they generally are.
 
 
 Experiments and data collection
@@ -196,14 +195,14 @@ Experiments and data collection
 
 Statistics are collected if clang is run with `-mllvm -stats`.
 A debug build or release build with assertions is needed to do this.
-The statistics will be printed to the standard error output or logs depending on
+The statistics are be printed to the standard error output or logs depending on
 the benchmark. To collect them one can extract the statistics key (SK) from the
 error output or logs using `grep` or a similar command. For the SK *"Number of
 valid Scops"* the command would be
   `grep "Number of valid Scops"`
 applied to the standard error stream or log file. To summarize the outputs of
 multiple input files we provide the python script *summarize_stats.py*.
-Please note that the script will skip lines that are not matched by the
+Please note that the script skips lines that are not matched by the
 following regular expression `"^[0-9]+ - .*"`.
 The last part (after the hyphen) is used as statistics key (SK). Depending on
 the way all statistics are summarized it might therefor be required to add the
@@ -299,16 +298,16 @@ the error stream (or logs), command: `grep '__RTC: 0'`
   To extract them from the error stream (or logs) one can use a command like:
     `grep 'Invariant load'`
 
-  If `-polly-remarks-minimal=false` is enabled by default. It will cause *all*
-  taken assumptions to be printed, even if they are already implied or trivially
-  fulfilled.
+  The option `-polly-remarks-minimal=false` is currently the default. It causes
+  *all* taken assumptions to be printed, even if they are already implied or
+  trivially fulfilled.
 
 
 ##### Number of non-trivial assumptions taken that were not implied by prior ones (b):
 
   Run options: `-mllvm -polly-remarks-minimal=true -Rpass-analysis=polly-scops`
 
-  Same as part **(a(** but with minimal remarks turned on. This will prevent the
+  Same as part **(a(** but with minimal remarks turned on. This prevents the
   output of any already implied or trivial assumption.
 
 
