@@ -7,5 +7,10 @@ RUN apt-get upgrade
 RUN apt-get install -y build-essential cmake git git-svn kpartx libglib2.0-dev
 RUN apt-get install -y patch quilt subversion zlib1g-dev flex libfdt1
 RUN apt-get install -y git libfdt-dev libpixman-1-0 libpixman-1-dev
+RUN apt-get install -y virtualenv
 
-RUN git clone 
+RUN git clone git@github.com:jdoerfert/CGO17_ArtifactEvaluation.git ae
+RUN python ae/scripts/setup_toolchain.py < ae/scripts/use_defaults
+RUN python ae/scripts/setup_benchmarks.py < ae/scripts/use_defaults
+RUN python ae/scripts/setup_lnt.py < ae/scripts/use_defaults
+RUN python ae/scripts/artifact_eval.py
