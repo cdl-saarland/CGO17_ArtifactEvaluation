@@ -36,31 +36,35 @@ numbers might be different we do not expect the general effects to be.
 This document was written using the following versions which are necessary to
 collect most information without modifying the source code manually:
 
-  llvm:  |
+  Tool   | Version
 ---------|----------------------
-  clang: |
----------|----------------------
-  polly: |
+  LLVM:  |
+  Clang: |
+  Polly: |
 
 
 ### Benchmarks: LLVM Test Suite, NAS Benchmark Suite, SPEC2000, SPEC2006
 
 The *setup_benchmarks.py* script will perform the following steps interactively.
 
-Checkout the LLVM test suite in the folder test_suite via:
+Checkout the LLVM test suite in the folder *test_suite* via:
+```
   git clone http://llvm.org/git/test-suite test_suite
+```
 or
+```
   svn co http://llvm.org/svn/llvm-project/test-suite/trunk test_suite
+```
 
 
 The serial C implementation of the NAS benchmark suite (NPB3.3-SER-C) can be
 found here [5]. However, since a registration is required to download the
 benchmark suite in the first place, we added the sources including a modified
-configuration file to the resource folder (resources/NPB3.3-SER-C).
+configuration file to the resource folder (*resources/NPB3.3-SER-C*).
 
 
 SPEC2000 and SPEC2006 have to be acquired separately. Once they are, they should
-be placed in the same folder which we denote as ${SPEC_SRC}. This folder should contain
+be placed in the same folder which we denote as *${SPEC_SRC}*. This folder should contain
 the following directory structure with the actual benchmarks residing in the
 CINT/CFP/CPU folders:
 ```
@@ -79,11 +83,12 @@ the LLVM test suite using the LNT tool that is introduced in the following.
 For the benchmarks we used the following versions, though other versions should
 produce similar results.
 
-  NAS:             |SNU NPB 1.0.3, based on NPB3.3
+  Benchmark        | Version
   -----------------|------------------------------------------------------------
-  SPEC2000:        | 1.3.1  (see "SPEC Fixes" below)
-  SPEC2006:        | 1.1    (see "SPEC Fixes" below)
-  llvm-test-suite: | 19904bd55c45b136559a201e77319937a05348c5 (svn: r286278)
+  NPB              | SNU NPB 1.0.3, based on NPB3.3
+  SPEC2000         | 1.3.1  (see "SPEC Fixes" below)
+  SPEC2006         | 1.1    (see "SPEC Fixes" below)
+  llvm-test-suite  | 19904bd55c45b136559a201e77319937a05348c5 (svn: r286278)
 
 
 #### SPEC Fixes
@@ -118,16 +123,13 @@ their description. If the provided scripts were used, all configuration values
 have been written to the *config.py* file located in the scripts directory. This
 file is also read by the *runtest.py" script.
 
+Variable   | Description
+-----------|--------------------------------------------------------------------
 SANDBOX    | Path of the python sandbox created during the installation of LNT.
------------|--------------------------------------------------------------------
 LLVM_OBJ   | Path to the llvm build with polly support.
------------|--------------------------------------------------------------------
 TEST_SUITE | Path to the LLVM test suite.
------------|--------------------------------------------------------------------
 SPEC_SRC   | Path to the SPEC benchmarks as described above.
------------|--------------------------------------------------------------------
 NPB_SRC    | Path to the NPB serial C benchmarks.
------------|--------------------------------------------------------------------
 JOBS       | Number of jobs to use during evaluation.
 
 ##### [NPB] driver
@@ -142,6 +144,8 @@ source ${SANDBOX}/bin/activate
 ```
 
 Then we can run the lnt "nt" test driver:
+
+```
   lnt runtest nt --sandbox ${SANDBOX} \
                  --cc ${CLANG} \
                  --cxx ${CLANG}++ \
@@ -158,24 +162,19 @@ Then we can run the lnt "nt" test driver:
 
 ### Run options:
 
+Option             | Description
 -------------------|------------------------------------------------------------
 -O3                |is required as polly does not run otherwise and some test do
                    |not specify an optimization level or use a different one.
--------------------|------------------------------------------------------------
 -mllvm             |will cause clang to pass the following option to llvm
--------------------|------------------------------------------------------------
 -polly             |will enable the polly pipeline
--------------------|------------------------------------------------------------
 -polly-run-inliner |will run a moderate inliner pass prior to the polly pipeline
--------------------|------------------------------------------------------------
 -polly-invariant-load-hoisting=true  |Enable invariant load hoisting.
--------------------------------------|------------------------------------------
 -polly-allow-error-blocks=false      |Disable the speculative expansion of SCoPs
                                      |that often results in statically
                                      |infeasible assumptions. Error blocks are a
                                      |new feature that is not yet tuned and
                                      |often too aggressive.
--------------------------------------|------------------------------------------
 -polly-unprofitable-scalar-accs=false|Assume scalar accesses in statements are
                                      |optimize able. This is generally true
                                      |though the support in Polly was dropped at
@@ -292,19 +291,14 @@ actual message.
   The assumptions taken are emitted to the standard error stream using the
   remarks system of clang/llvm. The assumptions evaluated here have the
   following names in the remarks output:
-    ------------------|---------------
-    "Invariant load"  |  (Section 4.1)
-    ------------------|---------------
-    "No-overflows"    |  (Section 4.2)
-    ------------------|---------------
-    "Finite loop"     |  (Section 4.3)
-    ------------------|---------------
-    "Inbounds"        |  (Section 4.4)
-    ------------------|---------------
-    "Delinearization" |  (Section 4.5)
-    ------------------|---------------
-    "No-aliasing"     |  (Section 4.6)
-    ------------------|---------------
+    Statistics Key    |  Paper Section
+    ------------------|:-------------:
+    "Invariant load"  |  4.1
+    "No-overflows"    |  4.2
+    "Finite loop"     |  4.3
+    "Inbounds"        |  4.4
+    "Delinearization" |  4.5
+    "No-aliasing"     |  4.6
 
   To extract the first from the error stream (or logs) one can use the command:
     `grep 'Invariant load'`
