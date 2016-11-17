@@ -21,7 +21,7 @@ provided to setup Polly [3] is the simplest way to install the compiler
 toolchain. In the following we describe the commands needed to prepare the
 benchmarks and the testing environment from scratch.
 
-### System requirements [4]:
+### System requirements [4]
   - at least 25+8=33GB of free space (LLVM/Clang/Polly debug build +
     benchmarks), a release build does require much less space and memory.
   - at least 8GB of main memory, preferably more
@@ -38,8 +38,10 @@ To setup the compiler toolchain use the *setup_toolchain.py* script or the
 "polly.sh" script provided online [3]. Since LLVM and Polly are under constant
 improvement, the results might differe between version. However, while the exact
 numbers might be different we do not expect the general effects to be.
-This document was written using the following versions which are necessary to
-collect most information without modifying the source code manually:
+This document was written using the following versions. 
+
+Note: *In older versions of (open source) Polly the information necessary to
+evaluate the effect of assumptions was not exposed to the user.*
 
   Tool   | Version
 ---------|----------------------
@@ -52,6 +54,8 @@ collect most information without modifying the source code manually:
 
 The *setup_benchmarks.py* script performs the following steps interactively.
 
+##### LLVM Test Suite
+
 Checkout the LLVM test suite in the folder *test_suite* via:
 
 `git clone http://llvm.org/git/test-suite test_suite`
@@ -61,11 +65,15 @@ or
 `svn co http://llvm.org/svn/llvm-project/test-suite/trunk test_suite`
 
 
+##### NAS Benchmark Suite
+
 The serial C implementation of the NAS benchmark suite (NPB3.3-SER-C) can be
 found here [5]. However, since a registration is required to download the
 benchmark suite, we provide the sources, including a modified configuration
 file, to the resource folder (*resources/NPB3.3-SER-C*).
 
+
+##### SPEC2000 & SPEC2006
 
 SPEC2000 and SPEC2006 have to be acquired separately. Once they are, they should
 be placed in a folder which we denote as *${SPEC_SRC}*. This folder should contain
@@ -84,9 +92,11 @@ This particular arrangement allows us to run the benchmarks together with
 the LLVM test suite using the LNT tool that is introduced in the following.
 
 
-Note: Use `docker cp <src_path> <container>:<dst_path>` to copy files/folder
-(e.g., SPEC) from the host system to a docker container.
+Note: *Use `docker cp <src_path> <container>:<dst_path>` to copy files/folder
+(e.g., SPEC) from the host system to a docker container.*
 
+
+##### Benchmark Versions
 
 For the benchmarks we used the following versions, though other versions should
 produce similar results.
@@ -99,7 +109,7 @@ produce similar results.
   llvm-test-suite  | 19904bd55c45b136559a201e77319937a05348c5 (svn: r286278)
 
 
-#### SPEC Fixes
+##### SPEC Fixes
 
 The include `#include <cstddef>` is missing in:
 
@@ -119,7 +129,7 @@ script can be used to set up LNT and a sandbox. The NPB benchmarks are run
 "in-place" using the `make suite` command.
 
 
-### Testing:
+### Testing
 
 The *runtests.py* script performs the following steps interactively. 
 
@@ -179,7 +189,7 @@ Without the `--test-externals=${SPEC_SRC}` option only LLVM test suite
 benchmarks are run.
 
 
-### Run options:
+### Run options
 
 Option             | Description
 -------------------|------------------------------------------------------------
@@ -196,7 +206,7 @@ Experiments and data collection
 -------------------------------
 
 
-### Statistics and remarks:
+### Statistics and remarks
 
 Statistics are collected if clang is run with `-mllvm -stats`.
 A debug build or release build with assertions is needed to do this.
@@ -220,18 +230,24 @@ filename, line and column number, if available. After the term `remark:` the
 actual message is printed.
 
 
-### Data collection and interpretation:
+### Data collection and interpretation
 
-##### Number of loop nests analyzed [#S]:
+##### Number of loop nests analyzed [#S]
 
-Statically feasible assumptions (a): SK `"Number of valid Scops"`
+Statically feasible assumptions (a):
+
+The statstics key `"Number of valid Scops"` directly corresponds to this
+evaluation category.
 
 Alternatively one could enable the remarks system [see below] and check if
     the following line is in the output:
 
       remark: SCoP ends here.
 
-Statically infeasible assumptions (b): SK `"Number of SCoPs with statically infeasible context"`
+Statically infeasible assumptions (b): 
+
+The statistics key `"Number of SCoPs with statically infeasible context"`
+directly corresponds to this evaluation category.
 
 Alternatively one could enable the remarks system and check if the
     following line is in the output:
@@ -239,17 +255,18 @@ Alternatively one could enable the remarks system and check if the
       remark: SCoP ends here but was dismissed.
 
 
-##### Number of loop nests analyzed without assumptions [#S]:
+##### Number of loop nests analyzed without assumptions [#S]
 
   Run options: `-mllvm -polly-optimizer=none`
 
-  Indirectly derived number. First use the method described above to get the
-  number of *valid SCoPs*. Then disable the optimizer (to prevent early exits)
-  and get the number of SCoPs that did require versioning, thus assumptions.
-  The difference is the number of SCoPs valid without assumptions.
+  Indirectly derived number. First use the method described above to determine
+  the number of *valid SCoPs*. Then disable the optimizer (to prevent early
+  exits) and determine the number of SCoPs that *did require versioning*, thus
+  assumptions (SK `"Number of SCoPs that required versioning."`). The difference
+  is the number of SCoPs valid without assumptions.
 
 ``` 
-  *#Valid Scops* - *#SCoPs required versioning.*
+  *#Valid Scops* - *#SCoPs that required versioning.*
 ```
 
   Alternatively one could enable the remarks system and check if there are
@@ -260,7 +277,7 @@ Alternatively one could enable the remarks system and check if the
 ```
 
 
-##### Number of executions of optimized loop nests with assumptions [#E]:
+##### Number of executions of optimized loop nests with assumptions [#E]
 
   Run options: `-mllvm -polly-codegen-emit-rtc-print`
 
@@ -272,7 +289,7 @@ Number of failing runtime checks (b): Extract lines containing `'__RTC: 0'` from
 the error stream (or logs), command: `grep '__RTC: 0'`
 
 
-##### Number of optimized loop nests executed with assumptions [#D]:
+##### Number of optimized loop nests executed with assumptions [#D]
 
   Similar to the former one **[#E]** but the result of the grep should be
   uniquely sorted with regards to the function name and region identifiers. As a
@@ -283,7 +300,7 @@ the error stream (or logs), command: `grep '__RTC: 0'`
     `sort -u`
 
 
-##### Number of non-trivial assumptions taken (a):
+##### Number of non-trivial assumptions taken (a)
 
   Run options: `-mllvm -polly-remarks-minimal=false -Rpass-analysis=polly-scops`
 
@@ -308,7 +325,7 @@ the error stream (or logs), command: `grep '__RTC: 0'`
   trivially fulfilled.
 
 
-##### Number of non-trivial assumptions taken that were not implied by prior ones (b):
+##### Number of non-trivial assumptions taken that were not implied by prior ones (b)
 
   Run options: `-mllvm -polly-remarks-minimal=true -Rpass-analysis=polly-scops`
 
@@ -319,7 +336,7 @@ the error stream (or logs), command: `grep '__RTC: 0'`
 
 
 
-# Implementation notes:
+# Implementation notes
 
 Polly only has a "in-code" documentation. In addition to actual comments in the
 code, function declarations are often well documented. Either check the
@@ -350,7 +367,7 @@ performed usign the `isl_set_remove_divs` function, e.g., in the
 
 ## Runtime Check Generation (Section 6)
 
-#### Algorithm 1:
+#### Algorithm 1 (Runtime Check Generation)
 
 The overflow checks for addition (and multiplication) are implemented in the
 `IslExprBuilder::createBinOp(...)` function [`IslExprBuilder.cpp`]. The
@@ -362,7 +379,7 @@ control flow graph the latter solution is implemented. The final overflow
 state is queried via `ExprBuilder.getOverflowState()` after the runtime
 check generation and combined with the runtime check result.
 
-####  Algorithm 2:
+####  Algorithm 2 (Parameter Generation)
 
 The entry point for the recursive parameter generation is the
 `IslNodeBuilder::preloadInvariantLoads()` function [`IslNodeBuilder.cpp`]. It
