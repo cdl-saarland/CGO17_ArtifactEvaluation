@@ -157,11 +157,11 @@ Then we can run the LNT *nt* test driver:
 
 ```
   lnt runtest nt --sandbox ${SANDBOX} \
-                 --cc ${CLANG} \
-                 --cxx ${CLANG}++ \
-                 --test-suite ${TEST_SUITE} \
-                 --build-threads ${JOBS} \
-                 --test-externals ${SPEC_SRC} \
+                 --cc=${CLANG} \
+                 --cxx=${CLANG}++ \
+                 --test-suite=${TEST_SUITE} \
+                 --build-threads=${JOBS} \
+                 --test-externals=${SPEC_SRC} \
                  --cflag=-O3 \
                  --cflag=-mllvm --cflag=-polly \
                  --cflag=-mllvm --cflag=-polly-run-inliner \
@@ -170,14 +170,19 @@ Then we can run the LNT *nt* test driver:
                  --cflag=-mllvm --cflag=-polly-allow-error-blocks=false
 ```
 
+The option `--only-test=External` can be used to only run SPEC benchmarks.
+Without the `--test-externals=${SPEC_SRC}` option only LLVM test suite
+benchmarks are run.
+
+
 ### Run options:
 
 Option             | Description
 -------------------|------------------------------------------------------------
--O3                | is required as polly does not run otherwise and some test do not specify an optimization level or use a different one.
--mllvm             | will cause clang to pass the following option to llvm.
--polly             | will enable the polly pipeline.
--polly-run-inliner | will run a moderate inliner pass prior to the polly pipeline
+-O3                | Required to run polly.
+-mllvm             | Will cause clang to pass the following option to llvm.
+-polly             | Will enable the polly pipeline.
+-polly-run-inliner | Will run a moderate inliner pass prior to the polly pipeline
 -polly-invariant-load-hoisting=true  | Enable invariant load hoisting.
 -polly-allow-error-blocks=false      | Disable the speculative expansion of SCoPs that often results in statically infeasible assumptions. Error blocks are a feature that is not yet tuned and often too aggressive.
 -polly-unprofitable-scalar-accs=false| Assume scalar accesses in statements are optimize able. This is generally true though the support in Polly was dropped at some point in favor of a replacement mechanism that is still not available. Therefore, Polly will currently not assume statements with scalar accesses are optimizeable while they generally are.
@@ -199,8 +204,7 @@ valid Scops"* the command would be
 applied to the standard error stream or log file. To summarize the outputs of
 multiple input files we provide the python script *summarize_stats.py*.
 Please note that the script will skip lines that are not matched by the
-following regular expression:
-  `"^[0-9]+ - .*"`
+following regular expression `"^[0-9]+ - .*"`.
 The last part (after the hyphen) is used as statistics key (SK). Depending on
 the way all statistics are summarized it might therefor be required to add the
 `--no-filename` option to grep.
@@ -208,7 +212,7 @@ the way all statistics are summarized it might therefor be required to add the
 The remarks system of LLVM/Clang allows to provide feedback to the user. It is
 enabled for a specific pass using `-Rpass-analysis=<passname>` (`<passname>`
 should be `polly-scops` or just `polly`). The output always starts with the
-filename, line and column number if available. After the term `remark:` the
+filename, line and column number, if available. After the term `remark:` the
 actual message is printed.
 
 
@@ -216,19 +220,19 @@ actual message is printed.
 
 ##### Number of loop nests analyzed [#S]:
 
-* (a) feasible assumptions: SK `"Number of valid Scops"`
+Statically feasible assumptions (a): SK `"Number of valid Scops"`
 
-...Alternatively one could enable the remarks system [see below] and check if
+Alternatively one could enable the remarks system [see below] and check if
     the following line is in the output:
 
-    `remark: SCoP ends here.`
+      remark: SCoP ends here.
 
-* (b) statically infeasible assumptions: SK `"Number of SCoPs with statically infeasible context"`
+Statically infeasible assumptions (b): SK `"Number of SCoPs with statically infeasible context"`
 
-...Alternatively one could enable the remarks system and check if the
+Alternatively one could enable the remarks system and check if the
     following line is in the output:
 
-      `remark: SCoP ends here but was dismissed.`
+      remark: SCoP ends here but was dismissed.
 
 
 ##### Number of loop nests analyzed without assumptions [#S]:
@@ -240,7 +244,9 @@ actual message is printed.
   and get the number of SCoPs that did require versioning, thus assumptions.
   The difference is the number of SCoPs valid without assumptions.
 
-  SK `"Number of valid Scops"` - SK `"Number of SCoPs required versioning."`
+``` 
+  *#Valid Scops* - *#SCoPs required versioning.*
+```
 
   Alternatively one could enable the remarks system and check if there are
   no assumption remarks between:
@@ -250,31 +256,26 @@ actual message is printed.
 ```
 
 
-##### Number of executions of optimized loop nests [with assumptions #E]:
+##### Number of executions of optimized loop nests with assumptions [#E]:
 
   Run options: `-mllvm -polly-codegen-emit-rtc-print`
 
-  Numbers collected from the error stream (or logs) of the test cases.
-
-*   (a) passing runtime checks:
-... Extract lines containing `'__RTC: '` followed by a non zero number from the
-    error stream (or logs), command:
+Number of passing runtime checks (a):  Extract lines containing `'__RTC: '`
+followed by a non zero number from the error stream (or logs), command:
       `grep -E '__RTC: [1-9]'`
 
-*   (b) failing runtime checks:
-... Extract lines containing `'__RTC: 0'` from the error stream (or logs),
-    command:
-      `grep '__RTC: 0'`
+Number of failing runtime checks (b): Extract lines containing `'__RTC: 0'` from
+the error stream (or logs), command: `grep '__RTC: 0'`
 
 
-##### Number of optimized loop nests executed [with assumptions #D]:
+##### Number of optimized loop nests executed with assumptions [#D]:
 
-  Similar to the former one (#E) but the result of the grep should be uniquely
-  sorted with regards to the function name and region identifiers of the loop
-  nest. Given the grep result from (#E) one can first drop the runtime check and
-  overflow state result using:
+  Similar to the former one **[#E]** but the result of the grep should be
+  uniquely sorted with regards to the function name and region identifiers. As a
+  result each executed region is only counted once. Given the grep result from
+  **[#E]** one can first drop the runtime check and overflow state result using
     `sed -e 's|__RTC:.*||'`
-  And then sort the lines uniquely using:
+  and then sort the lines uniquely with
     `sort -u`
 
 
@@ -283,7 +284,7 @@ actual message is printed.
   Run options: `-mllvm -polly-remarks-minimal=false -Rpass-analysis=polly-scops`
 
   The assumptions taken are emitted to the standard error stream using the
-  remarks system of clang/llvm. The assumptions evaluated here have the
+  remarks system of LLVM/Clang. The assumptions described in the paper have the
   following names in the remarks output:
 
     Statistics Key    |  Paper Section
@@ -295,16 +296,20 @@ actual message is printed.
     "Delinearization" |  4.5
     "No-aliasing"     |  4.6
 
-  To extract the first from the error stream (or logs) one can use the command:
+  To extract them from the error stream (or logs) one can use a command like:
     `grep 'Invariant load'`
 
+  If `-polly-remarks-minimal=false` is enabled by default. It will cause *all*
+  taken assumptions to be printed, even if they are already implied or trivially
+  fulfilled.
 
-##### Number of non-trivial assumptions taken that were not implied by propr ones (b):
+
+##### Number of non-trivial assumptions taken that were not implied by prior ones (b):
 
   Run options: `-mllvm -polly-remarks-minimal=true -Rpass-analysis=polly-scops`
 
-  Same as part (a) but with minimal remarks turned on. This will prevent the
-  output of any already implied assumption.
+  Same as part **(a(** but with minimal remarks turned on. This will prevent the
+  output of any already implied or trivial assumption.
 
 
 
@@ -317,19 +322,19 @@ Implementation notes:
 
 #### Algorithm 1:
 
-    The overflow checks for addition (and multiplication) are implemented in the
-    `IslExprBuilder::createBinOp(...)` function [`IslExprBuilder.cpp`]. The
-    overflow tracking is enabled in the `IslNodeBuilder::createRTC(...)`
-    function [`IslNodeBuilder.cpp`] with the `ExprBuilder.setTrackOverflow(true)`
-    call. As described in the paper one can either bail as soon as an overflow
-    occurred or tack that fact and bail in the end. To avoid a complicated
-    control flow graph the latter solution is implemented. The final overflow
-    state is queried via `ExprBuilder.getOverflowState()` after the runtime
-    check generation and combined with the runtime check result.
+The overflow checks for addition (and multiplication) are implemented in the
+`IslExprBuilder::createBinOp(...)` function [`IslExprBuilder.cpp`]. The
+overflow tracking is enabled in the `IslNodeBuilder::createRTC(...)`
+function [`IslNodeBuilder.cpp`] with the `ExprBuilder.setTrackOverflow(true)`
+call. As described in the paper one can either bail as soon as an overflow
+occurred or tack that fact and bail in the end. To avoid a complicated
+control flow graph the latter solution is implemented. The final overflow
+state is queried via `ExprBuilder.getOverflowState()` after the runtime
+check generation and combined with the runtime check result.
 
 ####  Algorithm 2:
 
-    The parameter generation is implemented in the IslNodeBuilder
+The parameter generation is implemented in the IslNodeBuilder
 
 
 ### Assumption computation
