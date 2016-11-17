@@ -31,13 +31,17 @@ benchmarks and the testing environment from scratch.
 
 To setup the compiler toolchain use the *setup_toolchain.py* script or the
 "polly.sh" script provided online [3]. Since LLVM and Polly are under constant
-improvement, the results differ from version to version, However, while the
-exact numbers might be different we do not expect the general effects to be.
+improvement, the results might differe between version. However, while the exact
+numbers might be different we do not expect the general effects to be.
 This document was written using the following versions which are necessary to
 collect most information without modifying the source code manually:
-  llvm:
-  clang:
-  polly:
+---------|----------------------
+  llvm:  |
+---------|----------------------
+  clang: |
+---------|----------------------
+  polly: |
+---------|----------------------
 
 
 ### Benchmarks: LLVM Test Suite, NAS Benchmark Suite, SPEC2000, SPEC2006
@@ -57,17 +61,17 @@ configuration file to the resource folder (resources/NPB3.3-SER-C).
 
 
 SPEC2000 and SPEC2006 have to be acquired separately. Once they are, they should
-be placed in the same folder which we call $SPEC_SRC. This folder should contain
+be placed in the same folder which we denote as ${SPEC_SRC}. This folder should contain
 the following directory structure with the actual benchmarks residing in the
 CINT/CFP/CPU folders:
 ```
-  $SPEC_SRC/speccpu2000
-  $SPEC_SRC/speccpu2000/benchspec
-  $SPEC_SRC/speccpu2000/benchspec/CINT2000/
-  $SPEC_SRC/speccpu2000/benchspec/CFP2000/
-  $SPEC_SRC/speccpu2006
-  $SPEC_SRC/speccpu2006/benchspec/
-  $SPEC_SRC/speccpu2006/benchspec/CPU2006/
+  ${SPEC_SRC}/speccpu2000
+  ${SPEC_SRC}/speccpu2000/benchspec
+  ${SPEC_SRC}/speccpu2000/benchspec/CINT2000/
+  ${SPEC_SRC}/speccpu2000/benchspec/CFP2000/
+  ${SPEC_SRC}/speccpu2006
+  ${SPEC_SRC}/speccpu2006/benchspec/
+  ${SPEC_SRC}/speccpu2006/benchspec/CPU2006/
 ```
 This particular arrangement will allow us to run the benchmarks together with
 the LLVM test suite using the LNT tool that is introduced in the following.
@@ -78,18 +82,18 @@ produce similar results.
 
   NAS:             |SNU NPB 1.0.3, based on NPB3.3
   -----------------|------------------------------------------------------------
-  SPEC2000:        | 1.3.1  (+1 fixes [see "SPEC Fixes" below])
-  SPEC2006:        | 1.1    (+1 fixes [see "SPEC Fixes" below])
+  SPEC2000:        | 1.3.1  (see "SPEC Fixes" below)
+  SPEC2006:        | 1.1    (see "SPEC Fixes" below)
   llvm-test-suite: | 19904bd55c45b136559a201e77319937a05348c5 (svn: r286278)
 
 
 #### SPEC Fixes
 
 The include `#include <cstddef>` is missing in:
-```speccpu2006/benchspec/CPU2006/447.dealII/src/include/lac/block_vector.h```.
+`speccpu2006/benchspec/CPU2006/447.dealII/src/include/lac/block_vector.h`.
 
 The include `#include <cstring>` is missing in:
-```speccpu2000/benchspec/CINT2000/252.eon/src/ggRaster.cc```.
+`speccpu2000/benchspec/CINT2000/252.eon/src/ggRaster.cc`.
 
 
 
