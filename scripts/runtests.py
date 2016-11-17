@@ -186,8 +186,9 @@ def get_lnt_runtest_cmd(options):
     for option in options:
         lnt_runtest += " " + option
     for option in GENERAL_OPTIONS:
-        lnt_option = option.replace(" ", "=").replace("-mllvm", "--mllvm")
-        if not lnt_option.startswith("--mllvm"):
+        lnt_option = option.replace(" ", " --cflag=")
+        lnt_option = lnt_option.strip()
+        if not lnt_option.startswith("--cflag"):
             lnt_option = "--cflag=" + lnt_option
         lnt_runtest += " " + lnt_option
     print("LNT runtest command:%s%s" % (os.linesep, lnt_runtest))

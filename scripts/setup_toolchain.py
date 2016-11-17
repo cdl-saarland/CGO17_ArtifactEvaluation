@@ -151,8 +151,9 @@ run("cd %s && cmake %s %s" % (LLVM_OBJ, LLVM_SRC, " ".join(CMAKE_OPTIONS)))
 print(os.linesep + "Build LLVM (this might take some time)")
 if NINJA:
     run("ninja -C %s" % (LLVM_OBJ))
+    run("ninja -C %s check-polly" % (LLVM_OBJ))
 else:
     run("make -C %s -j %i" % (LLVM_OBJ, max(1, MEMORY / (4 if DEBUG else 2), JOBS)))
-
+    run("make -C %s check-polly" % (LLVM_OBJ))
 
 print(os.linesep + sys.argv[0] + " is done!" + os.linesep)

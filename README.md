@@ -128,8 +128,8 @@ We have three test drivers that can be executed separatly:
 
 We will assume the following environment variables are initialized according to
 their description. If the provided scripts were used, all configuration values
-have been written to the *config.py* file located in the scripts directory. This
-file is also read by the *runtest.py* script.
+have been written to the *scripts/config.py*. This file is also read by the
+*runtest.py* script.
 
 Variable   | Description
 -----------|--------------------------------------------------------------------
@@ -163,11 +163,11 @@ Then we can run the LNT *nt* test driver:
                  --build-threads ${JOBS} \
                  --test-externals ${SPEC_SRC} \
                  --cflag=-O3 \
-                 --mllvm=-polly \
-                 --mllvm=-polly-run-inliner \
-                 --mllvm=-polly-invariant-load-hoisting=true \
-                 --mllvm=-polly-unprofitable-scalar-accs=false \
-                 --mllvm=-polly-allow-error-blocks=false
+                 --cflag=-mllvm --cflag=-polly \
+                 --cflag=-mllvm --cflag=-polly-run-inliner \
+                 --cflag=-mllvm --cflag=-polly-invariant-load-hoisting=true \
+                 --cflag=-mllvm --cflag=-polly-unprofitable-scalar-accs=false \
+                 --cflag=-mllvm --cflag=-polly-allow-error-blocks=false
 ```
 
 ### Run options:
@@ -197,49 +197,48 @@ error output or logs using `grep` or a similar command. For the SK *"Number of
 valid Scops"* the command would be
   `grep "Number of valid Scops"`
 applied to the standard error stream or log file. To summarize the outputs of
-multiple input files we provide the python script *summarize_stats.py*. It will
-open all paths provided as arguments and summarize the numbers for the same SK.
-A summarized statistic is printed on the standard output. Please note that the
-script will skip lines that are not matched by the following regular expression:
+multiple input files we provide the python script *summarize_stats.py*.
+Please note that the script will skip lines that are not matched by the
+following regular expression:
   `"^[0-9]+ - .*"`
 The last part (after the hyphen) is used as statistics key (SK). Depending on
 the way all statistics are summarized it might therefor be required to add the
-"--no-filename" option to grep.
+`--no-filename` option to grep.
 
-The remarks system of clang/llvm allows to provide feedback to the user. It is
-enabled for a specific pass using `-Rpass-analysis=<passname>` (<passname> should
-be "polly-scops" for all experiments). The output always starts with the
-filename, line and column number (if available) then the term "remark:" and the
-actual message.
+The remarks system of LLVM/Clang allows to provide feedback to the user. It is
+enabled for a specific pass using `-Rpass-analysis=<passname>` (`<passname>`
+should be `polly-scops` or just `polly`). The output always starts with the
+filename, line and column number if available. After the term `remark:` the
+actual message is printed.
 
 
 ### Data collection and interpretation:
 
-##### Number of loop nests analyzed [with assumptions, #S]:
+##### Number of loop nests analyzed [#S]:
 
-* (a) feasible assumptions:
-... SK `"Number of valid Scops"`
+* (a) feasible assumptions: SK `"Number of valid Scops"`
 
-... Alternatively one could enable the remarks system [see below] and check if
+...Alternatively one could enable the remarks system [see below] and check if
     the following line is in the output:
+
     `remark: SCoP ends here.`
 
-* (b) statically infeasible assumptions:
-... SK `"Number of SCoPs with statically infeasible context"`
+* (b) statically infeasible assumptions: SK `"Number of SCoPs with statically infeasible context"`
 
-... Alternatively one could enable the remarks system and check if the
+...Alternatively one could enable the remarks system and check if the
     following line is in the output:
+
       `remark: SCoP ends here but was dismissed.`
 
 
-##### Number of loop nests analyzed without assumptions [without assumptions #S]:
+##### Number of loop nests analyzed without assumptions [#S]:
 
   Run options: `-mllvm -polly-optimizer=none`
 
-  Indirectly derived number. If the SCoP was valid and there is no optimizer
-  running we will for sure generate code for it (no early exit). In the code
-  generation we check if the runtime check condition is constant, thus if
-  versioning would be needed. If not the SCoP does not require any assumptions.
+  Indirectly derived number. First use the method described above to get the
+  number of *valid SCoPs*. Then disable the optimizer (to prevent early exits)
+  and get the number of SCoPs that did require versioning, thus assumptions.
+  The difference is the number of SCoPs valid without assumptions.
 
   SK `"Number of valid Scops"` - SK `"Number of SCoPs required versioning."`
 
