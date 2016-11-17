@@ -1,0 +1,11 @@
+FROM ubuntu:16.10
+
+MAINTAINER Johannes Doerfert <doerfert@cs.uni-saarland.de>
+
+RUN apt-get update
+RUN apt-get upgrade
+RUN apt-get install -y build-essential cmake git git-svn kpartx libglib2.0-dev
+RUN apt-get install -y patch quilt subversion zlib1g-dev flex libfdt1
+RUN apt-get install -y git libfdt-dev libpixman-1-0 libpixman-1-dev
+
+RUN git clone 
