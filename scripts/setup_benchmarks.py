@@ -72,7 +72,7 @@ create_folder(SPEC_SRC)
 def setup_SPEC(Year):
     print(os.linesep)
     SPECCPU_SRC = os.path.join(SPEC_SRC, "speccpu%s" % (Year))
-    if os.path.islink(SPECCPU_SRC):
+    if os.path.islink(SPECCPU_SRC) or os.path.isdir(SPECCPU_SRC):
         print("Skip SPEC%s detection, %s exists" % (Year, SPECCPU_SRC))
         return SPECCPU_SRC
 
@@ -93,6 +93,10 @@ def setup_SPEC(Year):
     else:
         print("Failed to set up SPEC%s!" % (Year))
         return None
+
+format_and_print("""NOTE: Use `docker cp <src_path> <container>:<dst_path>` to
+                 copy files/folder (e.g., SPEC) from the host system to a
+                 docker container.""")
 
 SPEC_2000_SRC = get_value("SPEC_2000_SRC", [str], lambda: setup_SPEC("2000"))
 SPEC_2006_SRC = get_value("SPEC_2006_SRC", [str], lambda: setup_SPEC("2006"))
