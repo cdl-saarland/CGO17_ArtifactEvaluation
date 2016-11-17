@@ -13,7 +13,7 @@ from helper import *
 function = "The %s script will run the lnt and NPB tests." % (os.path.split(__file__)[1])
 print_intro(function)
 
-verify_value("LLVM_OBJ", "setup_toolchain")
+LLVM_OBJ = verify_value("LLVM_OBJ", [str], "setup_toolchain")
 CLANG_PATH = os.path.join(LLVM_OBJ, "bin", "clang")
 CLANGXX_PATH = os.path.join(LLVM_OBJ, "bin", "clang++")
 if not os.path.isfile(CLANG_PATH):
@@ -119,7 +119,7 @@ def extract_stats(path, name):
 
 
 def compile_npb():
-    verify_value("NPB_SRC", "setup_benchmarks")
+    NPB_SRC = verify_value("NPB_SRC", [str], "setup_benchmarks")
     NPB_CONFIG = os.path.join(NPB_SRC, "config", "make.def")
     if not os.path.isfile(NPB_CONFIG) and not os.path.islink(NPB_CONFIG):
         error("Could not find NPV config, tried: %s" % NPB_CONFIG)
@@ -175,13 +175,13 @@ def compile_npb():
     print(os.linesep * 2)
 
 def get_activate_file():
-    verify_value("SANDBOX", "setup_lnt")
+    SANDBOX = verify_value("SANDBOX", [str], "setup_lnt")
     return os.path.join(SANDBOX, "bin", "activate")
 
 def get_lnt_runtest_cmd(options):
-    verify_value("SANDBOX", "setup_lnt")
-    verify_value("TEST_SUITE", "setup_benchmarks")
-    verify_value("JOBS", "setup_toolchain")
+    SANDBOX = verify_value("SANDBOX", [str], "setup_lnt")
+    TEST_SUITE = verify_value("TEST_SUITE", [str], "setup_benchmarks")
+    JOBS = verify_value("JOBS", [int], "setup_toolchain")
     lnt_runtest = "lnt runtest nt --sandbox %s --cc %s --cxx %s --test-suite %s --build-threads %i" % (SANDBOX, CLANG_PATH, CLANGXX_PATH, TEST_SUITE, JOBS)
     for option in options:
         lnt_runtest += " " + option
@@ -233,7 +233,7 @@ def compile_and_run_test_suite():
     compile_and_run_lnt("test_suite", [])
 
 def compile_and_run_spec():
-    verify_value("SPEC_SRC", "setup_benchmarks")
+    SPEC_SRC = verify_value("SPEC_SRC", [str], "setup_benchmarks")
     compile_and_run_lnt("spec", ["--test-externals=%s" % (SPEC_SRC), "--only-test=External"])
 
 

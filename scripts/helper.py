@@ -116,16 +116,21 @@ def run_int(cmd, default, abort_on_error = True):
 def get_value(name, var_types, query_fn):
     if name in globals() and type(globals()[name]) in var_types:
         return globals()[name]
+    if name in os.environ:
+        return var_types[0](os.environ[name])
     value = query_fn()
     if type(value) not in var_types:
         error("Type of '%s' should be '%s' but is '%s' (%s)" % (name, str(var_types), str(type(value)), str(value)))
     write_config(name, value)
     return value
 
-def verify_value(name, script):
-    if name not in globals():
-        error("%s was not set, run %s.py or check the config.py!" % (name, script))
-        sys.exit(1)
+def verify_value(name, var_types, script):
+    if name in globals() and type(globals()[name]) in var_types:
+        return globals()[name]
+    if name in os.environ:
+        return var_types[0](os.environ[name])
+    error("%s was not set, run %s.py and check the config.py or set it as an environment variable!" % (name, script))
+    sys.exit(1)
 
 CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.py")
 def write_config(name, var):

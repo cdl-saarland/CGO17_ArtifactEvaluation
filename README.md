@@ -65,8 +65,8 @@ file, to the resource folder (*resources/NPB3.3-SER-C*).
 
 SPEC2000 and SPEC2006 have to be acquired separately. Once they are, they should
 be placed in a folder which we denote as *${SPEC_SRC}*. This folder should contain
-the following directory structure with the actual benchmarks residing in the
-CINT/CFP/CPU folders:
+the following structure with the actual benchmarks residing in the
+CINT2000/CFP2000/CPU2006 folders:
 ```
   ${SPEC_SRC}/speccpu2000
   ${SPEC_SRC}/speccpu2000/benchspec
@@ -109,16 +109,17 @@ The include `#include <cstring>` is missing in:
 
 ### Testing environments: LNT & NPB driver
 
-We will use LNT to execute the LLVM test suite as well as SPEC. The installation
+We use LNT to execute the LLVM test suite as well as SPEC. The installation
 of LNT is described online [6]. If `virtualenv` version 2.X is installed, the *setup_lnt.py*
-script can be used to set up LNT and a sandbox. The NPB benchmarks will be "run
-in-place" using the `make suite` command..
+script can be used to set up LNT and a sandbox. The NPB benchmarks are run
+"in-place" using the `make suite` command.
 
 
 ### Testing:
 
-The *runtests.py* script performs the following steps interactively. In general
-we have three test drivers that can be executed separatly.
+The *runtests.py* script performs the following steps interactively. 
+
+We have three test drivers that can be executed separatly:
 
   - *NPB* for the SNU NPB benchmarks.
   - *LNT* for the LLVM test-suite.
@@ -152,7 +153,7 @@ To use the LNT driver we first set up a sandbox environment:
 source ${SANDBOX}/bin/activate
 ```
 
-Then we can run the LNT "nt" test driver:
+Then we can run the LNT *nt* test driver:
 
 ```
   lnt runtest nt --sandbox ${SANDBOX} \
@@ -173,26 +174,13 @@ Then we can run the LNT "nt" test driver:
 
 Option             | Description
 -------------------|------------------------------------------------------------
--O3                |is required as polly does not run otherwise and some test do
-                    not specify an optimization level or use a different one.
--mllvm             |will cause clang to pass the following option to llvm
--polly             |will enable the polly pipeline
--polly-run-inliner |will run a moderate inliner pass prior to the polly pipeline
--polly-invariant-load-hoisting=true  |Enable invariant load hoisting.
--polly-allow-error-blocks=false      |Disable the speculative expansion of SCoPs
-                                      that often results in statically
-                                      infeasible assumptions. Error blocks are a
-                                      new feature that is not yet tuned and
-                                      often too aggressive.
--polly-unprofitable-scalar-accs=false|Assume scalar accesses in statements are
-                                      optimize able. This is generally true
-                                      though the support in Polly was dropped at
-                                      some point in favor of a replacement
-                                      mechanism that is still not available.
-                                      Therefore, Polly will currently not assume
-                                      statements with scalar accesses are
-                                      optimizeable while they generally are.
-
+-O3                | is required as polly does not run otherwise and some test do not specify an optimization level or use a different one.
+-mllvm             | will cause clang to pass the following option to llvm.
+-polly             | will enable the polly pipeline.
+-polly-run-inliner | will run a moderate inliner pass prior to the polly pipeline
+-polly-invariant-load-hoisting=true  | Enable invariant load hoisting.
+-polly-allow-error-blocks=false      | Disable the speculative expansion of SCoPs that often results in statically infeasible assumptions. Error blocks are a feature that is not yet tuned and often too aggressive.
+-polly-unprofitable-scalar-accs=false| Assume scalar accesses in statements are optimize able. This is generally true though the support in Polly was dropped at some point in favor of a replacement mechanism that is still not available. Therefore, Polly will currently not assume statements with scalar accesses are optimizeable while they generally are.
 
 
 Experiments and data collection
