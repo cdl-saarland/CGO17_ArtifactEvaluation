@@ -314,15 +314,36 @@ the error stream (or logs), command: `grep '__RTC: 0'`
 
 
 
-Implementation notes:
---------------------
+# Implementation notes:
 
 Polly only has a "in-code" documentation. In addition to actual comments in the
 code, function declarations are often well documented. Either check the
 declarations in the header files or use the [doxygen documentation
 online](http://polly.llvm.org/doxygen/).
 
-### Runtime Check Generation (Section 6)
+
+## Assumption computation (Section 4)
+
+Assumption computation is spread over multiple functions in `ScopInfo.cpp` and
+`SCEVAffinator.cpp`. To identify the functions one can look for calls to
+`recordAssumption(...)` as well as `addAssumption(...)`. The difference between
+these calls is explained at their declaration in `ScopInfo.h`.
+
+
+
+## Assumption simplification (Section 5)
+
+The assumption simplification is partially performed during/after the assumption
+computation (e.g., using `isl_set_coalesce`) but also explicitly in the
+`Scop::simplifyContexts()` function. The distinction between *assumptions* and
+*restrictions* is implemented using the enum `AssumptionSign` in `ScopInfo.h`.
+Assumptions and respectively restrictions are collected in the
+`Scop::AssumedContext` and `Scop::InvalidContext`. Overapproximations are
+performed usign the `isl_set_remove_divs` function, e.g., in the
+`buildMinMaxAccess` function that is used to derive runtime alias checks.
+
+
+## Runtime Check Generation (Section 6)
 
 #### Algorithm 1:
 
@@ -344,24 +365,6 @@ is called by `CodeGeneration::runOnScop(...)` before a runtime check or the
 optimized code version is generated.
 
 
-### Assumption computation
-
-Assumption computation is spread over multiple functions in `ScopInfo.cpp` and
-`SCEVAffinator.cpp`. To identify the functions one can look for calls to
-`recordAssumption(...)` as well as `addAssumption(...)`. The difference between
-the calls is explained at their declaration in `ScopInfo.h`.
-
-
-### Assumption simplification
-
-The assumption simplification is partially performed during/after the assumption
-computation (e.g., using `isl_set_coalesce`) but also explicitly in the
-`Scop::simplifyContexts()` function. The distinction between *assumptions* and
-*restrictions* is implemented using the enum `AssumptionSign` in `ScopInfo.h`.
-Assumptions and respectively restrictions are collected in the
-`Scop::AssumedContext` and `Scop::InvalidContext`. Overapproximations are
-performed usign the `isl_set_remove_divs` function, e.g., in the
-`buildMinMaxAccess` function that is used to derive runtime alias checks.
 
 
 [0] http://llvm.org/docs/GettingStarted.html
