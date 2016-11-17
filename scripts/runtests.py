@@ -196,10 +196,30 @@ def get_lnt_runtest_cmd(options):
 
 def compile_and_run_lnt(name, options):
     ACTIVATE_FILE = get_activate_file()
-
     lnt_setup = "source %s" % (ACTIVATE_FILE)
-    lnt_runtest = get_lnt_runtest_cmd(options)
     lnt_deactivate = "deactivate"
+
+    SAMPLES = query_user_int("Accumulate test data from multiple runs?", 1)
+    options.append("--multisample=%i" % (SAMPLES))
+
+    if query_user_bool("Remove short running regression tests?", False):
+        options.append("--benchmarking-only")
+
+    options.append("--run-order=%s_%s" % (TIME_STR, name))
+    def query_lnt_server():
+        default = os.path.join(RESULT_BASE, "lnt_server")
+        return query_user_path("[New] LNT server to commit results to (if any):", default)
+    global LNT_SERVER
+    LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
+
+    if LNT_SERVER:
+        if not os.path.isdir(LNT_SERVER):
+            print("Create lnt server instance %s" % (LNT_SERVER))
+            run("%s && lnt create %s" % (lnt_setup, LNT_SERVER), False)
+        if os.path.isdir(LNT_SERVER):
+            options.append("--submit=%s" % (LNT_SERVER))
+
+    lnt_runtest = get_lnt_runtest_cmd(options)
 
     sandbox_ls_before = os.listdir(os.path.abspath(SANDBOX))
 
@@ -246,5 +266,10 @@ if query_user_bool("Compile & run the LLVM test suite?", True):
 
 if query_user_bool("Compile & run the SPEC test suite(s)?", True):
     compile_and_run_spec()
+
+LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], lambda: "")
+if LNT_SERVER and os.path.isdir(LNT_SERVER):
+    if query_user_bool("Run lnt server instance %s" % (LNT_SERVER)):
+        run("lnt runserver %s" % (LNT_SERVER))
 
 print(os.linesep + sys.argv[0] + " is done!" + os.linesep)
