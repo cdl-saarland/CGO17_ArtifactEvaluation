@@ -35,13 +35,12 @@ improvement, the results might differe between version. However, while the exact
 numbers might be different we do not expect the general effects to be.
 This document was written using the following versions which are necessary to
 collect most information without modifying the source code manually:
----------|----------------------
+
   llvm:  |
 ---------|----------------------
   clang: |
 ---------|----------------------
   polly: |
----------|----------------------
 
 
 ### Benchmarks: LLVM Test Suite, NAS Benchmark Suite, SPEC2000, SPEC2006
@@ -90,10 +89,12 @@ produce similar results.
 #### SPEC Fixes
 
 The include `#include <cstddef>` is missing in:
-`speccpu2006/benchspec/CPU2006/447.dealII/src/include/lac/block_vector.h`.
+
+`${SPEC_SRC}/speccpu2006/benchspec/CPU2006/447.dealII/src/include/lac/block_vector.h`.
 
 The include `#include <cstring>` is missing in:
-`speccpu2000/benchspec/CINT2000/252.eon/src/ggRaster.cc`.
+
+`${SPEC_SRC}/speccpu2000/benchspec/CINT2000/252.eon/src/ggRaster.cc`.
 
 
 
@@ -117,7 +118,6 @@ their description. If the provided scripts were used, all configuration values
 have been written to the *config.py* file located in the scripts directory. This
 file is also read by the *runtest.py" script.
 
------------|--------------------------------------------------------------------
 SANDBOX    | Path of the python sandbox created during the installation of LNT.
 -----------|--------------------------------------------------------------------
 LLVM_OBJ   | Path to the llvm build with polly support.
@@ -129,7 +129,6 @@ SPEC_SRC   | Path to the SPEC benchmarks as described above.
 NPB_SRC    | Path to the NPB serial C benchmarks.
 -----------|--------------------------------------------------------------------
 JOBS       | Number of jobs to use during evaluation.
------------|--------------------------------------------------------------------
 
 ##### [NPB] driver
 The NPB driver can be run via `make suite` in the NPB source folder.
@@ -137,7 +136,10 @@ The NPB driver can be run via `make suite` in the NPB source folder.
 ##### [lnt] driver
 
 To use the lnt driver we first set up a sandbox environment:
-```source ${SANDBOX}/bin/activate```
+
+```
+source ${SANDBOX}/bin/activate
+```
 
 Then we can run the lnt "nt" test driver:
   lnt runtest nt --sandbox ${SANDBOX} \
@@ -192,20 +194,20 @@ Experiments and data collection
 ### Statistics and remarks:
 
 Statistics can be collected using the command line addition:
-  ```-mllvm -stats```
+  `-mllvm -stats`
 
 A debug build or release build with assertions is needed to do this.
 The statistics will be printed to the standard error output or logs depending on
 the benchmark. To collect them one can extract the statistics key (SK) from the
 error output or logs using `grep` or a similar command. For the SK **"Number of
 valid Scops"** the command would be
-  ```grep "Number of valid Scops"```
+  `grep "Number of valid Scops"`
 applied to the standard error stream or log file. To summarize the outputs of
 multiple input files we provide the python script *summarize_stats.py*. It will
 open all paths provided as arguments and summarize the numbers for the same SK.
 A summarized statistic is printed on the standard output. Please note that the
 script will skip lines that are not matched by the following regular expression:
-  ```"^[0-9]+ - .*"```
+  `"^[0-9]+ - .*"`
 The last part (after the hyphen) is used as statistics key (SK). Depending on
 the way all statistics are summarized it might therefor be required to add the
 "--no-filename" option to grep.
@@ -226,14 +228,14 @@ actual message.
 
 ... Alternatively one could enable the remarks system [see below] and check if
     the following line is in the output:
-    ```remark: SCoP ends here.```
+    `remark: SCoP ends here.`
 
 ..* (b) statically infeasible assumptions:
 ... SK `"Number of SCoPs with statically infeasible context"`
 
 ... Alternatively one could enable the remarks system and check if the
     following line is in the output:
-      ```remark: SCoP ends here but was dismissed.```
+      `remark: SCoP ends here but was dismissed.`
 
 
 ##### Number of loop nests analyzed without assumptions [without assumptions #S]:
@@ -249,7 +251,7 @@ actual message.
 
   Alternatively one could enable the remarks system and check if there are
   no assumption remarks between:
-``` 
+```
     remark: SCoP begins here.
     remark: SCoP ends here.
 ```
@@ -264,12 +266,12 @@ actual message.
 ..* (a) passing runtime checks:
 ... Extract lines containing `'__RTC: '` followed by a non zero number from the
     error stream (or logs), command:
-      ```grep -E '__RTC: [1-9]'```
+      `grep -E '__RTC: [1-9]'`
 
 ..* (b) failing runtime checks:
 ... Extract lines containing `'__RTC: 0'` from the error stream (or logs),
     command:
-      ```grep '__RTC: 0'```
+      `grep '__RTC: 0'`
 
 
 ##### Number of optimized loop nests executed [with assumptions #D]:
@@ -278,9 +280,9 @@ actual message.
   sorted with regards to the function name and region identifiers of the loop
   nest. Given the grep result from (#E) one can first drop the runtime check and
   overflow state result using:
-    ```sed -e 's|__RTC:.*||'```
+    `sed -e 's|__RTC:.*||'`
   And then sort the lines uniquely using:
-    ```sort -u```
+    `sort -u`
 
 
 ##### Number of non-trivial assumptions taken (a):
@@ -305,7 +307,7 @@ actual message.
     ------------------|---------------
 
   To extract the first from the error stream (or logs) one can use the command:
-    ```grep 'Invariant load'```
+    `grep 'Invariant load'`
 
 
 ##### Number of non-trivial assumptions taken that were not implied by propr ones (b):
