@@ -307,8 +307,8 @@ the error stream (or logs), command: `grep '__RTC: 0'`
 
   Run options: `-mllvm -polly-remarks-minimal=true -Rpass-analysis=polly-scops`
 
-  Same as part **(a(** but with minimal remarks turned on. This prevents the
-  output of any already implied or trivial assumption.
+  Same as part **(a)** but with remark output limited to a minimum. This
+  prevents the output of any already implied or trivial assumption.
 
 
 
@@ -338,17 +338,18 @@ check generation and combined with the runtime check result.
 
 ####  Algorithm 2:
 
-The parameter generation is implemented in the
-`IslNodeBuilder::preloadInvariantLoads()` function. It is called in the
-`CodeGeneration` before the runtime check or the optimized code version are
-generated.
+The entry point for the recursive parameter generation is the
+`IslNodeBuilder::preloadInvariantLoads()` function [`IslNodeBuilder.cpp`]. It
+is called by `CodeGeneration::runOnScop(...)` before a runtime check or the
+optimized code version is generated.
 
 
 ### Assumption computation
 
 Assumption computation is spread over multiple functions in `ScopInfo.cpp` and
 `SCEVAffinator.cpp`. To identify the functions one can look for calls to
-`recordAssumption(...)` as well as `addAssumption(...)`.
+`recordAssumption(...)` as well as `addAssumption(...)`. The difference between
+the calls is explained at their declaration in `ScopInfo.h`.
 
 
 ### Assumption simplification
