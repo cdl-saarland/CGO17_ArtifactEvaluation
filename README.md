@@ -196,9 +196,9 @@ and input sizes are defined in the `config/suite.def`. We recommend size *W*.
 
 To use the LNT driver we first set up a sandbox environment:
 
-```
-source ${SANDBOX}/bin/activate
-```
+`source ${SANDBOX}/bin/activate`
+or 
+`. ${SANDBOX}/bin/activate`
 
 Then we can run the LNT *nt* test driver:
 
