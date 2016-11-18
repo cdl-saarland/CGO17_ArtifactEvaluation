@@ -2,18 +2,18 @@ Optimistic Loop Optimization
 ============================
 
 This documents describes how to reproduce the evaluation presented in the
-*Optimistic Loop Optimization* paper at CGO17. It also locates the source code
-locations of the ideas and algorithms described in the paper.
+*Optimistic Loop Optimization* paper at CGO17.
 
-Note that the work was completely upstreamed to the open source tool Polly.
-There are no special repositories or unmerged patches, all it takes to try out
-the work described in the paper is a recent version of LLVM, Clang and Polly.
+The full implementation has been made availablable as part of the open source
+tool Polly. There are no special repositories or unmerged patches needed. All
+it takes to try out the work described in the paper is a recent version of
+LLVM, Clang, and Polly.
 
 Note: *Since LLVM and Polly are under constant improvement, the results might
 differ between version. However, while the exact numbers might be different we
 do not expect the general effects to be. This document was written using the
-following versions. Older versions of Polly will not expose the statistics
-leveraged here.*
+following versions. Older versions of Polly do not provide the statistics
+interface used in this evaluation.*
 
   Tool   | Version
 ---------|----------------------
