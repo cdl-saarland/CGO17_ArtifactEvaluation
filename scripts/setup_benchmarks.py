@@ -92,7 +92,7 @@ def setup_SPEC(Year):
             SRC = None
         else:
             break
-        if query_user_bool("Continue without SPEC%s?" % (Year), False):
+        if query_user_bool("Continue without SPEC%s?" % (Year), True):
             print("Rerun 'scripts/setup_benchmarks.py' after SPEC%s is available!" % (Year))
             break
 
