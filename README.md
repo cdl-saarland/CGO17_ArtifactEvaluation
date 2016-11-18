@@ -1,47 +1,19 @@
 Optimistic Loop Optimization
 ============================
 
-tl;dr
-The *scripts/artifact_eval.py* script is a driver that interactively performs
-all steps described in this documents. The commands as well as an explanation
-for each step are provided.
+This documents describes how to reproduce the evaluation presented in the
+*Optimistic Loop Optimization* paper at CGO17. It also locates the source code
+locations of the ideas and algorithms described in the paper.
 
-Docker container
-================
+Note that the work was completely upstreamed to the open source tool Polly.
+There are no special repositories or unmerged patches, all it takes to try out
+the work described in the paper is a recent version of LLVM, Clang and Polly.
 
-We provide a docker container ... TODO
-
-
-Setup and requirements
-----------------------
-
-LLVM, Clang and Polly all provide quick start guides that can be found online
-[0-2]. If the system requirements listed below are met the automatic script
-provided to setup Polly [3] is the simplest way to install the compiler
-toolchain. In the following we describe the commands needed to prepare the
-benchmarks and the testing environment from scratch.
-
-### System requirements [4]
-  - at least 25+8=33GB of free space (LLVM/Clang/Polly debug build +
-    benchmarks), a release build does require much less space and memory.
-  - at least 8GB of main memory, preferably more
-  - A C/C++11 enabled compiler e.g., gcc >= 4.8.0 or clang >= 3.1
-  - CMake >= 3.4.3
-  - GNU Make >= 3.79
-  - A Python 2 interpreter >= 2.7
-  - zlib >=1.2.3.4
-
-
-### Compiler toolchain: LLVM, Clang and Polly
-
-To setup the compiler toolchain use the *setup_toolchain.py* script or the
-"polly.sh" script provided online [3]. Since LLVM and Polly are under constant
-improvement, the results might differe between version. However, while the exact
-numbers might be different we do not expect the general effects to be.
-This document was written using the following versions. 
-
-Note: *In older versions of (open source) Polly the information necessary to
-evaluate the effect of assumptions was not exposed to the user.*
+Note: *Since LLVM and Polly are under constant improvement, the results might
+differ between version. However, while the exact numbers might be different we
+do not expect the general effects to be. This document was written using the
+following versions. Older versions of Polly will not expose the statistics
+leveraged here.*
 
   Tool   | Version
 ---------|----------------------
@@ -49,10 +21,69 @@ evaluate the effect of assumptions was not exposed to the user.*
   Clang: |
   Polly: |
 
+### Where to go from here
+
+There are different levels of automation to choose from:
+
+1) The `scripts/artifact_eval.py` is a driver that interactively performs all
+steps necessary. It will set up the toolchain, the benchmarks and the test
+environment before it will run the tests and aggregate the results. Each step
+will be explained to the user and *all* commands that are issued are shown too.
+
+2) The `scripts` folder contains python scripts that interactively perform
+different tasks, e.g., the setup of the toolchain. The driver above only uses
+them to perform the individual tasks. Thus, they allow to run or repeat tasks
+individually.
+
+3) This document explains how to set up the toolchain and the test environment
+manually. It also describes the experiments and how to interpret the data.
+
+Docker container
+================
+
+We provide a docker container that is described by the *Dockerfile* in the
+*docker* directory. It is build on top of a clean Ubuntu and will install all
+necessary software automatically. To build it locally run
+
+`docker build -t cgo_ae_17 docker`
+
+it will automatically create ....
+Afterwards you can ``run'' the container to get an interactive bash shell.
+This repository will be cloned to `/root/ae/` and an initial, up to date,
+toolchain is created in the `/ae/toolchain` folder when the container is build.
+
+We recomend to start by running the interactive `artifact_eval.py` script in the
+`/ae/` folder, thus: `cd /ae; python /root/ae/scripts/artifact_eval.py`.
+
+
+Setup and requirements
+----------------------
+
+LLVM, Clang and Polly all provide quick start guides that can be found online
+[0-2]. In the following we describe the commands needed to prepare the
+toolchain, benchmarks and the testing environment from scratch.
+
+### System requirements [3]
+  - at least 25+8=33GB of free space (LLVM/Clang/Polly debug build +
+    benchmarks), a release build does require much less space and memory.
+  - at least 8GB of main memory, preferably more
+  - A C/C++11 enabled compiler e.g., gcc >= 4.8.0 or clang >= 3.1
+  - CMake >= 3.4.3
+  - GNU Make >= 3.79 (ninja is optional but often faster)
+  - A Python2 interpreter >= 2.7
+  - The Python2 virtualenv tool
+  - zlib >=1.2.3.4
+  - Common tools like: git, grep, sed
+
+
+### Compiler toolchain: LLVM, Clang and Polly
+
+If the system requirements listed above are met, build the compiler toolchain as
+described in the Polly documentation online [2]. 
 
 ### Benchmarks: LLVM Test Suite, NAS Benchmark Suite, SPEC2000, SPEC2006
 
-The *setup_benchmarks.py* script performs the following steps interactively.
+The `setup_benchmarks.py` script performs the following steps interactively.
 
 ##### LLVM Test Suite
 
@@ -68,9 +99,9 @@ or
 ##### NAS Benchmark Suite
 
 The serial C implementation of the NAS benchmark suite (NPB3.3-SER-C) can be
-found here [5]. However, since a registration is required to download the
+found here [4]. However, since a registration is required to download the
 benchmark suite, we provide the sources, including a modified configuration
-file, to the resource folder (*resources/NPB3.3-SER-C*).
+file, to the resource folder (`resources/NPB3.3-SER-C`).
 
 
 ##### SPEC2000 & SPEC2006
@@ -124,14 +155,14 @@ The include `#include <cstring>` is missing in:
 ### Testing environments: LNT & NPB driver
 
 We use LNT to execute the LLVM test suite as well as SPEC. The installation
-of LNT is described online [6]. If `virtualenv` version 2.X is installed, the *setup_lnt.py*
+of LNT is described online [5]. If `virtualenv` version 2.X is installed, the `setup_lnt.py`
 script can be used to set up LNT and a sandbox. The NPB benchmarks are run
 "in-place" using the `make suite` command.
 
 
 ### Testing
 
-The *runtests.py* script performs the following steps interactively. 
+The `runtests.py` script performs the following steps interactively. 
 
 We have three test drivers that can be executed separatly:
 
@@ -142,8 +173,8 @@ We have three test drivers that can be executed separatly:
 
 We assume the following environment variables are initialized according to
 their description. If the provided scripts were used, all configuration values
-have been written to the *scripts/config.py*. This file is also read by the
-*runtest.py* script.
+have been written to the `scripts/config.py`. This file is also read by the
+`runtest.py` script.
 
 Variable   | Description
 -----------|--------------------------------------------------------------------
@@ -156,8 +187,8 @@ JOBS       | Number of jobs to use during evaluation.
 
 ##### *NPB* driver
 The NPB driver can be run via `make suite` in the NPB source folder. The
-compile time options are configured in the *config/make.defs*. The benchmarks
-and input sizes are defined in the *config/suite.def*. We recommend size **W**.
+compile time options are configured in the `config/make.defs`. The benchmarks
+and input sizes are defined in the `config/suite.def`. We recommend size *W*.
 
 ##### *LNT* driver
 
@@ -216,11 +247,11 @@ error output or logs using `grep` or a similar command. For the SK *"Number of
 valid Scops"* the command would be
   `grep "Number of valid Scops"`
 applied to the standard error stream or log file. To summarize the outputs of
-multiple input files we provide the python script *summarize_stats.py*.
+multiple input files we provide the python script `summarize_stats.py`.
 Please note that the script skips lines that are not matched by the
 following regular expression `"^[0-9]+ - .*"`.
 The last part (after the hyphen) is used as statistics key (SK). Depending on
-the way all statistics are summarized it might therefor be required to add the
+the way all statistics are summarized it might therefore be required to add the
 `--no-filename` option to grep.
 
 The remarks system of LLVM/Clang allows to provide feedback to the user. It is
@@ -236,7 +267,7 @@ actual message is printed.
 
 Statically feasible assumptions (a):
 
-The statstics key `"Number of valid Scops"` directly corresponds to this
+The statistics key `"Number of valid Scops"` directly corresponds to this
 evaluation category.
 
 Alternatively one could enable the remarks system [see below] and check if
@@ -291,10 +322,10 @@ the error stream (or logs), command: `grep '__RTC: 0'`
 
 ##### Number of optimized loop nests executed with assumptions [#D]
 
-  Similar to the former one **[#E]** but the result of the grep should be
+  Similar to the former one *[#E]* but the result of the grep should be
   uniquely sorted with regards to the function name and region identifiers. As a
   result each executed region is only counted once. Given the grep result from
-  **[#E]** one can first drop the runtime check and overflow state result using
+  *[#E]* one can first drop the runtime check and overflow state result using
     `sed -e 's|__RTC:.*||'`
   and then sort the lines uniquely with
     `sort -u`
@@ -329,7 +360,7 @@ the error stream (or logs), command: `grep '__RTC: 0'`
 
   Run options: `-mllvm -polly-remarks-minimal=true -Rpass-analysis=polly-scops`
 
-  Same as part **(a)** but with remark output limited to a minimum. This
+  Same as part *(a)* but with remark output limited to a minimum. This
   prevents the output of any already implied or trivial assumption.
 
 
@@ -361,7 +392,7 @@ computation (e.g., using `isl_set_coalesce`) but also explicitly in the
 *restrictions* is implemented using the enum `AssumptionSign` in `ScopInfo.h`.
 Assumptions and respectively restrictions are collected in the
 `Scop::AssumedContext` and `Scop::InvalidContext`. Overapproximations are
-performed usign the `isl_set_remove_divs` function, e.g., in the
+performed using the `isl_set_remove_divs` function, e.g., in the
 `buildMinMaxAccess` function that is used to derive runtime alias checks.
 
 
@@ -374,7 +405,7 @@ The overflow checks for addition (and multiplication) are implemented in the
 overflow tracking is enabled in the `IslNodeBuilder::createRTC(...)`
 function [`IslNodeBuilder.cpp`] with the `ExprBuilder.setTrackOverflow(true)`
 call. As described in the paper one can either bail as soon as an overflow
-occurred or tack that fact and bail in the end. To avoid a complicated
+occurred or track that fact and bail in the end. To avoid a complicated
 control flow graph the latter solution is implemented. The final overflow
 state is queried via `ExprBuilder.getOverflowState()` after the runtime
 check generation and combined with the runtime check result.
@@ -395,11 +426,9 @@ optimized code version is generated.
 
 [2] http://polly.llvm.org/get_started.html
 
-[3] http://polly.llvm.org/polly.sh
+[3] http://llvm.org/docs/GettingStarted.html#requirements
 
-[4] http://llvm.org/docs/GettingStarted.html#requirements
+[4] http://aces.snu.ac.kr/software/snu-npb/
 
-[5] http://aces.snu.ac.kr/software/snu-npb/
-
-[6] http://llvm.org/docs/lnt/quickstart.html
+[5] http://llvm.org/docs/lnt/quickstart.html
 
