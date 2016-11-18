@@ -259,7 +259,10 @@ def compile_and_run_test_suite():
 
 def compile_and_run_spec():
     SPEC_SRC = verify_value("SPEC_SRC", [str], "setup_benchmarks")
-    compile_and_run_lnt("spec", ["--test-externals=%s" % (SPEC_SRC), "--only-test=External"])
+    if not os.path.isdir(SPEC_SRC) or (not os.path.isdir(os.path.join(SPEC_SRC, "speccpu2000")) and not os.path.isdir(os.path.join(SPEC_SRC, "speccpu2006"))):
+        error("SPEC not available at %s. Rerun 'scripts/setup_benchmarks.py'!" % (SPEC_SRC))
+    else:
+        compile_and_run_lnt("spec", ["--test-externals=%s" % (SPEC_SRC), "--only-test=External"])
 
 def query_lnt_server():
     default = os.path.join(RESULT_BASE, "lnt_server")
@@ -277,7 +280,16 @@ if query_user_bool("Compile & run the SPEC test suite(s)?", True):
     LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
     compile_and_run_spec()
 
+print(os.linesep * 2)
+format_and_print("""NOTE: Use `docker cp <container>:<src_path> <dst_path` to
+                copy files/folder (e.g., result summaries, the lnt server,
+                    ...) from the docker container to the host system.""")
+print(os.linesep)
+
 try:
+    if LNT_SERVER and os.path.isdir(LNT_SERVER):
+        print("LNT server: %s" % (LNT_SERVER))
+
     if LNT_SERVER and os.path.isdir(LNT_SERVER):
         if query_user_bool("Run lnt server instance %s" % (LNT_SERVER), False):
             run("%s && lnt runserver %s" % (lnt_setup, LNT_SERVER), False)

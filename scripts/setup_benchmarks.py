@@ -63,28 +63,38 @@ else:
 
 
 def query_spec():
-    default = os.path.join(TEST_SUITE, "SPEC")
-    return query_user_path("[New] Path to 'external SPEC' folder [use default if unsure]:", default)
+    return os.path.join(TEST_SUITE, "SPEC")
 SPEC_SRC = get_value("SPEC_SRC", [str], query_spec)
 
 create_folder(SPEC_SRC)
 
 def setup_SPEC(Year):
     print(os.linesep)
+    SPECCPU_SRC = os.path.join("/", "speccpu%s" % (Year))
+    if os.path.islink(SPECCPU_SRC) or os.path.isdir(SPECCPU_SRC):
+        print("Skip SPEC%s detection, %s exists" % (Year, SPECCPU_SRC))
+        return SPECCPU_SRC
+
     SPECCPU_SRC = os.path.join(SPEC_SRC, "speccpu%s" % (Year))
     if os.path.islink(SPECCPU_SRC) or os.path.isdir(SPECCPU_SRC):
         print("Skip SPEC%s detection, %s exists" % (Year, SPECCPU_SRC))
         return SPECCPU_SRC
 
-    SRC = query_user_path("[Existing] SPEC%s folder:" % (Year), "")
+    while True:
+        SRC = query_user_path("[Existing] SPEC%s folder:" % (Year), "")
 
-    if not os.path.isdir(SRC):
-        if SRC:
-            print("WARNING: '%s' is not a folder" % (SRC))
-        SRC = None
-    elif not os.path.isdir(os.path.join(SRC, "benchspec")):
-        print("WARNING: Expected 'benchspec' folder in '%s'" % (SRC))
-        SRC = None
+        if not os.path.isdir(SRC):
+            if SRC:
+                print("WARNING: '%s' is not a folder" % (SRC))
+            SRC = None
+        elif not os.path.isdir(os.path.join(SRC, "benchspec")):
+            print("WARNING: Expected 'benchspec' folder in '%s'" % (SRC))
+            SRC = None
+        else:
+            break
+        if query_user_bool("Continue without SPEC%s?" % (Year), False):
+            print("Rerun 'scripts/setup_benchmarks.py' after SPEC%s is available!" % (Year))
+            break
 
     if SRC:
         run("ln -s %s %s" % (SRC, SPECCPU_SRC))
@@ -94,9 +104,11 @@ def setup_SPEC(Year):
         print("Failed to set up SPEC%s!" % (Year))
         return None
 
+print(os.linesep * 2)
 format_and_print("""NOTE: Use `docker cp <src_path> <container>:<dst_path>` to
                  copy files/folder (e.g., SPEC) from the host system to a
                  docker container.""")
+print(os.linesep)
 
 SPEC_2000_SRC = setup_SPEC("2000")
 SPEC_2006_SRC = setup_SPEC("2006")

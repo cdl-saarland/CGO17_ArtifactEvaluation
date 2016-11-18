@@ -42,18 +42,18 @@ Docker container
 ================
 
 We provide a docker container that is described by the *Dockerfile* in the
-*docker* directory. It is build on top of a clean Ubuntu and will install all
-necessary software automatically. To build it locally run
+*docker* directory. It is defined on top of a vanilla Ubuntu and will install
+all necessary software automatically at build time. Afterwards one can copy
+SPEC2000 and SPEC2006 into the container. The docker run command will invoke the
+interactive `artifact_eval.py` script that guides through the set up and
+evaluation process.
 
-`docker build -t cgo_ae_17 docker`
-
-it will automatically create ....
-Afterwards you can "run" the container to get an interactive bash shell.
-This repository will be cloned to `/root/ae/` and an initial, up to date,
-toolchain is created in the `/ae/toolchain` folder when the container is build.
-
-We recomend to start by running the interactive `artifact_eval.py` script in the
-`/ae/` folder, thus: `cd /ae; python /root/ae/scripts/artifact_eval.py`.
+```
+docker build -t jdoerfert_cgo17_ae docker
+docker cp <path_to_spec2000> jdoerfert/:/speccpu2000
+docker cp <path_to_spec2006> jdoerfert/:/speccpu2006
+docker run -t -i jdoerfert/cgo17_ae
+```
 
 
 Setup and requirements
@@ -73,7 +73,8 @@ toolchain, benchmarks and the testing environment from scratch.
   - A Python2 interpreter >= 2.7
   - The Python2 virtualenv tool
   - zlib >=1.2.3.4
-  - Common tools like: git, grep, sed
+  - Common tools like: git, grep, sed, yacc, groff, ... (see `docker/Dockerfile`
+    for a list of packages installed on top of a clean Ubuntu system)
 
 
 ### Compiler toolchain: LLVM, Clang and Polly
