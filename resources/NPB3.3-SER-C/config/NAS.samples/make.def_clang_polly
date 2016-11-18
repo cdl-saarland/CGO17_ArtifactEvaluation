@@ -78,7 +78,7 @@ FLINKFLAGS = -O3 -mcmodel=medium
 #---------------------------------------------------------------------------
 # This is the C compiler used for C programs
 #---------------------------------------------------------------------------
-CC = /home/johannes/repos/publications/OptimisticAssumptions/artifact_eval/llvm_build/bin/clang
+CC = clang
 
 #---------------------------------------------------------------------------
 # This links C programs; usually the same as ${CC}
@@ -173,6 +173,6 @@ CFLAGS += -mllvm -polly
 CFLAGS += -mllvm -polly-invariant-load-hoisting=true
 CFLAGS += -mllvm -polly-run-inliner=true
 CFLAGS += -mllvm -polly-unprofitable-scalar-accs=false
-CFLAGS += -mllvm -polly-allow-error-blocks=true
+CFLAGS += -mllvm -polly-allow-error-blocks=false
 CFLAGS += -mllvm -stats
 CFLAGS += -Rpass-analysis=polly

@@ -57,9 +57,9 @@ else:
     GENERAL_OPTIONS.append("-mllvm -polly-unprofitable-scalar-accs=true")
 
 if query_user_bool("Allow to speculate on error blocks?", False):
-    GENERAL_OPTIONS.append("-mllvm -polly-allow-error-blocks=false")
-else:
     GENERAL_OPTIONS.append("-mllvm -polly-allow-error-blocks=true")
+else:
+    GENERAL_OPTIONS.append("-mllvm -polly-allow-error-blocks=false")
 
 STATS = query_user_bool("Output compile statistics?", True)
 if STATS:
@@ -178,6 +178,13 @@ def get_activate_file():
     SANDBOX = verify_value("SANDBOX", [str], "setup_lnt")
     return os.path.join(SANDBOX, "bin", "activate")
 
+ACTIVATE_FILE = get_activate_file()
+if not ACTIVATE_FILE or not os.path.isfile(ACTIVATE_FILE):
+    error("Sandbox is corrupted, expeced file not found: %s" % (ACTIVATE_FILE))
+lnt_setup = "source %s" % (ACTIVATE_FILE)
+lnt_deactivate = "deactivate"
+
+
 def get_lnt_runtest_cmd(options):
     SANDBOX = verify_value("SANDBOX", [str], "setup_lnt")
     TEST_SUITE = verify_value("TEST_SUITE", [str], "setup_benchmarks")
@@ -195,10 +202,6 @@ def get_lnt_runtest_cmd(options):
     return lnt_runtest
 
 def compile_and_run_lnt(name, options):
-    ACTIVATE_FILE = get_activate_file()
-    lnt_setup = "source %s" % (ACTIVATE_FILE)
-    lnt_deactivate = "deactivate"
-
     SAMPLES = query_user_int("Accumulate test data from multiple runs?", 1)
     options.append("--multisample=%i" % (SAMPLES))
 
@@ -206,21 +209,16 @@ def compile_and_run_lnt(name, options):
         options.append("--benchmarking-only")
 
     options.append("--run-order=%s_%s" % (TIME_STR, name))
-    def query_lnt_server():
-        default = os.path.join(RESULT_BASE, "lnt_server")
-        return query_user_path("[New] LNT server to commit results to (if any):", default)
-    global LNT_SERVER
-    LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
 
-    if LNT_SERVER:
-        if not os.path.isdir(LNT_SERVER):
-            print("Create lnt server instance %s" % (LNT_SERVER))
-            run("%s && lnt create %s" % (lnt_setup, LNT_SERVER), False)
-        if os.path.isdir(LNT_SERVER):
-            options.append("--submit=%s" % (LNT_SERVER))
+    if LNT_SERVER and not os.path.isdir(LNT_SERVER):
+        print("Create lnt server instance %s" % (LNT_SERVER))
+        run("%s && lnt create %s" % (lnt_setup, LNT_SERVER), False)
+    if LNT_SERVER and os.path.isdir(LNT_SERVER):
+        options.append("--submit=%s" % (LNT_SERVER))
 
     lnt_runtest = get_lnt_runtest_cmd(options)
 
+    SANDBOX = verify_value("SANDBOX", [str], "setup_lnt")
     sandbox_ls_before = os.listdir(os.path.abspath(SANDBOX))
 
     print("Run LNT:")
@@ -257,19 +255,28 @@ def compile_and_run_spec():
     SPEC_SRC = verify_value("SPEC_SRC", [str], "setup_benchmarks")
     compile_and_run_lnt("spec", ["--test-externals=%s" % (SPEC_SRC), "--only-test=External"])
 
+def query_lnt_server():
+    default = os.path.join(RESULT_BASE, "lnt_server")
+    return query_user_path("[New] LNT server to commit results to (if any):", default)
+
 
 if query_user_bool("Compile the NPB suite?", True):
     compile_npb()
 
 if query_user_bool("Compile & run the LLVM test suite?", True):
+    LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
     compile_and_run_test_suite()
 
 if query_user_bool("Compile & run the SPEC test suite(s)?", True):
+    LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
     compile_and_run_spec()
 
-LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], lambda: "")
-if LNT_SERVER and os.path.isdir(LNT_SERVER):
-    if query_user_bool("Run lnt server instance %s" % (LNT_SERVER)):
-        run("lnt runserver %s" % (LNT_SERVER))
+try:
+    if LNT_SERVER and os.path.isdir(LNT_SERVER):
+        if query_user_bool("Run lnt server instance %s" % (LNT_SERVER), False):
+            run("%s && lnt runserver %s" % (lnt_setup, LNT_SERVER), False)
+except Exception as e:
+    print(e)
+    pass
 
 print(os.linesep + sys.argv[0] + " is done!" + os.linesep)

@@ -51,10 +51,12 @@ def print_intro(function):
     print("*" * 80)
     format_and_print(function, False)
     print("*" * 80 + os.linesep)
+    read_config()
 
 
 def query_user_str(msg, default=None):
-    print(os.linesep + msg)
+    if msg:
+        print(os.linesep + msg)
     ans = get_input(">> " if not default else "[%s] >> " % (str(default)))
     return ans if ans or not default else default
 
@@ -160,16 +162,21 @@ def write_config(name, var):
     fd.close()
 
 
+def read_config():
+    try:
+        if os.path.isfile(CONFIG_PATH):
+            print("Read %s" % (CONFIG_PATH))
+            no = 0
+            with open(CONFIG_PATH, "r") as fd:
+                for line in fd.readlines():
+                    if line.count("=") == 1:
+                        name, value = line.split("=")
+                        globals()[name.strip()] = eval(value.strip())
+                        no += 1
+            print("Successfully initialized %i values!%s" % (no, os.linesep))
+    except Exception as e:
+        error("Could not read/evaluate %s" % CONFIG_PATH)
+
 #### Always executed!
 format_and_print(intro)
-
-try:
-    if os.path.isfile(CONFIG_PATH):
-        n_values = len(globals())
-        with open(CONFIG_PATH, "r") as fd:
-            exec(fd.read())
-        print("Read %s" % (CONFIG_PATH))
-        print("Successfully initialized %i values!%s" % (len(globals()) - n_values, os.linesep))
-except Exception as e:
-    error("Could not read/evaluate %s" % CONFIG_PATH)
 
