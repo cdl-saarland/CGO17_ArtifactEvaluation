@@ -187,7 +187,7 @@ def get_activate_file():
 ACTIVATE_FILE = get_activate_file()
 if not ACTIVATE_FILE or not os.path.isfile(ACTIVATE_FILE):
     error("Sandbox is corrupted, expeced file not found: %s" % (ACTIVATE_FILE))
-lnt_setup = "source %s" % (ACTIVATE_FILE)
+lnt_setup = ". %s" % (ACTIVATE_FILE)
 lnt_deactivate = "deactivate"
 
 
