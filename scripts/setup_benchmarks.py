@@ -70,10 +70,6 @@ create_folder(SPEC_SRC)
 
 def setup_SPEC(Year):
     print(os.linesep)
-    SPECCPU_SRC = os.path.join("/", "speccpu%s" % (Year))
-    if os.path.islink(SPECCPU_SRC) or os.path.isdir(SPECCPU_SRC):
-        print("Skip SPEC%s detection, %s exists" % (Year, SPECCPU_SRC))
-        return SPECCPU_SRC
 
     SPECCPU_SRC = os.path.join(SPEC_SRC, "speccpu%s" % (Year))
     if os.path.islink(SPECCPU_SRC) or os.path.isdir(SPECCPU_SRC):
@@ -81,8 +77,15 @@ def setup_SPEC(Year):
         return SPECCPU_SRC
 
     while True:
-        SRC = query_user_path("[Existing] SPEC%s folder:" % (Year), "")
-
+        SRC = None
+        for src in [os.path.join("/", "speccpu%s" % (Year)), os.path.join(os.path.expanduser("~"), "speccpu%s" % (Year)),os.path.join(os.path.abspath(os.curdir), "speccpu%s" % (Year))]:
+            if os.path.islink(src) or os.path.isdir(src):
+                if os.path.isdir(os.path.join(src, "benchspec")):
+                    print("Auto detect: %s" % (src))
+                    SRC = src
+                    break
+        if not SRC:
+            SRC = query_user_path("[Existing] SPEC%s folder:" % (Year), "")
         if not os.path.isdir(SRC):
             if SRC:
                 print("WARNING: '%s' is not a folder" % (SRC))
