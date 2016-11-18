@@ -49,10 +49,10 @@ interactive `artifact_eval.py` script that guides through the set up and
 evaluation process.
 
 ```
-docker build -t jdoerfert_cgo17_ae docker
-docker cp <path_to_spec2000> jdoerfert/:/speccpu2000
-docker cp <path_to_spec2006> jdoerfert/:/speccpu2006
-docker run -t -i jdoerfert/cgo17_ae
+docker pull jdoerfert/cgo17_artifactevaluation
+docker cp <path_to_spec2000> :/speccpu2000
+docker cp <path_to_spec2006> :/speccpu2006
+docker run -t -i jdoerfert/cgo17_artifactevaluation
 ```
 
 
