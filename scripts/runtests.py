@@ -160,6 +160,12 @@ def compile_npb():
             fd.write(line + os.linesep)
 
     print(os.linesep * 2)
+    SRC_BIN = os.path.join(NPB_SRC, "bin")
+    if not os.path.isdir(SRC_BIN):
+        print("Create empty bin directory for the exectuables in %s" % (NPB_SRC))
+        os.makedirs(SRC_BIN)
+        print(os.linesep)
+
     print("Compile the NPB test suite")
     run("cd %s && make suite > %s 2> %s" % (NPB_SRC, OUT_FILE, ERR_FILE))
 
@@ -168,7 +174,7 @@ def compile_npb():
     RESULT_NPB_BIN = os.path.join(RESULT_FOLDER, "NPB_bin")
     print(os.linesep * 2)
     print("Copy benchmark binaries to %s" % (RESULT_NPB_BIN))
-    run("cp -R %s %s" % (os.path.join(NPB_SRC, "bin"), RESULT_NPB_BIN))
+    run("cp -R %s %s" % (SRC_BIN, RESULT_NPB_BIN))
 
     print(os.linesep * 2)
     format_and_print("====== DONE COMPILING NPB ======")
