@@ -365,7 +365,25 @@ the error stream (or logs), command: `grep '__RTC: 0'`
   prevents the output of any already implied or trivial assumption.
 
 
+### Performance evaluation
 
+#### Assumption compile time cost
+
+To determine the compile time cost of assumption generation (and simplification)
+Polly has to run without it. However, since this is unsound there is no built-in
+support. Instead the patch in `resources/` can be applied to Polly version
+5df868addaca89cae91e1328af6682b56d06b572 (or r287347). It 
+adds the `-polly-ignore-assumptions` command line flag that can be used to
+disable assumptions creation. Polly will nevertheless continue to optimize and
+generate code for *all* SCoP.
+
+#### Assumption simplification effect
+
+Assumption simplification is spread accross the source code (see below). To
+disable it apply the patch in `resources/` to Polly version
+5df868addaca89cae91e1328af6682b56d06b572 (or r287347). It will add the command
+line option `-polly-no-assumption-simplification` that will prevent assumption
+related simplifications.
 
 
 # Implementation notes

@@ -1,0 +1,278 @@
+From 8237f1a6a9c560a9e9ab19e805840f38bbada704 Mon Sep 17 00:00:00 2001
+From: Johannes Doerfert <johannes@jdoerfert.de>
+Date: Fri, 18 Nov 2016 16:21:24 +0100
+Subject: [PATCH] [Eval] Allow to "turn off" assumption generation and
+ simplification
+
+Patches that enable unsound code paths. For evaluation purposes only.
+Part of the CGO17 artifact evaluation process.
+---
+ include/polly/ScopInfo.h      |  3 ++
+ lib/Analysis/ScopInfo.cpp     | 78 ++++++++++++++++++++++++++++++++-----------
+ lib/Support/SCEVAffinator.cpp | 17 ++++++++--
+ 3 files changed, 77 insertions(+), 21 deletions(-)
+
+diff --git a/include/polly/ScopInfo.h b/include/polly/ScopInfo.h
+index 4e92cbf..a404286 100644
+--- a/include/polly/ScopInfo.h
++++ b/include/polly/ScopInfo.h
+@@ -64,6 +64,9 @@ class Scop;
+ class ScopStmt;
+ class ScopBuilder;
+ 
++extern bool PollyNoAssumptions;
++extern bool PollyNoAssumptionSimplification;
++
+ //===---------------------------------------------------------------------===//
+ 
+ /// Enumeration of assumptions Polly can take.
+diff --git a/lib/Analysis/ScopInfo.cpp b/lib/Analysis/ScopInfo.cpp
+index fb21ba4..38e6762 100644
+--- a/lib/Analysis/ScopInfo.cpp
++++ b/lib/Analysis/ScopInfo.cpp
+@@ -79,6 +79,19 @@ STATISTIC(AssumptionsDelinearization,
+ // are also unlikely to result in good code
+ static int const MaxDisjunctionsInDomain = 20;
+ 
++bool polly::PollyNoAssumptions;
++static cl::opt<bool, true> XPollyNoAssumptions(
++    "polly-ignore-assumptions",
++    cl::desc("Do not compute assumptions but continue nevertheless (unsound!)"),
++    cl::location(PollyNoAssumptions), cl::Hidden, cl::ZeroOrMore,
++    cl::init(false), cl::cat(PollyCategory));
++
++bool polly::PollyNoAssumptionSimplification;
++static cl::opt<bool, true> XPollyNoAssumptionSimplification(
++    "polly-no-assumption-simplification",
++    cl::desc("Do not simplify assumptions"), cl::location(PollyNoAssumptions),
++    cl::Hidden, cl::ZeroOrMore, cl::init(false), cl::cat(PollyCategory));
++
+ static cl::opt<bool> PollyRemarksMinimal(
+     "polly-remarks-minimal",
+     cl::desc("Do not emit remarks about assumptions that are known"),
+@@ -478,6 +491,10 @@ void MemoryAccess::updateDimensionality() {
+ 
+   isl_space_free(ArraySpace);
+ 
++  // If assumptions are ignored (*unsound*!) do not create them.
++  if (PollyNoAssumptions)
++    return;
++
+   assumeNoOutOfBound();
+ }
+ 
+@@ -665,7 +682,8 @@ void MemoryAccess::assumeNoOutOfBound() {
+   // Doing so increases the set of parameter combinations that are assumed to
+   // not appear. This is always save, but may make the resulting run-time check
+   // bail out more often than strictly necessary.
+-  Outside = isl_set_remove_divs(Outside);
++  if (!PollyNoAssumptionSimplification)
++    Outside = isl_set_remove_divs(Outside);
+   Outside = isl_set_complement(Outside);
+   const auto &Loc = getAccessInstruction()
+                         ? getAccessInstruction()->getDebugLoc()
+@@ -2126,7 +2144,8 @@ static isl_stat buildMinMaxAccess(__isl_take isl_set *Set, void *User) {
+   isl_aff *OneAff;
+   unsigned Pos;
+ 
+-  Set = isl_set_remove_divs(Set);
++  if (!PollyNoAssumptionSimplification)
++    Set = isl_set_remove_divs(Set);
+ 
+   if (isl_set_n_basic_set(Set) >= MaxDisjunctionsInDomain) {
+     isl_set_free(Set);
+@@ -2162,8 +2181,10 @@ static isl_stat buildMinMaxAccess(__isl_take isl_set *Set, void *User) {
+   MinPMA = isl_set_lexmin_pw_multi_aff(isl_set_copy(Set));
+   MaxPMA = isl_set_lexmax_pw_multi_aff(isl_set_copy(Set));
+ 
+-  MinPMA = isl_pw_multi_aff_coalesce(MinPMA);
+-  MaxPMA = isl_pw_multi_aff_coalesce(MaxPMA);
++  if (!PollyNoAssumptionSimplification) {
++    MinPMA = isl_pw_multi_aff_coalesce(MinPMA);
++    MaxPMA = isl_pw_multi_aff_coalesce(MaxPMA);
++  }
+ 
+   // Adjust the last dimension of the maximal access by one as we want to
+   // enclose the accessed memory region by MinPMA and MaxPMA. The pointer
+@@ -2198,8 +2219,10 @@ static bool calculateMinMaxAccess(__isl_take isl_union_map *Accesses,
+ 
+   Accesses = isl_union_map_intersect_domain(Accesses, Domains);
+   isl_union_set *Locations = isl_union_map_range(Accesses);
+-  Locations = isl_union_set_coalesce(Locations);
+-  Locations = isl_union_set_detect_equalities(Locations);
++  if (!PollyNoAssumptionSimplification) {
++    Locations = isl_union_set_coalesce(Locations);
++    Locations = isl_union_set_detect_equalities(Locations);
++  }
+   bool Valid = (0 == isl_union_set_foreach_set(Locations, buildMinMaxAccess,
+                                                &MinMaxAccesses));
+   isl_union_set_free(Locations);
+@@ -2422,9 +2445,14 @@ bool Scop::propagateInvalidStmtDomains(Region *R, DominatorTree &DT,
+     } else {
+       isl_set_free(InvalidDomain);
+       InvalidDomain = Domain;
+-      isl_set *DomPar = isl_set_params(isl_set_copy(Domain));
+-      recordAssumption(ERRORBLOCK, DomPar, BB->getTerminator()->getDebugLoc(),
+-                       AS_RESTRICTION);
++
++      // If assumptions are ignored (*unsound*!) do not create them.
++      if (!PollyNoAssumptions) {
++        isl_set *DomPar = isl_set_params(isl_set_copy(Domain));
++        recordAssumption(ERRORBLOCK, DomPar, BB->getTerminator()->getDebugLoc(),
++                         AS_RESTRICTION);
++      }
++
+       Domain = nullptr;
+     }
+ 
+@@ -2852,8 +2880,8 @@ bool Scop::addLoopBoundsToHeaderDomain(Loop *L, LoopInfo &LI) {
+ 
+   // Check if there is a <nsw> tagged AddRec for this loop and if so do not add
+   // the bounded assumptions to the context as they are already implied by the
+-  // <nsw> tag.
+-  if (Affinator.hasNSWAddRecForLoop(L)) {
++  // <nsw> tag. Also do not create assumptions if they are ignored (*unsound*!).
++  if (Affinator.hasNSWAddRecForLoop(L) || PollyNoAssumptions) {
+     isl_set_free(Parts.first);
+     return true;
+   }
+@@ -2900,7 +2928,8 @@ bool Scop::hasNonHoistableBasePtrInScop(MemoryAccess *MA,
+ }
+ 
+ bool Scop::buildAliasChecks(AliasAnalysis &AA) {
+-  if (!PollyUseRuntimeAliasChecks)
++  // If assumptions are ignored (*unsound*!) do not create them.
++  if (!PollyUseRuntimeAliasChecks || PollyNoAssumptions)
+     return true;
+ 
+   if (buildAliasGroups(AA)) {
+@@ -3178,7 +3207,8 @@ void Scop::init(AliasAnalysis &AA, AssumptionCache &AC, DominatorTree &DT,
+   // assumed/invalid context.
+   addRecordedAssumptions();
+ 
+-  simplifyContexts();
++  if (!PollyNoAssumptionSimplification)
++    simplifyContexts();
+   if (!buildAliasChecks(AA))
+     return;
+ 
+@@ -3322,6 +3352,9 @@ InvariantEquivClassTy *Scop::lookupInvariantEquivClass(Value *Val) {
+ static bool canAlwaysBeHoisted(MemoryAccess *MA, bool StmtInvalidCtxIsEmpty,
+                                bool MAInvalidCtxIsEmpty,
+                                bool NonHoistableCtxIsEmpty) {
++  if (PollyNoAssumptionSimplification)
++    return false;
++
+   LoadInst *LInst = cast<LoadInst>(MA->getAccessInstruction());
+   const DataLayout &DL = LInst->getParent()->getModule()->getDataLayout();
+   // TODO: We can provide more information for better but more expensive
+@@ -3526,10 +3559,12 @@ __isl_give isl_set *Scop::getNonHoistableCtx(MemoryAccess *Access,
+   auto *WrittenCtx = isl_union_map_params(Written);
+   bool IsWritten = !isl_set_is_empty(WrittenCtx);
+ 
+-  if (!IsWritten)
++  // If assumptions are ignored (*unsound*!) do not create them.
++  if (!IsWritten || PollyNoAssumptions)
+     return WrittenCtx;
+ 
+-  WrittenCtx = isl_set_remove_divs(WrittenCtx);
++  if (!PollyNoAssumptionSimplification)
++    WrittenCtx = isl_set_remove_divs(WrittenCtx);
+   bool TooComplex = isl_set_n_basic_set(WrittenCtx) >= MaxDisjunctionsInDomain;
+   if (TooComplex || !isRequiredInvariantLoad(LI)) {
+     isl_set_free(WrittenCtx);
+@@ -3816,7 +3851,8 @@ bool Scop::trackAssumption(AssumptionKind Kind, __isl_keep isl_set *Set,
+ void Scop::addAssumption(AssumptionKind Kind, __isl_take isl_set *Set,
+                          DebugLoc Loc, AssumptionSign Sign) {
+   // Simplify the assumptions/restrictions first.
+-  Set = isl_set_gist_params(Set, getContext());
++  if (!PollyNoAssumptionSimplification)
++    Set = isl_set_gist_params(Set, getContext());
+ 
+   if (!trackAssumption(Kind, Set, Loc, Sign)) {
+     isl_set_free(Set);
+@@ -3825,10 +3861,12 @@ void Scop::addAssumption(AssumptionKind Kind, __isl_take isl_set *Set,
+ 
+   if (Sign == AS_ASSUMPTION) {
+     AssumedContext = isl_set_intersect(AssumedContext, Set);
+-    AssumedContext = isl_set_coalesce(AssumedContext);
++    if (!PollyNoAssumptionSimplification)
++      AssumedContext = isl_set_coalesce(AssumedContext);
+   } else {
+     InvalidContext = isl_set_union(InvalidContext, Set);
+-    InvalidContext = isl_set_coalesce(InvalidContext);
++    if (!PollyNoAssumptionSimplification)
++      InvalidContext = isl_set_coalesce(InvalidContext);
+   }
+ }
+ 
+@@ -3865,7 +3903,9 @@ void Scop::addRecordedAssumptions() {
+     // To avoid the complement we will register A - B as a restricton not an
+     // assumption.
+     isl_set *S = AS.Set;
+-    if (AS.Sign == AS_RESTRICTION)
++    if (PollyNoAssumptionSimplification)
++      S = isl_set_params(S);
++    else if (AS.Sign == AS_RESTRICTION)
+       S = isl_set_params(isl_set_intersect(S, Dom));
+     else /* (AS.Sign == AS_ASSUMPTION) */
+       S = isl_set_params(isl_set_subtract(Dom, S));
+diff --git a/lib/Support/SCEVAffinator.cpp b/lib/Support/SCEVAffinator.cpp
+index 43924e8..e4de415 100644
+--- a/lib/Support/SCEVAffinator.cpp
++++ b/lib/Support/SCEVAffinator.cpp
+@@ -117,6 +117,10 @@ void SCEVAffinator::interpretAsUnsigned(__isl_keep PWACtx &PWAC,
+ }
+ 
+ void SCEVAffinator::takeNonNegativeAssumption(PWACtx &PWAC) {
++  // If assumptions are ignored (*unsound*!) do not create them.
++  if (PollyNoAssumptions)
++    return;
++
+   auto *NegPWA = isl_pw_aff_neg(isl_pw_aff_copy(PWAC.first));
+   auto *NegDom = isl_pw_aff_pos_set(NegPWA);
+   PWAC.second = isl_set_union(PWAC.second, isl_set_copy(NegDom));
+@@ -152,7 +156,8 @@ __isl_give PWACtx SCEVAffinator::checkForWrapping(const SCEV *Expr,
+   // whereas n is the number of bits of the Expr, hence:
+   //   n = bitwidth(ExprType)
+ 
+-  if (IgnoreIntegerWrapping || (getNoWrapFlags(Expr) & SCEV::FlagNSW))
++  if (IgnoreIntegerWrapping || PollyNoAssumptions ||
++      (getNoWrapFlags(Expr) & SCEV::FlagNSW))
+     return PWAC;
+ 
+   auto *PWA = PWAC.first;
+@@ -163,7 +168,8 @@ __isl_give PWACtx SCEVAffinator::checkForWrapping(const SCEV *Expr,
+ 
+   const DebugLoc &Loc = BB ? BB->getTerminator()->getDebugLoc() : DebugLoc();
+   NotEqualSet = BB ? NotEqualSet : isl_set_params(NotEqualSet);
+-  NotEqualSet = isl_set_coalesce(NotEqualSet);
++  if (!PollyNoAssumptionSimplification)
++    NotEqualSet = isl_set_coalesce(NotEqualSet);
+ 
+   if (isl_set_is_empty(NotEqualSet))
+     isl_set_free(NotEqualSet);
+@@ -193,6 +199,9 @@ SCEVAffinator::addModuloSemantic(__isl_take isl_pw_aff *PWA,
+ }
+ 
+ bool SCEVAffinator::hasNSWAddRecForLoop(Loop *L) const {
++  if (PollyNoAssumptionSimplification)
++    return false;
++
+   for (const auto &CachedPair : CachedExpressions) {
+     auto *AddRec = dyn_cast<SCEVAddRecExpr>(CachedPair.first.first);
+     if (!AddRec)
+@@ -299,6 +308,10 @@ SCEVAffinator::visitTruncateExpr(const SCEVTruncateExpr *Expr) {
+ 
+   unsigned Width = TD.getTypeSizeInBits(Expr->getType());
+ 
++  // If assumptions are ignored (*unsound*!) do not create them.
++  if (PollyNoAssumptions)
++    return OpPWAC;
++
+   if (computeModuloForExpr(Expr))
+     return OpPWAC;
+ 
+-- 
+2.10.2
+
