@@ -10,5 +10,4 @@ RUN apt-get install -y build-essential cmake git git-svn kpartx libglib2.0-dev \
 
 RUN git clone https://github.com/jdoerfert/CGO17_ArtifactEvaluation.git /ae
 
-CMD python /ae/scripts/artifact_eval.py
-CMD /bin/bash
+CMD bash -c "python /ae/scripts/artifact_eval.py; bash"
