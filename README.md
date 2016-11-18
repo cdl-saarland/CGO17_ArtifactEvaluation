@@ -151,6 +151,7 @@ The include `#include <cstring>` is missing in:
 
 `${SPEC_SRC}/speccpu2000/benchspec/CINT2000/252.eon/src/ggRaster.cc`.
 
+Note: *These fixes have to be applied manually if necessary!*
 
 
 ### Testing environments: LNT & NPB driver
