@@ -117,6 +117,9 @@ def extract_stats(path, name):
     from summarize_stats import summarize
     summarize(output, summary)
 
+    print("Summary:")
+    run("cat %s" % (summary), False)
+
 
 def compile_npb():
     NPB_SRC = verify_value("NPB_SRC", [str], "setup_benchmarks")
