@@ -48,7 +48,7 @@ necessary software automatically. To build it locally run
 `docker build -t cgo_ae_17 docker`
 
 it will automatically create ....
-Afterwards you can ``run'' the container to get an interactive bash shell.
+Afterwards you can "run" the container to get an interactive bash shell.
 This repository will be cloned to `/root/ae/` and an initial, up to date,
 toolchain is created in the `/ae/toolchain` folder when the container is build.
 
