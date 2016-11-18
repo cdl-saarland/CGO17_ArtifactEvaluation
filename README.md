@@ -5,9 +5,8 @@ This documents describes how to reproduce the evaluation presented in the
 *Optimistic Loop Optimization* paper at CGO17.
 
 The full implementation has been made available as part of the open source
-tool Polly. There are no special repositories or unmerged patches needed. All
-it takes to try out the work described in the paper is a recent version of
-LLVM, Clang, and Polly.
+tool Polly. Thus, all it takes to try out the work described in the paper is a
+recent version of LLVM, Clang, and Polly.
 
 Note: *Since LLVM and Polly are under constant improvement, the results might
 differ between version. However, while the exact numbers might be different we
