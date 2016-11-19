@@ -78,9 +78,9 @@ else:
 
 print(os.linesep)
 if query_user_bool("Revert to original artifact evaluation version?", False):
-    LLVM_AE_VERSION = "51f285437dba3391adf23bb5a65309d093d7055e"
-    CLANG_AE_VERSION = "f2849bb243c47208a2e052857cd5e9455cd0e54c"
-    POLLY_AE_VERSION = "0331f4954ea77339b30eeb9af2db92f23e4b9783"
+    LLVM_AE_VERSION = "b28b8f21ef30c677f418ad6cc1acd4792552f672"
+    CLANG_AE_VERSION = "9483fa6dbe01ac2b7513a2bf50dcb599ebe4af46"
+    POLLY_AE_VERSION = "5df868addaca89cae91e1328af6682b56d06b572"
 
     print("Reset LLVM to %s:" % (LLVM_AE_VERSION))
     run("git -C %s reset --hard %s" % (LLVM_SRC, LLVM_AE_VERSION))

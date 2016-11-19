@@ -16,9 +16,9 @@ interface used in this evaluation.*
 
   Tool   | Version
 ---------|----------------------
-  LLVM:  |
-  Clang: |
-  Polly: |
+  LLVM:  | b28b8f21ef30c677f418ad6cc1acd4792552f672 (svn: r287273)
+  Clang: | 9483fa6dbe01ac2b7513a2bf50dcb599ebe4af46 (svn: r287275)
+  Polly: | 5df868addaca89cae91e1328af6682b56d06b572 (svn: r287347)
 
 ### Where to go from here
 
