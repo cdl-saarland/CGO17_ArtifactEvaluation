@@ -270,7 +270,7 @@ Statically feasible assumptions (a):
 The statistics key `"Number of valid Scops"` directly corresponds to this
 evaluation category.
 
-Alternatively one could enable the remarks system [see below] and check if
+Alternatively one could enable the remarks system [see above] and check if
     the following line is in the output:
 
       remark: SCoP ends here.
