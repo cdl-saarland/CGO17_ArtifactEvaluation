@@ -108,7 +108,7 @@ def extract_stats(path, name):
         return
 
     term = " polly-scops | polly-codegen "
-    run("grep %s --no-filename -E \"%s\" %s > %s" % ("-r" if recursive else "", term, path, output))
+    run("grep %s --no-filename -E \"%s\" %s > %s" % ("-r" if recursive else "", term, path, output), False)
     print("Output written to %s" % (output))
 
     print(os.linesep * 2)

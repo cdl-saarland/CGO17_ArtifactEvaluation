@@ -165,6 +165,7 @@ def write_config(name, var):
 def read_config():
     try:
         if os.path.isfile(CONFIG_PATH):
+            print("*" * 80)
             print("Read %s" % (CONFIG_PATH))
             no = 0
             with open(CONFIG_PATH, "r") as fd:
@@ -174,6 +175,7 @@ def read_config():
                         globals()[name.strip()] = eval(value.strip())
                         no += 1
             print("Successfully initialized %i values!%s" % (no, os.linesep))
+            print("*" * 80 + os.linesep)
     except Exception as e:
         error("Could not read/evaluate %s" % CONFIG_PATH)
 

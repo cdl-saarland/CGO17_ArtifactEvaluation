@@ -49,8 +49,6 @@ evaluation process.
 
 ```
 docker pull jdoerfert/cgo17_artifactevaluation
-docker cp <path_to_spec2000> :/speccpu2000
-docker cp <path_to_spec2006> :/speccpu2006
 docker run -t -i jdoerfert/cgo17_artifactevaluation
 ```
 
@@ -123,8 +121,9 @@ This particular arrangement allows us to run the benchmarks together with
 the LLVM test suite using the LNT tool that is introduced in the following.
 
 
-Note: *Use `docker cp <src_path> <container>:<dst_path>` to copy files/folder
-(e.g., SPEC) from the host system to a docker container.*
+Note: *Use `docker cp <src_path> <container_id>:<dst_path>` to copy files/folder
+(e.g., SPEC) from the host system to a docker container. To obtain the container
+id run `hostname` inside the container.*
 
 
 ##### Benchmark Versions
