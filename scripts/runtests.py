@@ -118,7 +118,11 @@ def extract_stats(path, name):
     summarize(output, summary)
 
     print("Summary:")
-    run("cat %s" % (summary), False)
+    if os.path.isfile(summary):
+        fd = open(summary, "r")
+        for line in fd.readlines():
+            print(line.strip())
+        fd.close()
 
 
 def compile_npb():
