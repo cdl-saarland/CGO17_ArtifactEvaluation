@@ -34,7 +34,7 @@ if not os.path.isdir(SANDBOX):
     error("Sandbox folder %s does not exist" % (SANDBOX))
     sys.exit(1)
 
-run("%s %s" % (VIRTUALENV, SANDBOX))
+run("%s %s" % (VIRTUALENV, SANDBOX), False)
 if not os.path.isfile(os.path.join(SANDBOX, "bin", "python")):
     error("Sandbox creation failed!")
     sys.exit(1)
