@@ -314,7 +314,7 @@ Alternatively one could enable the remarks system and check if the
 
 Number of passing runtime checks (a):  Extract lines containing `'__RTC: '`
 followed by a non zero number from the error stream (or logs), command:
-      `grep -E '__RTC: [1-9]'`
+      `grep -E '__RTC: (-[1-9]|[1-9])'`
 
 Number of failing runtime checks (b): Extract lines containing `'__RTC: 0'` from
 the error stream (or logs), command: `grep '__RTC: 0'`
