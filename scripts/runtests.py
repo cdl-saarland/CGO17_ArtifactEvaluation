@@ -61,6 +61,11 @@ if query_user_bool("Allow to speculate on error blocks?", False):
 else:
     GENERAL_OPTIONS.append("-mllvm -polly-allow-error-blocks=false")
 
+if query_user_bool("Allow to speculate on unsigned operations?", False):
+    GENERAL_OPTIONS.append("-mllvm -polly-allow-unsigned-operations=true")
+else:
+    GENERAL_OPTIONS.append("-mllvm -polly-allow-unsigned-operations=false")
+
 STATS = query_user_bool("Output compile statistics?", True)
 if STATS:
     GENERAL_OPTIONS.append("-mllvm -stats")
@@ -278,6 +283,13 @@ def query_lnt_server():
 
 if query_user_bool("Compile the NPB suite?", True):
     compile_npb()
+
+if query_user_bool("Run the NPB suite?", True):
+    RESULT_NPB_BIN = os.path.join(RESULT_FOLDER, "NPB_bin")
+    SAMPLES = query_user_int("How often?", 1)
+    for ex in os.listdir(RESULT_NPB_BIN):
+        for i in range(SAMPLES):
+            run("%s/%s &>> %s/%s.out" % (RESULT_NPB_BIN,ex,RESULT_NPB_BIN,ex), False)
 
 if query_user_bool("Compile & run the LLVM test suite?", True):
     LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)

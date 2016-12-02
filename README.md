@@ -16,9 +16,9 @@ interface used in this evaluation.*
 
   Tool   | Version
 ---------|----------------------
-  LLVM:  | b28b8f21ef30c677f418ad6cc1acd4792552f672 (svn: r287273)
-  Clang: | 9483fa6dbe01ac2b7513a2bf50dcb599ebe4af46 (svn: r287275)
-  Polly: | 5df868addaca89cae91e1328af6682b56d06b572 (svn: r287347)
+  LLVM:  |  bdf16bd (svn: r288240)
+  Clang: |  1f955bd (svn: r288231)
+  Polly: |  b60757c (svn: r288521)
 
 ### Where to go from here
 
@@ -136,7 +136,7 @@ produce similar results.
   NPB              | SNU NPB 1.0.3, based on NPB3.3
   SPEC2000         | 1.3.1  (see "SPEC Fixes" below)
   SPEC2006         | 1.1    (see "SPEC Fixes" below)
-  llvm-test-suite  | 19904bd55c45b136559a201e77319937a05348c5 (svn: r286278)
+  llvm-test-suite  | 1d312ed (svn: r287194)
 
 
 ##### SPEC Fixes
@@ -212,6 +212,7 @@ Then we can run the LNT *nt* test driver:
                  --cflag=-mllvm --cflag=-polly-run-inliner \
                  --cflag=-mllvm --cflag=-polly-invariant-load-hoisting=true \
                  --cflag=-mllvm --cflag=-polly-unprofitable-scalar-accs=false \
+                 --cflag=-mllvm --cflag=-polly-allow-unsigned-operations=false \
                  --cflag=-mllvm --cflag=-polly-allow-error-blocks=false
 ```
 
@@ -314,10 +315,10 @@ Alternatively one could enable the remarks system and check if the
 
 Number of passing runtime checks (a):  Extract lines containing `'__RTC: '`
 followed by a non zero number from the error stream (or logs), command:
-      `grep -E '__RTC: (-[1-9]|[1-9])'`
+      `grep -E '__RTC: (-[1-9]|[1-9])' | grep -v 'Binary file'`
 
 Number of failing runtime checks (b): Extract lines containing `'__RTC: 0'` from
-the error stream (or logs), command: `grep '__RTC: 0'`
+the error stream (or logs), command: `grep '__RTC: 0' | grep -v 'Binary file'`
 
 
 ##### Number of optimized loop nests executed with assumptions [#D]
@@ -326,7 +327,7 @@ the error stream (or logs), command: `grep '__RTC: 0'`
   uniquely sorted with regards to the function name and region identifiers. As a
   result each executed region is only counted once. Given the grep result from
   *[#E]* one can first drop the runtime check and overflow state result using
-    `sed -e 's|__RTC:.*||'`
+    `sed -e 's|__RTC:.*||' -e 's|.*\(F: [-_.a-zA-Z0-9]* R:\)|\1|' `
   and then sort the lines uniquely with
     `sort -u`
 

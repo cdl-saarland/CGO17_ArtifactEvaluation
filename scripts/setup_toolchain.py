@@ -78,9 +78,9 @@ else:
 
 print(os.linesep)
 if query_user_bool("Revert to original artifact evaluation version?", False):
-    LLVM_AE_VERSION = "b28b8f21ef30c677f418ad6cc1acd4792552f672"
-    CLANG_AE_VERSION = "9483fa6dbe01ac2b7513a2bf50dcb599ebe4af46"
-    POLLY_AE_VERSION = "5df868addaca89cae91e1328af6682b56d06b572"
+    LLVM_AE_VERSION = "bdf16bd55d2f96112213c455501dbbc23c043c96"
+    CLANG_AE_VERSION = "1f955bd645a022ae16543b4dc05e50981d918f33"
+    POLLY_AE_VERSION = "b60757c3679de640a330ca87ef7a8e00a651c246"
 
     print("Reset LLVM to %s:" % (LLVM_AE_VERSION))
     run("git -C %s reset --hard %s" % (LLVM_SRC, LLVM_AE_VERSION))
@@ -151,9 +151,9 @@ run("cd %s && cmake %s %s" % (LLVM_OBJ, LLVM_SRC, " ".join(CMAKE_OPTIONS)))
 print(os.linesep + "Build LLVM (this might take some time)")
 if NINJA:
     run("ninja -C %s" % (LLVM_OBJ))
-    run("ninja -C %s check-polly" % (LLVM_OBJ))
+    run("ninja -C %s check-polly" % (LLVM_OBJ), False)
 else:
     run("make -C %s -j %i" % (LLVM_OBJ, max(1, MEMORY / (4 if DEBUG else 2), JOBS)))
-    run("make -C %s check-polly" % (LLVM_OBJ))
+    run("make -C %s check-polly" % (LLVM_OBJ), False)
 
 print(os.linesep + sys.argv[0] + " is done!" + os.linesep)
