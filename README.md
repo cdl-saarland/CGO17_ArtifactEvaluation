@@ -101,10 +101,6 @@ Checkout the LLVM test suite in the folder *test_suite* via:
 
 `git clone http://llvm.org/git/test-suite test_suite`
 
-or
-
-`svn co http://llvm.org/svn/llvm-project/test-suite/trunk test_suite`
-
 
 ##### NAS Benchmark Suite
 
