@@ -66,9 +66,22 @@ if query_user_bool("Allow to speculate on unsigned operations?", False):
 else:
     GENERAL_OPTIONS.append("-mllvm -polly-allow-unsigned-operations=false")
 
+if query_user_bool("Collect runtime execution information (needed for #D and #E statistics)?", True):
+    GENERAL_OPTIONS.append("-mllvm -polly-codegen-emit-rtc-print=true")
+else:
+    GENERAL_OPTIONS.append("-mllvm -polly-codegen-emit-rtc-print=false")
+
+
 STATS = query_user_bool("Output compile statistics?", True)
 if STATS:
     GENERAL_OPTIONS.append("-mllvm -stats")
+
+TRACK_MINIMAL = query_user_bool("Track only non-implied assumptions [true for Figure 16 (a), false for Figrue 16 (b)]", False)
+if TRACK_MINIMAL:
+    GENERAL_OPTIONS.append("-mllvm -polly-remarks-minimal=true")
+else:
+    GENERAL_OPTIONS.append("-mllvm -polly-remarks-minimal=false")
+
 
 REMARKS = query_user_bool("Output compile remarks?", True)
 if REMARKS:
@@ -97,7 +110,7 @@ for option in GENERAL_OPTIONS:
     fd.write("%s%s" % (option, os.linesep))
 fd.close()
 
-def extract_stats(path, name):
+def extract_stats(path, name, rtc_folders):
     if not STATS:
         return
 
@@ -120,7 +133,7 @@ def extract_stats(path, name):
     summary = output + ".summary"
 
     from summarize_stats import summarize
-    summarize(output, summary)
+    summarize(output, summary, rtc_folders, TRACK_MINIMAL)
 
     print("Summary:")
     if os.path.isfile(summary):
@@ -129,8 +142,18 @@ def extract_stats(path, name):
             print(line.strip())
         fd.close()
 
+        tools = ["xdg-open", "gedit", "pluma", "kate", "mousepad", "leafpad", "gvim"]
+        for tool in tools:
+            if not os.path.isfile('/usr/bin/%s' % (tool)):
+                continue
+            try:
+                os.system('/usr/bin/%s %s &' % (tool, summary))
+                break
+            except:
+                pass
 
-def compile_npb():
+
+def compile_and_run_npb():
     NPB_SRC = verify_value("NPB_SRC", [str], "setup_benchmarks")
     NPB_CONFIG = os.path.join(NPB_SRC, "config", "make.def")
     if not os.path.isfile(NPB_CONFIG) and not os.path.islink(NPB_CONFIG):
@@ -181,16 +204,29 @@ def compile_npb():
     print("Compile the NPB test suite")
     run("cd %s && make suite > %s 2> %s" % (NPB_SRC, OUT_FILE, ERR_FILE))
 
-    extract_stats(ERR_FILE, "NPB")
-
-    RESULT_NPB_BIN = os.path.join(RESULT_FOLDER, "NPB_bin")
-    print(os.linesep * 2)
-    print("Copy benchmark binaries to %s" % (RESULT_NPB_BIN))
-    run("cp -R %s %s" % (SRC_BIN, RESULT_NPB_BIN))
-
     print(os.linesep * 2)
     format_and_print("====== DONE COMPILING NPB ======")
     print(os.linesep * 2)
+
+    RESULT_NPB_BIN = os.path.join(RESULT_FOLDER, "NPB_bin")
+    create_folder(RESULT_NPB_BIN)
+
+    print(os.linesep * 2)
+    print("Copy benchmark binaries to %s" % (RESULT_NPB_BIN))
+    run("cp -R %s/* %s/" % (SRC_BIN, RESULT_NPB_BIN))
+
+    if query_user_bool("Run the NPB suite?", True):
+        RESULT_NPB_BIN = os.path.join(RESULT_FOLDER, "NPB_bin")
+        SAMPLES = query_user_int("How often?", 1)
+        for ex in os.listdir(RESULT_NPB_BIN):
+            for i in range(SAMPLES):
+                run("%s/%s &>> %s/%s.out" % (RESULT_NPB_BIN,ex,RESULT_NPB_BIN,ex), False)
+
+    print(os.linesep * 2)
+    format_and_print("====== DONE RUNNING NPB ======")
+    print(os.linesep * 2)
+
+    extract_stats(ERR_FILE, "NPB", [('NPB', RESULT_NPB_BIN)])
 
 def get_activate_file():
     SANDBOX = verify_value("SANDBOX", [str], "setup_lnt")
@@ -260,7 +296,12 @@ def compile_and_run_lnt(name, options):
     print("Move lnt execution folder to %s" % (RESULT_LNT_FOLDER))
     run("mv %s %s" % (folder, RESULT_LNT_FOLDER))
 
-    extract_stats(RESULT_LNT_FOLDER, name)
+    if "spec" in name:
+        rtc_folders = [('SPEC2000', '%s/sample-0/External/SPEC/*2000'), ('SPEC2006', '%s/sample-0/External/SPEC/*2006')]
+    else:
+        rtc_folders = [(name, RESULT_LNT_FOLDER)]
+
+    extract_stats(RESULT_LNT_FOLDER, name, rtc_folders)
 
     print(os.linesep * 2)
     format_and_print("====== DONE COMPILING & RUNNING LNT ======")
@@ -282,14 +323,7 @@ def query_lnt_server():
 
 
 if query_user_bool("Compile the NPB suite?", True):
-    compile_npb()
-
-if query_user_bool("Run the NPB suite?", True):
-    RESULT_NPB_BIN = os.path.join(RESULT_FOLDER, "NPB_bin")
-    SAMPLES = query_user_int("How often?", 1)
-    for ex in os.listdir(RESULT_NPB_BIN):
-        for i in range(SAMPLES):
-            run("%s/%s &>> %s/%s.out" % (RESULT_NPB_BIN,ex,RESULT_NPB_BIN,ex), False)
+    compile_and_run_npb()
 
 if query_user_bool("Compile & run the LLVM test suite?", True):
     LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
@@ -298,6 +332,8 @@ if query_user_bool("Compile & run the LLVM test suite?", True):
 if query_user_bool("Compile & run the SPEC test suite(s)?", True):
     LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
     compile_and_run_spec()
+
+print(os.linesep * 3 + "You can find all results here:\n%s\n\n" % (RESULT_FOLDER))
 
 print(os.linesep * 2)
 format_and_print("""NOTE: Use `docker cp <container>:<src_path> <dst_path` to

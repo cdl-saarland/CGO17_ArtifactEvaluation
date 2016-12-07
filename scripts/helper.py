@@ -97,7 +97,7 @@ def create_folder(path):
         error("Could not create folder '%s'! Exit!" % (path))
         sys.exit(1)
 
-def run(cmd, abort_on_error = True):
+def run(cmd, abort_on_error = True, default=None):
     print(os.linesep + "Run: '%s'" % (cmd))
     try:
         return str(sp.check_output(cmd, shell=True).decode("utf-8")).strip()
@@ -107,7 +107,7 @@ def run(cmd, abort_on_error = True):
             sys.exit(1)
         else:
             error("Command '%s' failed!" % (cmd))
-        return None
+        return default
 
 def run_int(cmd, default, abort_on_error = True):
     try:
