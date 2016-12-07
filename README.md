@@ -20,7 +20,51 @@ interface used in this evaluation.*
   Clang: |  1f955bd (svn: r288231)
   Polly: |  b6c62b2 (svn: r288521)
 
-### Where to go from here
+
+# Setup
+
+Native Setup
+================
+
+```
+mkdir CGO_AE
+git clone https://github.com/jdoerfert/CGO17_ArtifactEvaluation.git CGO_AE/OptimisticLoopOptimization
+cd CGO_AE/OptimisticLoopOptimization
+./scripts/artifact_eval.py
+```
+
+
+Docker container Setup
+================
+
+We provide a docker container that is described by the *Dockerfile* in the
+*docker* directory. It is defined on top of a vanilla Ubuntu and will install
+all necessary software automatically at build time. Afterwards one can copy
+SPEC2000 and SPEC2006 into the container. The docker run command will invoke the
+interactive `artifact_eval.py` script that guides through the set up and
+evaluation process.
+
+```
+docker pull jdoerfert/cgo17_artifactevaluation
+docker run -t -i jdoerfert/cgo17_artifactevaluation
+```
+
+## System requirements [3]
+  - at least 25+8=33GB of free space (LLVM/Clang/Polly debug build +
+    benchmarks), a release build does require much less space and memory.
+  - at least 8GB of main memory, preferably more
+  - A C/C++11 enabled compiler e.g., gcc >= 4.8.0 or clang >= 3.1
+  - CMake >= 3.4.3
+  - GNU Make >= 3.79 (ninja is optional but often faster)
+  - A Python2 interpreter >= 2.7
+  - The Python2 virtualenv tool
+  - zlib >=1.2.3.4
+  - Common tools like: git, grep, sed, yacc, groff, ... (see `docker/Dockerfile`
+    for a list of packages installed on top of a clean Ubuntu system)
+
+
+Manual Setup 
+=============================
 
 There are different levels of automation to choose from:
 
@@ -37,41 +81,12 @@ individually.
 3) This document explains how to set up the toolchain and the test environment
 manually. It also describes the experiments and how to interpret the data.
 
-Docker container
-================
 
-We provide a docker container that is described by the *Dockerfile* in the
-*docker* directory. It is defined on top of a vanilla Ubuntu and will install
-all necessary software automatically at build time. Afterwards one can copy
-SPEC2000 and SPEC2006 into the container. The docker run command will invoke the
-interactive `artifact_eval.py` script that guides through the set up and
-evaluation process.
-
-```
-docker pull jdoerfert/cgo17_artifactevaluation
-docker run -t -i jdoerfert/cgo17_artifactevaluation
-```
-
-
-Setup and requirements
-----------------------
+### Online help
 
 LLVM, Clang and Polly all provide quick start guides that can be found online
 [0-2]. In the following we describe the commands needed to prepare the
 toolchain, benchmarks and the testing environment from scratch.
-
-### System requirements [3]
-  - at least 25+8=33GB of free space (LLVM/Clang/Polly debug build +
-    benchmarks), a release build does require much less space and memory.
-  - at least 8GB of main memory, preferably more
-  - A C/C++11 enabled compiler e.g., gcc >= 4.8.0 or clang >= 3.1
-  - CMake >= 3.4.3
-  - GNU Make >= 3.79 (ninja is optional but often faster)
-  - A Python2 interpreter >= 2.7
-  - The Python2 virtualenv tool
-  - zlib >=1.2.3.4
-  - Common tools like: git, grep, sed, yacc, groff, ... (see `docker/Dockerfile`
-    for a list of packages installed on top of a clean Ubuntu system)
 
 
 ### Compiler toolchain: LLVM, Clang and Polly
@@ -246,8 +261,8 @@ A debug build or release build with assertions is needed to do this.
 The statistics are be printed to the standard error output or logs depending on
 the benchmark. To collect them one can extract the statistics key (SK) from the
 error output or logs using `grep` or a similar command. For the SK *"Number of
-valid Scops"* the command would be
-  `grep "Number of valid Scops"`
+valid SCoPs"* the command would be
+  `grep "Number of valid SCoPs"`
 applied to the standard error stream or log file. To summarize the outputs of
 multiple input files we provide the python script `summarize_stats.py`.
 Please note that the script skips lines that are not matched by the
@@ -258,7 +273,7 @@ the way all statistics are summarized it might therefore be required to add the
 
 The remarks system of LLVM/Clang allows to provide feedback to the user. It is
 enabled for a specific pass using `-Rpass-analysis=<passname>` (`<passname>`
-should be `polly-scops` or just `polly`). The output always starts with the
+should be `polly-SCoPs` or just `polly`). The output always starts with the
 filename, line and column number, if available. After the term `remark:` the
 actual message is printed.
 
@@ -267,28 +282,33 @@ actual message is printed.
 
 ##### Number of loop nests analyzed [#S]
 
-Statically feasible assumptions (a):
+Statically feasible SCoPs (a):
 
-The statistics key `"Number of valid Scops"` counts all valid SCoPs. For our
-evaluation we substracted the number of "too complex" ones (statistics key
+The statistics key `"Number of valid SCoPs"` counts all valid SCoPs. For our
+evaluation we subtracted the number of "too complex" ones (statistics key
 `"Number of too complex SCoPs."`) as well as unprofitable ones (statistics key
-`"Number of unprofitable SCoPs."`) to compute this evaluation category.
+`"Number of unprofitable SCoPs."`). Finally we added the statically infeasible
+SCoPs (statistics key `"Number of SCoPs with statically infeasible context"`) to
+get the result.
 
-Statically infeasible assumptions (b): 
 
-The statistics key `"Number of SCoPs with statically infeasible context"`
-directly corresponds to this evaluation category.
+Statically infeasible SCoPs (b): 
+
+Subtract from the number of statically infeasible SCoPs (statistics key `"Number
+of SCoPs with statically infeasible context"`) the number of too complex and
+unprofitable ones (see above).
+
 
 ##### Number of loop nests analyzed without assumptions [#S]
 
-  Indirectly derived number. First use the method described above to determine
-  the number of *valid SCoPs*. Then determine the number of SCoPs that *did
-  require versioning*, thus assumptions (SK `"Number of SCoPs that required
-  versioning."`). The difference is the number of SCoPs valid without
-  assumptions.
+  First use the method described above to determine the number of *valid SCoPs*
+  with statically feasible runtime check. Then determine the number of SCoPs
+  that *did require versioning*, thus assumptions (statistics key `"Number of
+  SCoPs that required versioning."`). The difference is the number of SCoPs
+  valid without assumptions.
 
 ``` 
-  *#Valid Scops* - *#SCoPs that required versioning.*
+  *#Valid SCoPs* - *#SCoPs that required versioning.*
 ```
 
 ##### Number of executions of optimized loop nests with assumptions [#E]
@@ -316,7 +336,7 @@ the error stream (or logs), command: `grep '__RTC: 0' | grep -v 'Binary file'`
 
 ##### Number of non-trivial assumptions taken (a)
 
-  Run options: `-mllvm -polly-remarks-minimal=false -Rpass-analysis=polly-scops`
+  Run options: `-mllvm -polly-remarks-minimal=false -Rpass-analysis=polly-SCoPs`
 
   The assumptions taken are emitted to the standard error stream using the
   remarks system of LLVM/Clang. The assumptions described in the paper have the
@@ -341,7 +361,7 @@ the error stream (or logs), command: `grep '__RTC: 0' | grep -v 'Binary file'`
 
 ##### Number of non-trivial assumptions taken that were not implied by prior ones (b)
 
-  Run options: `-mllvm -polly-remarks-minimal=true -Rpass-analysis=polly-scops`
+  Run options: `-mllvm -polly-remarks-minimal=true -Rpass-analysis=polly-SCoPs`
 
   Same as part *(a)* but with remark output limited to a minimum. This
   prevents the output of any already implied or trivial assumption.
@@ -354,7 +374,7 @@ the error stream (or logs), command: `grep '__RTC: 0' | grep -v 'Binary file'`
 To determine the compile time cost of assumption generation (and simplification)
 Polly has to run without it. However, since this is unsound there is no built-in
 support. Instead the patch in `resources/` can be applied to Polly version
-5df868addaca89cae91e1328af6682b56d06b572 (or r287347). It 
+b64b4a4603cd70579128b1aa4b598a5294f34d8f (or r287347). It 
 adds the `-polly-ignore-assumptions` command line flag that can be used to
 disable assumptions creation. Polly will nevertheless continue to optimize and
 generate code for *all* SCoP.
@@ -363,7 +383,7 @@ generate code for *all* SCoP.
 
 Assumption simplification is spread accross the source code (see below). To
 disable it apply the patch in `resources/` to Polly version
-5df868addaca89cae91e1328af6682b56d06b572 (or r287347). It will add the command
+b64b4a4603cd70579128b1aa4b598a5294f34d8f (or r287347). It will add the command
 line option `-polly-no-assumption-simplification` that will prevent assumption
 related simplifications.
 
