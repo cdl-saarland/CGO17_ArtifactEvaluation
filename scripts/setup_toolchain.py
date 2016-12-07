@@ -77,7 +77,7 @@ else:
 
 
 print(os.linesep)
-if query_user_bool("Revert to original artifact evaluation version?", False):
+if query_user_bool("Revert to original artifact evaluation version?", True):
     LLVM_AE_VERSION = "bdf16bd55d2f96112213c455501dbbc23c043c96"
     CLANG_AE_VERSION = "1f955bd645a022ae16543b4dc05e50981d918f33"
     POLLY_AE_VERSION = "b6c62b2bc6d937fa5581f9027e2721d72600687c"
