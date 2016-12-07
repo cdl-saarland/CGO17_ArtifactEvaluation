@@ -76,15 +76,16 @@ def summarize(inp, out, rtc_folders=[], minimal=False):
     valid_scops = values.get("Number of valid Scops", 0)
     complex_scops = values.get("Number of too complex SCoPs.", 0)
     unprofitable_scops = values.get("Number of unprofitable SCoPs.", 0)
-    valid_profitable_scops = valid_scops - complex_scops - unprofitable_scops
+    infeasible_scops = values.get("Number of SCoPs with statically infeasible context.", 0)
+    valid_profitable_scops = valid_scops - complex_scops - unprofitable_scops + infeasible_scops
     lines.append(" %5i : Valid SCoPs\n" % (valid_scops))
     lines.append("-%5i : Too complex SCoPs\n" % (complex_scops))
     lines.append("-%5i : Unprofitable SCoPs\n" % (unprofitable_scops))
+    lines.append("+%5i : valid infeasible SCoPs\n" % (infeasible_scops))
     lines.append("-------\n")
     lines.append("=%5i : Valid profitable SCoPs [#S (a)]\n\n\n" % (valid_profitable_scops))
 
     lines.append("Number of valid non-trivial loop nests with infeasible assumptions [#S (b)]:\n")
-    infeasible_scops = values.get("Number of SCoPs with statically infeasible context.", 0)
     valid_infeasible_scops = infeasible_scops - complex_scops - unprofitable_scops
     lines.append(" %5i : Infeasible SCoPs\n" % (infeasible_scops))
     lines.append("-%5i : Too complex SCoPs\n" % (complex_scops))
@@ -94,8 +95,10 @@ def summarize(inp, out, rtc_folders=[], minimal=False):
 
     lines.append("Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:\n")
     versioned_scops = values.get("Number of SCoPs that required versioning.", 0)
-    valid_scops_no_assumptions = valid_profitable_scops - versioned_scops
-    lines.append(" %5i : Valid profitable SCoPs [#S (a)]\n" % (valid_profitable_scops))
+    valid_scops_no_assumptions = valid_scops - complex_scops - unprofitable_scops - versioned_scops
+    lines.append(" %5i : Valid SCoPs [#S (a)]\n" % (valid_profitable_scops))
+    lines.append("-%5i : Too complex SCoPs\n" % (complex_scops))
+    lines.append("-%5i : Unprofitable SCoPs\n" % (unprofitable_scops))
     lines.append("-%5i : SCoPs that required versioning\n" % (versioned_scops))
     lines.append("-------\n")
     lines.append("=%5i : Valid profitable SCoPs without assumptions [#S (w/o A)]\n\n\n" % (valid_scops_no_assumptions))
