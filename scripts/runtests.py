@@ -76,7 +76,7 @@ STATS = query_user_bool("Output compile statistics?", True)
 if STATS:
     GENERAL_OPTIONS.append("-mllvm -stats")
 
-TRACK_MINIMAL = query_user_bool("Track only non-implied assumptions [true for Figure 16 (a), false for Figrue 16 (b)]", False)
+TRACK_MINIMAL = query_user_bool("Track only non-implied assumptions [Yes for Figure 16 (a), No for Figrue 16 (b)]", False)
 if TRACK_MINIMAL:
     GENERAL_OPTIONS.append("-mllvm -polly-remarks-minimal=true")
 else:
