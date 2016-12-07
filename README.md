@@ -18,7 +18,7 @@ interface used in this evaluation.*
 ---------|----------------------
   LLVM:  |  bdf16bd (svn: r288240)
   Clang: |  1f955bd (svn: r288231)
-  Polly: |  b60757c (svn: r288521)
+  Polly: |  b6c62b2 (svn: r288521)
 
 ### Where to go from here
 
@@ -232,6 +232,7 @@ Option             | Description
 -polly-invariant-load-hoisting=true  | Enable invariant load hoisting.
 -polly-allow-error-blocks=false      | Disable the speculative expansion of SCoPs that often results in statically infeasible assumptions. Error blocks are a feature that is not yet tuned and often too aggressive.
 -polly-unprofitable-scalar-accs=false| Assume scalar accesses in statements are optimize able. This is generally true though the support in Polly was dropped at some point in favor of a replacement mechanism that is still not available. Therefore, Polly currently not assume statements with scalar accesses are optimizeable while they generally are.
+-polly-allow-unsigned-operations=false| Do not speculate that unsigned operations behave the same as signed operations. The heuristic is not well adjusted and causes a lot of misspeculations.
 
 
 Experiments and data collection
@@ -268,46 +269,27 @@ actual message is printed.
 
 Statically feasible assumptions (a):
 
-The statistics key `"Number of valid Scops"` directly corresponds to this
-evaluation category.
-
-Alternatively one could enable the remarks system [see above] and check if
-    the following line is in the output:
-
-      remark: SCoP ends here.
+The statistics key `"Number of valid Scops"` counts all valid SCoPs. For our
+evaluation we substracted the number of "too complex" ones (statistics key
+`"Number of too complex SCoPs."`) as well as unprofitable ones (statistics key
+`"Number of unprofitable SCoPs."`) to compute this evaluation category.
 
 Statically infeasible assumptions (b): 
 
 The statistics key `"Number of SCoPs with statically infeasible context"`
 directly corresponds to this evaluation category.
 
-Alternatively one could enable the remarks system and check if the
-    following line is in the output:
-
-      remark: SCoP ends here but was dismissed.
-
-
 ##### Number of loop nests analyzed without assumptions [#S]
 
-  Run options: `-mllvm -polly-optimizer=none`
-
   Indirectly derived number. First use the method described above to determine
-  the number of *valid SCoPs*. Then disable the optimizer (to prevent early
-  exits) and determine the number of SCoPs that *did require versioning*, thus
-  assumptions (SK `"Number of SCoPs that required versioning."`). The difference
-  is the number of SCoPs valid without assumptions.
+  the number of *valid SCoPs*. Then determine the number of SCoPs that *did
+  require versioning*, thus assumptions (SK `"Number of SCoPs that required
+  versioning."`). The difference is the number of SCoPs valid without
+  assumptions.
 
 ``` 
   *#Valid Scops* - *#SCoPs that required versioning.*
 ```
-
-  Alternatively one could enable the remarks system and check if there are
-  no assumption remarks between:
-```
-    remark: SCoP begins here.
-    remark: SCoP ends here.
-```
-
 
 ##### Number of executions of optimized loop nests with assumptions [#E]
 
