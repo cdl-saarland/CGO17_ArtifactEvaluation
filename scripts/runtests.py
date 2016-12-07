@@ -110,48 +110,50 @@ for option in GENERAL_OPTIONS:
     fd.write("%s%s" % (option, os.linesep))
 fd.close()
 
-def extract_stats(path, name, rtc_folders):
+def extract_stats(rtc_folders):
     if not STATS:
         return
 
-    print(os.linesep * 2)
-    print("Using 'grep' to extract Polly statistics [-stats] from %s" % (path))
-    output = os.path.join(RESULT_FOLDER, name + ".polly_stats")
-    if os.path.isfile(path):
-        recursive = False
-    elif os.path.isdir(path):
-        recursive = True
-    else:
-        error("Path '%s' does not exist!" % (path))
-        return
+    for name, path, rtc_folder in rtc_folders:
 
-    term = " polly-scops | polly-codegen "
-    run("grep %s --no-filename -E \"%s\" %s > %s" % ("-r" if recursive else "", term, path, output), False)
-    print("Output written to %s" % (output))
+        print(os.linesep * 2)
+        print("Using 'grep' to extract Polly statistics [-stats] from %s" % (path))
+        output = os.path.join(RESULT_FOLDER, name + ".polly_stats")
+        if os.path.isfile(path):
+            recursive = False
+        elif os.path.isdir(path):
+            recursive = True
+        else:
+            error("Path '%s' does not exist!" % (path))
+            return
 
-    print(os.linesep * 2)
-    summary = output + ".summary"
+        term = " polly-scops | polly-codegen "
+        run("grep %s --no-filename -E \"%s\" %s > %s" % ("-r" if recursive else "", term, path, output), False)
+        print("Output written to %s" % (output))
 
-    from summarize_stats import summarize
-    summarize(output, summary, rtc_folders, TRACK_MINIMAL)
+        print(os.linesep * 2)
+        summary = output + ".summary"
 
-    print("Summary:")
-    if os.path.isfile(summary):
-        fd = open(summary, "r")
-        for line in fd.readlines():
-            print(line.strip())
-        fd.close()
+        from summarize_stats import summarize
+        summarize(output, summary, rtc_folders, TRACK_MINIMAL)
 
-        print("\nOpen text editor to show the results!\n")
-        tools = ["xdg-open", "gedit", "pluma", "kate", "mousepad", "leafpad", "gvim"]
-        for tool in tools:
-            if not os.path.isfile('/usr/bin/%s' % (tool)):
-                continue
-            try:
-                os.system('/usr/bin/%s %s &' % (tool, summary))
-                break
-            except:
-                pass
+        print("Summary:")
+        if os.path.isfile(summary):
+            fd = open(summary, "r")
+            for line in fd.readlines():
+                print(line.strip())
+            fd.close()
+
+            print("\nOpen text editor to show the results!\n")
+            tools = ["xdg-open", "gedit", "pluma", "emacs", "kate", "mousepad", "leafpad", "gvim", "nano", "vim"]
+            for tool in tools:
+                if not os.path.isfile('/usr/bin/%s' % (tool)):
+                    continue
+                try:
+                    os.system('/usr/bin/%s %s &' % (tool, summary))
+                    break
+                except:
+                    pass
 
 
 def compile_and_run_npb():
@@ -227,7 +229,7 @@ def compile_and_run_npb():
     format_and_print("====== DONE RUNNING NPB ======")
     print(os.linesep * 2)
 
-    extract_stats(ERR_FILE, "NPB", [('NPB', RESULT_NPB_BIN)])
+    extract_stats([('NPB', ERR_FILE, RESULT_NPB_BIN)])
 
 def get_activate_file():
     SANDBOX = verify_value("SANDBOX", [str], "setup_lnt")
@@ -244,11 +246,11 @@ def get_lnt_runtest_cmd(options, SAMPLES):
     SANDBOX = verify_value("SANDBOX", [str], "setup_lnt")
     TEST_SUITE = verify_value("TEST_SUITE", [str], "setup_benchmarks")
     JOBS = verify_value("JOBS", [int], "setup_toolchain")
-    lnt_runtest = "lnt runtest nt --sandbox %s --cc %s --cxx %s --test-suite %s --build-threads %i" % (SANDBOX, CLANG_PATH, CLANGXX_PATH, TEST_SUITE, JOBS)
+    lnt_runtest = "lnt runtest nt --sandbox %s --cc %s --cxx %s --test-suite %s --build-threads %i " % (SANDBOX, CLANG_PATH, CLANGXX_PATH, TEST_SUITE, JOBS)
     if SAMPLES > 1:
-        lnt_runtest += "-j 1"
+        lnt_runtest += " -j 1 "
     else:
-        lnt_runtest += "-j %i" % JOBS
+        lnt_runtest += " -j %i " % JOBS
 
     for option in options:
         lnt_runtest += " " + option
@@ -303,11 +305,12 @@ def compile_and_run_lnt(name, options):
     run("mv %s %s" % (folder, RESULT_LNT_FOLDER))
 
     if "spec" in name:
-        rtc_folders = [('SPEC2000', '%s/sample-0/External/SPEC/*2000'), ('SPEC2006', '%s/sample-0/External/SPEC/*2006')]
+        rtc_folders = [('SPEC2000', RESULT_LNT_FOLDER, RESULT_LNT_FOLDER + '/sample-0/External/SPEC/*2000'),
+                       ('SPEC2006', RESULT_LNT_FOLDER, RESULT_LNT_FOLDER + '/sample-0/External/SPEC/*2006')]
     else:
-        rtc_folders = [(name, RESULT_LNT_FOLDER)]
+        rtc_folders = [(name, RESULT_LNT_FOLDER, RESULT_LNT_FOLDER)]
 
-    extract_stats(RESULT_LNT_FOLDER, name, rtc_folders)
+    extract_stats(rtc_folders)
 
     print(os.linesep * 2)
     format_and_print("====== DONE COMPILING & RUNNING LNT ======")

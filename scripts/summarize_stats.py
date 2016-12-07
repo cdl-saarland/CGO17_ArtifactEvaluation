@@ -13,7 +13,7 @@ from helper import *
 
 function = "The %s script will parse and summarize LLVM statistics." % (os.path.split(__file__)[1])
 
-def summarize(inp, out, rtc_folders=[], minimal=False):
+def summarize(inp, out, name, rtc_folder, minimal=False):
     print("Summarize statistics in %s" % inp)
     stats = {}
     with open(inp, "r") as fd:
@@ -33,7 +33,7 @@ def summarize(inp, out, rtc_folders=[], minimal=False):
                 error("Unknown error while parsing: '%s'" % (line))
 
     values = {}
-    for name,rtc_folder in rtc_folders:
+    if rtc_folder:
         try:
             print('\nTry to extract the number of failing runtime checks [#E (b)] for %s' % name)
             values['Number of failing RTCs'] = int(run("grep -R --no-filename 'RTC: 0' %s | wc -l " % rtc_folder, False, -1))
@@ -191,13 +191,15 @@ def summarize(inp, out, rtc_folders=[], minimal=False):
 if __name__ == "__main__":
     if len(sys.argv) >= 3:
         print_intro(function)
-        rtc_folders = []
         i = 3
+        rtc_folder = None
+        name = "None"
         while i + 1 < len(sys.argv):
-            rtc_folders.append((sys.argv[i], sys.argv[i+1]))
+            name = sys.argv[i]
+            rtc_folder = sys.argv[i+1]
             i+=2
         minimal = len(sys.argv) == i + 1 and sys.argv[i] == 'minimal'
-        summarize(sys.argv[1], sys.argv[2], rtc_folders, minimal)
+        summarize(sys.argv[1], sys.argv[2], rtc_folder, minimal)
         print(os.linesep + sys.argv[0] + " is done!" + os.linesep)
     else:
         error("Usage: %s <input_file> <output_file>" % ((os.path.split(__file__)[1])))
