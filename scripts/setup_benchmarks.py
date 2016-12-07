@@ -21,8 +21,10 @@ print(os.linesep)
 if os.path.isdir(TEST_SUITE):
     print("Skip cloning LLVM test suite, source folder exists")
 else:
-    print("Clone LLVM test suite:")
+    print("Clone LLVM test suite to '%s':" % TEST_SUITE)
     run("git clone http://llvm.org/git/test-suite %s" % (TEST_SUITE))
+
+run("git -C %s reset --hard 52adbd5a3c508214ab96c3ba56b5ecd5f1ebcb68" % (TEST_SUITE))
 
 if not os.path.isdir(TEST_SUITE):
     error("Test suite folder %s does not exist" % (TEST_SUITE))
