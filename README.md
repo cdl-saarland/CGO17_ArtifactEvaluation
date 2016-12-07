@@ -165,7 +165,8 @@ Note: *These fixes have to be applied manually if necessary!*
 We use LNT to execute the LLVM test suite as well as SPEC. The installation
 of LNT is described online [5]. If `virtualenv` version 2.X is installed, the
 `setup_lnt.py` script can be used to set up LNT and a sandbox. The NPB
-benchmarks are run "in-place" using the `make suite` command.
+benchmarks are build "in-place" using the `make suite` command and the
+executables created in `bin` can be afterwards executed.
 
 
 ### Testing
