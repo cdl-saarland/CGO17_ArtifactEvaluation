@@ -21,15 +21,12 @@ interface used in this evaluation.*
   Polly: |  b6c62b2 (svn: r288521)
 
 
-# Setup
-
 Native Setup
 ================
 
 ```
-mkdir CGO_AE
-git clone https://github.com/jdoerfert/CGO17_ArtifactEvaluation.git CGO_AE/OptimisticLoopOptimization
-cd CGO_AE/OptimisticLoopOptimization
+git clone https://github.com/jdoerfert/CGO17_ArtifactEvaluation.git CGO_AE_OptimisticLoopOptimization
+cd CGO_AE_OptimisticLoopOptimization
 ./scripts/artifact_eval.py
 ```
 
