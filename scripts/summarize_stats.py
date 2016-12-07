@@ -35,21 +35,25 @@ def summarize(inp, out, rtc_folders=[], minimal=False):
     values = {}
     for name,rtc_folder in rtc_folders:
         try:
+            print('\nTry to extract the number of failing runtime checks [#E (b)] for %s' % name)
             values['Number of failing RTCs'] = int(run("grep -R --no-filename 'RTC: 0' %s | wc -l " % rtc_folder, False, -1))
         except Exception as e:
             print(e)
             pass
         try:
+            print('\nTry to extract the number of failing runtime check locations [#D (b)] for %s' % name)
             values['Number of failing RTC locations'] = int(run("grep -R --no-filename 'RTC: 0' %s | sed -e 's|.*\\(F: [-_.a-zA-Z0-9]* R:\\)|\\1|' -e 's|__RTC:.*||' | grep -v 'Binary file' | sort -u | wc -l" % rtc_folder, False, -1))
         except Exception as e:
             print(e)
             pass
         try:
+            print('\nTry to extract the number of executed runtime checks [#E (a)] for %s' % name)
             values['Number of executed RTCs'] = int(run("grep -R --no-filename 'RTC: ' %s | wc -l " % rtc_folder, False, -1))
         except Exception as e:
             print(e)
             pass
         try:
+            print('\nTry to extract the number of executed runtime check locations [#D (a)] for %s' % name)
             values['Number of executed RTC locations'] = int(run("grep -R --no-filename 'RTC: ' %s | sed -e 's|.*\\(F: [-_.a-zA-Z0-9]* R:\\)|\\1|' -e 's|__RTC:.*||' | grep -v 'Binary file' | sort -u | wc -l" % rtc_folder, False, -1))
         except Exception as e:
             print(e)
