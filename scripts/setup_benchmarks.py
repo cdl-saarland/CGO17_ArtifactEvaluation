@@ -108,11 +108,11 @@ def setup_SPEC(Year):
         return None
 
 print(os.linesep * 2)
-HOSTNMAE = run("hostname", False)
-HOSTNMAE = HOSTNMAE if HOSTNMAE else "<continaer>"
+HOSTNAME = run("hostname", False)
+HOSTNAME = HOSTNAME if HOSTNAME else "<container>"
 format_and_print("""NOTE: Use `docker cp <src_path> %s:<dst_path>` to
                  copy files/folder (e.g., SPEC) from the host system to a
-                 docker container.""" % HOSTNMAE)
+                 docker container.""" % HOSTNAME)
 print(os.linesep)
 
 SPEC_2000_SRC = setup_SPEC("2000")
