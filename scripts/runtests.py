@@ -115,7 +115,7 @@ def extract_stats(path, name, rtc_folders):
         return
 
     print(os.linesep * 2)
-    print("Extract Polly statistics from %s" % (path))
+    print("Using 'grep' to extract Polly statistics [-stats] from %s" % (path))
     output = os.path.join(RESULT_FOLDER, name + ".polly_stats")
     if os.path.isfile(path):
         recursive = False
@@ -142,6 +142,7 @@ def extract_stats(path, name, rtc_folders):
             print(line.strip())
         fd.close()
 
+        print("\nOpen text editor to show the results!\n")
         tools = ["xdg-open", "gedit", "pluma", "kate", "mousepad", "leafpad", "gvim"]
         for tool in tools:
             if not os.path.isfile('/usr/bin/%s' % (tool)):
@@ -239,11 +240,16 @@ lnt_setup = ". %s" % (ACTIVATE_FILE)
 lnt_deactivate = "deactivate"
 
 
-def get_lnt_runtest_cmd(options):
+def get_lnt_runtest_cmd(options, SAMPLES):
     SANDBOX = verify_value("SANDBOX", [str], "setup_lnt")
     TEST_SUITE = verify_value("TEST_SUITE", [str], "setup_benchmarks")
     JOBS = verify_value("JOBS", [int], "setup_toolchain")
     lnt_runtest = "lnt runtest nt --sandbox %s --cc %s --cxx %s --test-suite %s --build-threads %i" % (SANDBOX, CLANG_PATH, CLANGXX_PATH, TEST_SUITE, JOBS)
+    if SAMPLES > 1:
+        lnt_runtest += "-j 1"
+    else:
+        lnt_runtest += "-j %i" % JOBS
+
     for option in options:
         lnt_runtest += " " + option
     for option in GENERAL_OPTIONS:
@@ -270,7 +276,7 @@ def compile_and_run_lnt(name, options):
     if LNT_SERVER and os.path.isdir(LNT_SERVER):
         options.append("--submit=%s" % (LNT_SERVER))
 
-    lnt_runtest = get_lnt_runtest_cmd(options)
+    lnt_runtest = get_lnt_runtest_cmd(options, SAMPLES)
 
     SANDBOX = verify_value("SANDBOX", [str], "setup_lnt")
     sandbox_ls_before = os.listdir(os.path.abspath(SANDBOX))
