@@ -107,7 +107,7 @@ Checkout the LLVM test suite in the folder *test_suite* via:
 The serial C implementation of the NAS benchmark suite (NPB3.3-SER-C) can be
 found here [4]. However, since a registration is required to download the
 benchmark suite, we provide the sources, including a modified configuration
-file, to the resource folder (`resources/NPB3.3-SER-C`).
+file, in the resource folder (`resources/NPB3.3-SER-C`).
 
 
 ##### SPEC2000 & SPEC2006
