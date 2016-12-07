@@ -297,8 +297,11 @@ unprofitable ones (see above).
   First use the method described above to determine the number of *valid SCoPs*
   with statically feasible runtime check. Then determine the number of SCoPs
   that *did require versioning*, thus assumptions (statistics key `"Number of
-  SCoPs that required versioning."`). The difference is the number of SCoPs
-  valid without assumptions.
+  SCoPs that required versioning."`). The difference is a close approximation of
+  the number of SCoPs valid without assumptions. For the exact number we
+  disabled the assumptions manually in the code and counted valid SCoPs
+  afterwards. The difference accounts for the SCoPs that will be discarded after
+  transformation if a heuristic decides the transformation was not profitable.
 
 ``` 
   *#Valid SCoPs* - *#SCoPs that required versioning.*
