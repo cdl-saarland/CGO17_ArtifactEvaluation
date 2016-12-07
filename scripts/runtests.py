@@ -117,25 +117,27 @@ def extract_stats(rtc_folders):
     for name, path, rtc_folder in rtc_folders:
 
         print(os.linesep * 2)
-        print("Using 'grep' to extract Polly statistics [-stats] from %s" % (path))
         output = os.path.join(RESULT_FOLDER, name + ".polly_stats")
         if os.path.isfile(path):
             recursive = False
+            stats_path = path
         elif os.path.isdir(path):
             recursive = True
+            stats_path = rtc_folder
         else:
             error("Path '%s' does not exist!" % (path))
             return
+        print("Using 'grep' to extract Polly statistics [-stats] from %s" % (stats_path))
 
         term = " polly-scops | polly-codegen "
-        run("grep %s --no-filename -E \"%s\" %s > %s" % ("-r" if recursive else "", term, path, output), False)
+        run("grep %s --no-filename -E \"%s\" %s > %s" % ("-r" if recursive else "", term, stats_path, output), False)
         print("Output written to %s" % (output))
 
         print(os.linesep * 2)
         summary = output + ".summary"
 
         from summarize_stats import summarize
-        summarize(output, summary, rtc_folders, TRACK_MINIMAL)
+        summarize(output, summary, rtc_folder, TRACK_MINIMAL)
 
         print("Summary:")
         if os.path.isfile(summary):
@@ -308,7 +310,7 @@ def compile_and_run_lnt(name, options):
         rtc_folders = [('SPEC2000', RESULT_LNT_FOLDER, RESULT_LNT_FOLDER + '/sample-0/External/SPEC/*2000'),
                        ('SPEC2006', RESULT_LNT_FOLDER, RESULT_LNT_FOLDER + '/sample-0/External/SPEC/*2006')]
     else:
-        rtc_folders = [(name, RESULT_LNT_FOLDER, RESULT_LNT_FOLDER)]
+        rtc_folders = [(name, RESULT_LNT_FOLDER, RESULT_LNT_FOLDER + "/sample-0/")]
 
     extract_stats(rtc_folders)
 

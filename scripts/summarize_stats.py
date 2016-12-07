@@ -95,13 +95,11 @@ def summarize(inp, out, name, rtc_folder, minimal=False):
 
     lines.append("Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:\n")
     versioned_scops = values.get("Number of SCoPs that required versioning.", 0)
-    valid_scops_no_assumptions = valid_scops - complex_scops - unprofitable_scops - versioned_scops
-    lines.append(" %5i : Valid SCoPs [#S (a)]\n" % (valid_profitable_scops))
-    lines.append("-%5i : Too complex SCoPs\n" % (complex_scops))
-    lines.append("-%5i : Unprofitable SCoPs\n" % (unprofitable_scops))
+    valid_scops_no_assumptions = valid_scops - versioned_scops
+    lines.append(" %5i : Valid profitable SCoPs [#S (a)]\n" % (valid_profitable_scops))
     lines.append("-%5i : SCoPs that required versioning\n" % (versioned_scops))
     lines.append("-------\n")
-    lines.append("=%5i : Valid profitable SCoPs without assumptions [#S (w/o A)]\n\n\n" % (valid_scops_no_assumptions))
+    lines.append("=%5i : Approximation of valid profitable SCoPs without assumptions [#S (w/o A)]\n\n\n" % (valid_scops_no_assumptions))
 
     lines.append("Number of inbounds/delinearization assumptions taken [IB]:\n")
     inbounds_assumptions = values.get("Number of inbounds assumptions taken.", 0)
@@ -161,8 +159,11 @@ def summarize(inp, out, name, rtc_folder, minimal=False):
 
     with open(out, "w") as fd:
         fd.write("Summary of the statistics in %s\n\n" % (inp))
-        fd.write("\tSummary %s runtime execution information [-mllm -polly-codegen-emit-rtc-print]\n" % ('contains' if contains_rtc_values else 'does not contain'))
-        fd.write("\t%s assumptions were tracked [-mllm -polly-remarks-minimal]\n\n" % ('Only non-implied' if minimal else 'All'))
+        fd.write("======%s======\n" %("=" * len(name)))
+        fd.write("===== %s =====\n" %(name))
+        fd.write("======%s======\n\n" %("=" * len(name)))
+        fd.write("\tSummary %s runtime execution information [-mllm -polly-codegen-emit-rtc-print=%s]\n" % ('contains' if contains_rtc_values else 'does not contain', "true" if contains_rtc_values else "false"))
+        fd.write("\t%s assumptions were tracked [-mllm -polly-remarks-minimal=%s]\n\n" % ('Only non-implied' if minimal else 'All', "true" if minimal else "false" ))
 
         fd.write('Applicability & runtime results (if available):\n')
         fd.write('----------------------------------------------\n')
