@@ -344,6 +344,7 @@ if query_user_bool("Compile & run the SPEC test suite(s)?", True):
     compile_and_run_spec()
 
 print(os.linesep * 3 + "You can find all results here:\n%s\n\n" % (RESULT_FOLDER))
+print("\tLook for the '.summary' files.")
 
 print(os.linesep * 2)
 format_and_print("""NOTE: Use `docker cp <container>:<src_path> <dst_path` to
