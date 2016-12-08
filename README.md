@@ -51,7 +51,7 @@ docker pull jdoerfert/cgo17_artifactevaluation
 docker run -t -i jdoerfert/cgo17_artifactevaluation
 ```
 
-## System requirements [3]
+## [System requirements][3]
   - at least 25+8=33GB of free space (LLVM/Clang/Polly debug build +
     benchmarks), a release build (default) does require much less space and memory.
   - at least 8GB of main memory, preferably more
@@ -63,6 +63,18 @@ docker run -t -i jdoerfert/cgo17_artifactevaluation
   - zlib >=1.2.3.4
   - Common tools like: git, grep, sed, yacc, groff, ... (see `docker/Dockerfile`
     for a list of packages installed on top of a clean Ubuntu system)
+
+# Customization and reusability
+
+The C/C++ compiler with Polly build-in that is by default created in
+`toolchain/llvm_obj/bin` can be used on other C/C++ benchmarks to evaluate the
+effects there. Details (including compiler flags) to reproduce all experiments
+are listed at the end of this document.
+
+As en example we can use Polly with assumptions enabled on a the "spectralnorm"
+benchmark of the [Benchmarks Game][6]. The source code and the "make" command is
+given on the webpage, however we will replace `/usr/bin/gcc` with our compiler
+and add [options](#Run-Options) to enable Polly and report its activity.
 
 
 # Implementation notes
@@ -137,15 +149,15 @@ manually. It also describes the experiments and how to interpret the data.
 
 ### Online help
 
-LLVM, Clang and Polly all provide quick start guides that can be found online
-[0-2]. In the following we describe the commands needed to prepare the
+[LLVM][0], [Clang][1] and [Polly][2] all provide quick start guides that can be
+found online. In the following we describe the commands needed to prepare the
 toolchain, benchmarks and the testing environment from scratch.
 
 
 ### Compiler toolchain: LLVM, Clang and Polly
 
 If the system requirements listed above are met, build the compiler toolchain as
-described in the Polly documentation online [2]. 
+described in the [Polly documentation online][2]. 
 
 ### Benchmarks: LLVM Test Suite, NAS Benchmark Suite, SPEC2000, SPEC2006
 
@@ -161,7 +173,7 @@ Checkout the LLVM test suite in the folder *test_suite* via:
 ##### NAS Benchmark Suite
 
 The serial C implementation of the NAS benchmark suite (NPB3.3-SER-C) can be
-found here [4]. However, since a registration is required to download the
+found [here][4]. However, since a registration is required to download the
 benchmark suite, we provide the sources, including a modified configuration
 file, in the resource folder (`resources/NPB3.3-SER-C`).
 
@@ -219,7 +231,7 @@ Note: *These fixes have to be applied manually if necessary!*
 ### Testing environments: LNT & NPB driver
 
 We use LNT to execute the LLVM test suite as well as SPEC. The installation
-of LNT is described online [5]. If `virtualenv` version 2.X is installed, the
+of LNT is described [online][5]. If `virtualenv` version 2.X is installed, the
 `setup_lnt.py` script can be used to set up LNT and a sandbox. The NPB
 benchmarks are build "in-place" using the `make suite` command and the
 executables created in `bin` can be afterwards executed.
@@ -286,18 +298,20 @@ Without the `--test-externals=${SPEC_SRC}` option only LLVM test suite
 benchmarks are run.
 
 
-### Run options
+### (#Run-Options)
 
 Option             | Description
 -------------------|------------------------------------------------------------
 -O3                | Required to run polly.
--mllvm             | Cause clang to pass the following option to llvm.
+-Rpass-analysis=polly| Enable compiler feedback per source location (should be combined with `-g`)
+-mllvm             | Cause clang to pass the following option to llvm. *Needed prior to each of the following options!*
 -polly             | Enable the polly pipeline.
 -polly-run-inliner | Run a moderate inliner pass prior to the polly pipeline
 -polly-invariant-load-hoisting=true  | Enable invariant load hoisting.
 -polly-allow-error-blocks=false      | Disable the speculative expansion of SCoPs that often results in statically infeasible assumptions. Error blocks are a feature that is not yet tuned and often too aggressive.
 -polly-unprofitable-scalar-accs=false| Assume scalar accesses in statements are optimize able. This is generally true though the support in Polly was dropped at some point in favor of a replacement mechanism that is still not available. Therefore, Polly currently not assume statements with scalar accesses are optimizeable while they generally are.
 -polly-allow-unsigned-operations=false| Do not speculate that unsigned operations behave the same as signed operations. The heuristic is not well adjusted and causes a lot of misspeculations.
+-stats             | Enable statistical ouput after the compilation. Polly passes will also record statistics as described below.
 
 
 Experiments and data collection
@@ -455,3 +469,4 @@ related simplifications.
 
 [5] http://llvm.org/docs/lnt/quickstart.html
 
+[6] https://benchmarksgame.alioth.debian.org/u64q/program.php?test=spectralnorm&lang=gcc&id=1
