@@ -83,15 +83,6 @@ SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__))
 if query_user_bool("Do you want to use the defaults (build paths, build options, etc.) for all values [recommended]?", True):
     os.system('%s/artifact_eval_helper.py < %s/use_defaults' % (SCRIPT_PATH, SCRIPT_PATH))
 else:
-    os.system('%s/artifact_eval_helper.py' % (SCRIPT_PATH, SCRIPT_PATH))
+    os.system('%s/artifact_eval_helper.py' % (SCRIPT_PATH))
 
-RESULT_BASE = get_value("RESULT_BASE", [str], lambda: "")
-summaries = []
-if os.path.isfile("%s/summaries" % RESULT_BASE):
-    with open("%s/summaries" % RESULT_BASE, "r") as fd:
-        for line in fd.readlines():
-            summaries.append(line.split("|")[:2])
-
-for name,summary in summaries:
-    if query_user_bool("\n\nDo you want to print out the summary for %s?" % (name), False):
-        os.system("cat %s" % summary)
+os.system("%s/cat_summaries.py" % (SCRIPT_PATH))

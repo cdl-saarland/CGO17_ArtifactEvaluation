@@ -344,9 +344,10 @@ if query_user_bool("Compile & run the LLVM test suite?", True):
     LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
     compile_and_run_test_suite()
 
-if query_user_bool("Compile & run the SPEC test suite(s)?", True):
-    LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
-    compile_and_run_spec()
+if get_value("SPEC_SRC", [str], lambda: ""):
+    if query_user_bool("Compile & run the SPEC test suite(s)?", True):
+        LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
+        compile_and_run_spec()
 
 try:
     if LNT_SERVER and os.path.isdir(LNT_SERVER):
