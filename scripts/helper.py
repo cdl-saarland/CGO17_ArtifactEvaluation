@@ -19,7 +19,7 @@ def get_input(msg):
     return raw_input(msg) if is_python_2() else input(msg)
 
 def error(msg):
-    sys.stderr.write("Error: " + msg + os.linesep)
+    sys.stderr.write("Error" + msg + os.linesep)
 
 
 def format_and_print(msg, newline = True):
@@ -106,7 +106,7 @@ def run(cmd, abort_on_error = True, default=None):
             error("Command '%s' failed! Exit!" % (cmd))
             sys.exit(1)
         else:
-            error("Command '%s' failed!" % (cmd))
+            print("Command '%s' not successful. Continue!" % (cmd))
         return default
 
 def run_int(cmd, default, abort_on_error = True):
@@ -122,7 +122,7 @@ def get_value(name, var_types, query_fn):
         return var_types[0](os.environ[name])
     value = query_fn()
     if type(value) not in var_types:
-        error("Type of '%s' should be '%s' but is '%s' (%s)" % (name, str(var_types), str(type(value)), str(value)))
+        print("Type of '%s' should be '%s' but is '%s' (%s)" % (name, str(var_types), str(type(value)), str(value)))
     write_config(name, value)
     return value
 
