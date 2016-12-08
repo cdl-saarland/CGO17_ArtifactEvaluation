@@ -146,13 +146,14 @@ def extract_stats(rtc_folders):
             fd.close()
 
             print("\nOpen text editor to show the results!\n")
-            tools = ["xdg-open", "gedit", "pluma", "kate", "mousepad", "leafpad", "gvim", "nano", "vim", "emacs"]
+            tools = ["xdg-open", "gedit", "pluma", "kate", "mousepad", "leafpad", "gvim", "emacs"]
             for tool in tools:
                 if not os.path.isfile('/usr/bin/%s' % (tool)):
                     continue
                 try:
-                    amp = tool not in ["nano", "vim"]
-                    os.system('/usr/bin/%s %s %s' % (tool, summary, "&" if amp else ""))
+                    # l = len(" Opened %s with %s " % (summary, tool))
+                    # os.system('/usr/bin/echo "\n|%s|\n| Opened %s with %s |\n|%s|\n\n" >> %s' % ('-' * l, summary, tool, '-' * l, summary))
+                    os.system('/usr/bin/%s %s &' % (tool, summary))
                     break
                 except:
                     pass
@@ -359,7 +360,18 @@ try:
 
     if LNT_SERVER and os.path.isdir(LNT_SERVER):
         if query_user_bool("Run lnt server instance %s" % (LNT_SERVER), False):
-            run("%s && lnt runserver %s" % (lnt_setup, LNT_SERVER), False)
+            run("%s && lnt runserver %s &" % (lnt_setup, LNT_SERVER), False)
+            tools = ["xdg-open", "firefox", "chrome", "chromium"]
+            for tool in tools:
+                if not os.path.isfile('/usr/bin/%s' % (tool)):
+                    continue
+                try:
+                    # l = len(" Opened %s with %s " % (summary, tool))
+                    # os.system('/usr/bin/echo "\n|%s|\n| Opened %s with %s |\n|%s|\n\n" >> %s' % ('-' * l, summary, tool, '-' * l, summary))
+                    os.system('/usr/bin/%s %s &' % (tool, "http://localhost:8000/db_default/v4/nts/1"))
+                    break
+                except:
+                    pass
 except Exception as e:
     print(e)
     pass
