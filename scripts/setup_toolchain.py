@@ -132,7 +132,7 @@ ASSERTIONS = get_value("ASSERTIONS", [bool], query_assertions)
 CMAKE_OPTIONS.append("-DLLVM_ENABLE_ASSERTIONS=%s" % (str(ASSERTIONS)))
 
 def query_ninja():
-    found = run("which ninja", False)
+    found = bool(run("which ninja", False))
     return found and query_user_bool("Use ninja instead of make?", False)
 NINJA = get_value("NINJA", [bool], query_ninja)
 
