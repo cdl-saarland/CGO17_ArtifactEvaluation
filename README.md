@@ -25,7 +25,7 @@ interface used in this evaluation.**
 We provide two setups:
 
 1. A fully **automatic version (recommended)** that uses Docker.
-   **This is sufficient to run our compiler and reproduce the measurements.**
+   **This is sufficient to run our compiler and reproduce the results of Figure 15 and 16.**
 2. A manual setup that allows for a in-depth understanding of how and what parts of LLVM are modified.
    This is only for interested.
 
