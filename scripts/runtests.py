@@ -139,7 +139,6 @@ def extract_stats(rtc_folders):
         from summarize_stats import summarize
         summarize(output, summary, name, rtc_folder, TRACK_MINIMAL)
 
-        print("Summary:")
         if os.path.isfile(summary):
             fd = open(summary, "r")
             for line in fd.readlines():

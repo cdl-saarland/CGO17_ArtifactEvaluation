@@ -68,10 +68,10 @@ if USE_SPEC:
     HOSTNAME = HOSTNAME if HOSTNAME else "<container>"
 
     print(os.linesep * 2)
-    print("-"*40 + "\nNote: This is only for people using the docker container!")
-    format_and_print("""Use `docker cp <src_path> %s:<dst_path>` to copy
-                     files/folder (e.g., SPEC) from the host system to a
-                     docker container.""" % HOSTNAME)
+    print("-"*40 + "\nNote: This is only for people using the docker container:\n")
+    format_and_print("""Use `docker cp <src_path> %s:/` to copy
+                     files/folder (e.g., SPEC) from the host system to the root
+                     directory of a docker container.""" % HOSTNAME)
     print("-"*40 + "\n")
 
     SPEC_2000_SRC = setup_SPEC("2000")
