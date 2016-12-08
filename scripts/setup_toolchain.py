@@ -148,7 +148,7 @@ if NINJA:
 run("cd %s && cmake %s %s" % (LLVM_OBJ, LLVM_SRC, " ".join(CMAKE_OPTIONS)))
 
 
-print(os.linesep + "Build LLVM (this might take some time)")
+print(os.linesep * 3 + "Build LLVM (this might take some time [1-2h depending on the hardware])")
 if NINJA:
     run("ninja -C %s" % (LLVM_OBJ))
     run("ninja -C %s check-polly" % (LLVM_OBJ), False)
