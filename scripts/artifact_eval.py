@@ -94,4 +94,4 @@ if os.path.isfile("%s/summaries" % RESULT_BASE):
 
 for name,summary in summaries:
     if query_user_bool("\n\nDo you want to print out the summary for %s?" % (name), False):
-        os.system("/usr/bin/cat %s" % summary)
+        os.system("cat %s" % summary)

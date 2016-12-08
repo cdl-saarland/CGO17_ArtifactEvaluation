@@ -379,9 +379,9 @@ fd.close()
 
 
 print(os.linesep * 2)
-format_and_print("""NOTE: Use `docker cp <container>:<src_path> <dst_path` to
-                copy files/folder (e.g., result summaries, the lnt server,
-                    ...) from the docker container to the host system.""")
+format_and_print("""NOTE: Use `docker cp <container>:<src_path> <dst_path>` to
+                 copy files/folder (e.g., result summaries, the lnt server,
+                 ...) from the docker container to the host system.""")
 print(os.linesep)
 
 print(os.linesep + sys.argv[0] + " is done!" + os.linesep)
