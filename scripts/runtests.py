@@ -110,6 +110,7 @@ for option in GENERAL_OPTIONS:
     fd.write("%s%s" % (option, os.linesep))
 fd.close()
 
+summaries = []
 def extract_stats(rtc_folders):
     if not STATS:
         return
@@ -138,6 +139,7 @@ def extract_stats(rtc_folders):
 
         from summarize_stats import summarize
         summarize(output, summary, name, rtc_folder, TRACK_MINIMAL)
+        summaries.append((name, summary))
 
         if os.path.isfile(summary):
             fd = open(summary, "r")
@@ -145,25 +147,26 @@ def extract_stats(rtc_folders):
                 print(line.strip())
             fd.close()
 
-            print("\nOpen text editor to show the results!\n")
-            tools = ["xdg-open", "gedit", "pluma", "kate", "mousepad", "leafpad", "gvim", "emacs"]
-            for tool in tools:
-                if not os.path.isfile('/usr/bin/%s' % (tool)):
-                    continue
-                try:
-                    # l = len(" Opened %s with %s " % (summary, tool))
-                    # os.system('/usr/bin/echo "\n|%s|\n| Opened %s with %s |\n|%s|\n\n" >> %s' % ('-' * l, summary, tool, '-' * l, summary))
-                    os.system('/usr/bin/%s %s &' % (tool, summary))
-                    break
-                except:
-                    pass
+            if os.path.abspath(os.curdir) != '/':
+                print("\nOpen text editor to show the results!\n")
+                tools = ["xdg-open", "gedit", "pluma", "kate", "mousepad", "leafpad", "gvim", "emacs"]
+                for tool in tools:
+                    if not os.path.isfile('/usr/bin/%s' % (tool)):
+                        continue
+                    try:
+                        # l = len(" Opened %s with %s " % (summary, tool))
+                        # os.system('/usr/bin/echo "\n|%s|\n| Opened %s with %s |\n|%s|\n\n" >> %s' % ('-' * l, summary, tool, '-' * l, summary))
+                        os.system('/usr/bin/%s %s &' % (tool, summary))
+                        break
+                    except:
+                        pass
 
 
 def compile_and_run_npb():
     NPB_SRC = verify_value("NPB_SRC", [str], "setup_benchmarks")
     NPB_CONFIG = os.path.join(NPB_SRC, "config", "make.def")
     if not os.path.isfile(NPB_CONFIG) and not os.path.islink(NPB_CONFIG):
-        error("Could not find NPV config, tried: %s" % NPB_CONFIG)
+        error("Could not find NPB config, tried: %s" % NPB_CONFIG)
         sys.exit(1)
 
     OUT_FILE = os.path.join(RESULT_FOLDER, "NPB_compile_out")
@@ -226,7 +229,7 @@ def compile_and_run_npb():
         SAMPLES = query_user_int("How often?", 1)
         for ex in os.listdir(RESULT_NPB_BIN):
             for i in range(SAMPLES):
-                run("%s/%s &> %s/%s.out" % (RESULT_NPB_BIN,ex,RESULT_NPB_BIN,ex), False)
+                run("%s/%s > %s/%s.out 2> %s/%s.err" % (RESULT_NPB_BIN,ex,RESULT_NPB_BIN,ex,RESULT_NPB_BIN,ex), False)
 
     print(os.linesep * 2)
     format_and_print("====== DONE RUNNING NPB ======")
@@ -345,8 +348,9 @@ if query_user_bool("Compile & run the SPEC test suite(s)?", True):
     LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
     compile_and_run_spec()
 
-print(os.linesep * 3 + "You can find all results here:\n%s\n\n" % (RESULT_FOLDER))
-print("\tLook for the '_summary.txt' files.")
+print(os.linesep * 3 + "You can find all binaries and log files here:\n%s\n\n" % (RESULT_FOLDER))
+for name,summary in summaries:
+    print("\t Summary for %s is located here: %s" % (name, summary))
 
 print(os.linesep * 2)
 format_and_print("""NOTE: Use `docker cp <container>:<src_path> <dst_path` to
