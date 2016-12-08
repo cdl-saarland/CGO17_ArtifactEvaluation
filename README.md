@@ -299,7 +299,8 @@ Without the `--test-externals=${SPEC_SRC}` option only LLVM test suite
 benchmarks are run.
 
 
-### (#Run-Options)
+### Run-Options
+(#run-options)
 
 Option             | Description
 -------------------|------------------------------------------------------------
