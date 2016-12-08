@@ -71,10 +71,11 @@ The `clang` C/C++ compiler with Polly support that is by default created in
 effects there. Details (including compiler flags) to reproduce all experiments
 are listed at the end of this document.
 
-As en example we can use Polly with assumptions enabled on a the "spectralnorm"
-benchmark of the [Benchmarks Game][6]. The source code and the "make" command is
-given on the webpage, however we will replace `/usr/bin/gcc` with our compiler
-and add [options](#Run-Options) to enable Polly and report its activity.
+As en example we can use Polly with assumptions enabled on the "spectral-norm"
+benchmark of the [The Computer Language Benchmarks Game][6]. The source code and
+the "make" command are given on the webpage, however we will replace
+`/usr/bin/gcc` with our compiler and add [options](#run-options) to enable Polly
+and report its activity.
 
 
 # Implementation notes
