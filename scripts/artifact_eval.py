@@ -12,19 +12,21 @@ from helper import *
 function = "The %s script will execute all other scripts automatically." % (sys.argv[0])
 print_intro(function)
 
-print("\n\nNOTE: SPEC2000 and SPEC2006 are proprietary benchmarks that we cannot distribute.")
-USE_SPEC = query_user_bool("Do you have SPEC2000 and/or SPEC2006 locally available?")
 
 def query_spec():
     return os.path.abspath(os.path.join(os.curdir, "SPEC"))
 
-if USE_SPEC:
-    SPEC_SRC = get_value("SPEC_SRC", [str], query_spec)
-    create_folder(SPEC_SRC)
+SPEC_SRC = get_value("SPEC_SRC", [str], query_spec)
+SPEC_CONFIGURED = os.path.isdir(SPEC_SRC) and os.path.isdir(os.path.join(SPEC_SRC, "speccpu2000")) and os.path.isdir(os.path.join(SPEC_SRC, "speccpu2006"))
+
+USE_SPEC = False
+if not SPEC_CONFIGURED:
+    print("\n\nNOTE: SPEC2000 and SPEC2006 are proprietary benchmarks that we cannot distribute.")
+    USE_SPEC = query_user_bool("Do you have SPEC2000 and/or SPEC2006 locally available?")
+    if USE_SPEC:
+        create_folder(SPEC_SRC)
 
 def setup_SPEC(Year):
-    print(os.linesep)
-
     SPECCPU_SRC = os.path.join(SPEC_SRC, "speccpu%s" % (Year))
     if os.path.islink(SPECCPU_SRC) or os.path.isdir(SPECCPU_SRC):
         print("Skip SPEC%s detection, %s exists" % (Year, SPECCPU_SRC))
@@ -61,16 +63,17 @@ def setup_SPEC(Year):
         print("Failed to set up SPEC%s!" % (Year))
         return None
 
-if USE_SPEC:
-    HOSTNAME = run("hostname", False)
-    HOSTNAME = HOSTNAME if HOSTNAME else "<container>"
+if USE_SPEC or SPEC_CONFIGURED:
+    if not SPEC_CONFIGURED:
+        HOSTNAME = run("hostname", False)
+        HOSTNAME = HOSTNAME if HOSTNAME else "<container>"
 
-    print(os.linesep * 2)
-    print("-"*40 + "\nNote: This is only for people using the docker container:\n")
-    format_and_print("""Use `docker cp <src_path> %s:/` to copy
-                     files/folder (e.g., SPEC) from the host system to the root
-                     directory of a docker container.""" % HOSTNAME)
-    print("-"*40 + "\n")
+        print(os.linesep * 2)
+        print("-"*40 + "\nNote: This is only for people using the docker container:\n")
+        format_and_print("""Use `docker cp <src_path> %s:/` to copy
+                        files/folder (e.g., SPEC) from the host system to the root
+                        directory of a docker container.""" % HOSTNAME)
+        print("-"*40 + "\n")
 
     SPEC_2000_SRC = setup_SPEC("2000")
     SPEC_2006_SRC = setup_SPEC("2006")
