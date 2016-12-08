@@ -79,7 +79,28 @@ As en example we can use Polly with assumptions enabled on the "spectral-norm"
 benchmark of the [The Computer Language Benchmarks Game][6]. The source code and
 the "make" command are given on the webpage, however we will replace
 `/usr/bin/gcc` with our compiler and add [options](#run-options) to enable Polly
-and report its activity.
+and report its activity. We run it with `-mllvm -debug-only=polly-ast` and the
+output below shows one of the loop nests that could be tiled only due to *Alias
+Assumptions*:
+
+```
+if (&MemRef_u[N] <= &MemRef_Au[0] || &MemRef_Au[N] <= &MemRef_u[0])
+    {
+      for (int c0 = 0; c0 < N; c0 += 1)
+        Stmt_for_body(c0);
+      // 1st level tiling - Tiles
+      for (int c0 = 0; c0 <= floord(N - 1, 32); c0 += 1)
+        for (int c1 = 0; c1 <= (N - 1) / 32; c1 += 1) {
+          // 1st level tiling - Points
+          for (int c2 = 0; c2 <= min(31, N - 32 * c0 - 1); c2 += 1)
+            for (int c3 = 0; c3 <= min(31, N - 32 * c1 - 1); c3 += 1)
+              Stmt_for_body3(32 * c0 + c2, 32 * c1 + c3);
+        }
+    }
+else
+    {  /* original code */ }
+```
+
 
 
 # Implementation notes
