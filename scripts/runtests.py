@@ -134,7 +134,7 @@ def extract_stats(rtc_folders):
         print("Output written to %s" % (output))
 
         print(os.linesep * 2)
-        summary = output + ".summary"
+        summary = output + "_summary.txt"
 
         from summarize_stats import summarize
         summarize(output, summary, name, rtc_folder, TRACK_MINIMAL)
@@ -146,12 +146,13 @@ def extract_stats(rtc_folders):
             fd.close()
 
             print("\nOpen text editor to show the results!\n")
-            tools = ["xdg-open", "gedit", "pluma", "emacs", "kate", "mousepad", "leafpad", "gvim", "nano", "vim"]
+            tools = ["xdg-open", "gedit", "pluma", "kate", "mousepad", "leafpad", "gvim", "nano", "vim", "emacs"]
             for tool in tools:
                 if not os.path.isfile('/usr/bin/%s' % (tool)):
                     continue
                 try:
-                    os.system('/usr/bin/%s %s &' % (tool, summary))
+                    amp = tool not in ["nano", "vim"]
+                    os.system('/usr/bin/%s %s %s' % (tool, summary, "&" if amp else ""))
                     break
                 except:
                     pass
@@ -344,7 +345,7 @@ if query_user_bool("Compile & run the SPEC test suite(s)?", True):
     compile_and_run_spec()
 
 print(os.linesep * 3 + "You can find all results here:\n%s\n\n" % (RESULT_FOLDER))
-print("\tLook for the '.summary' files.")
+print("\tLook for the '_summary.txt' files.")
 
 print(os.linesep * 2)
 format_and_print("""NOTE: Use `docker cp <container>:<src_path> <dst_path` to
