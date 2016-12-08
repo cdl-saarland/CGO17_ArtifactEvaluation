@@ -1,18 +1,18 @@
 Optimistic Loop Optimization
 ============================
 
-This documents describes how to reproduce the evaluation presented in the
+This document describes how to reproduce the evaluation presented in the
 *Optimistic Loop Optimization* paper at CGO17.
 
 The full implementation has been made available as part of the open source
 tool Polly. Thus, all it takes to try out the work described in the paper is a
 recent version of LLVM, Clang, and Polly.
 
-Note: *Since LLVM and Polly are under constant improvement, the results might
+**Note: Since LLVM and Polly are under constant improvement, the results might
 differ between version. However, while the exact numbers might be different we
 do not expect the general effects to be. This document was written using the
 following versions. Older versions of Polly do not provide the statistics
-interface used in this evaluation.*
+interface used in this evaluation.**
 
   Tool   | Version
 ---------|----------------------
@@ -20,9 +20,30 @@ interface used in this evaluation.*
   Clang: |  1f955bd (svn: r288231)
   Polly: |  b6c62b2 (svn: r288521)
 
+## Running the Evaluation
 
-Native Setup
-==========================
+We provide two setups:
+
+1. A fully **automatic version (recommended)** that uses Docker.
+   **This is sufficient to run our compiler and reproduce the measurements.**
+2. A manual setup that allows for a in-depth understanding of how and what parts of LLVM are modified.
+   This is only for interested.
+
+Automatic Setup with Docker (recommended)
+=========================================
+
+We provide a docker container that is defined on top of a vanilla Ubuntu with
+all necessary software installed (`docker pull` below). The `docker run` command
+will invoke the interactive `artifact_eval.py` script that guides through the
+set up and evaluation process.
+
+```
+docker pull jdoerfert/cgo17_artifactevaluation
+docker run -t -i jdoerfert/cgo17_artifactevaluation
+```
+
+Manual Setup
+============
 
 The following three commands will download this repository and start one run of
 the evaluation process. Using the default configurations (recommended) Polly
@@ -39,20 +60,6 @@ used are shown [here](#spec-fixes)*
 git clone https://github.com/jdoerfert/CGO17_ArtifactEvaluation.git CGO_AE_OptimisticLoopOptimization
 cd CGO_AE_OptimisticLoopOptimization
 ./scripts/artifact_eval.py
-```
-
-
-Docker container Setup
-======================
-
-We provide a docker container that is defined on top of a vanilla Ubuntu with
-all necessary software installed (`docker pull` below). The `docker run` command
-will invoke the interactive `artifact_eval.py` script that guides through the
-set up and evaluation process.
-
-```
-docker pull jdoerfert/cgo17_artifactevaluation
-docker run -t -i jdoerfert/cgo17_artifactevaluation
 ```
 
 ## [System requirements][3]
