@@ -69,7 +69,7 @@ docker run -t -i jdoerfert/cgo17_artifactevaluation
 The `clang` C/C++ compiler with Polly support that is by default created in
 `toolchain/llvm_obj/bin` can be used on other C/C++ benchmarks to evaluate the
 effects there. Details (including compiler flags) to reproduce all experiments
-are listed at the end of this document.
+are listed at the [end](#experiments-and-data-collection) of this document.
 
 As en example we can use Polly with assumptions enabled on the "spectral-norm"
 benchmark of the [The Computer Language Benchmarks Game][6]. The source code and
@@ -300,7 +300,6 @@ benchmarks are run.
 
 
 ### Run-Options
-(#run-options)
 
 Option             | Description
 -------------------|------------------------------------------------------------
