@@ -12,9 +12,7 @@ from helper import *
 function = "The %s script will execute all other scripts automatically." % (sys.argv[0])
 print_intro(function)
 
-format_and_print("NOTE: SPEC2000 and SPEC2006 are proprietary benchmarks that we cannot distribute.")
-print("")
-
+print("\n\nNOTE: SPEC2000 and SPEC2006 are proprietary benchmarks that we cannot distribute.")
 USE_SPEC = query_user_bool("Do you have SPEC2000 and/or SPEC2006 locally available and want to integrate it in the evaluation?")
 
 def query_spec():
@@ -79,7 +77,7 @@ if USE_SPEC:
 
 
 SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__))
-if query_user_bool("Do you want to use the defaults for all values [recommended] or step interactively through the process?"):
+if query_user_bool("Do you want to use the defaults (build paths, build options, etc.) for all values [recommended] or step interactively through the process?"):
     os.system('%s/artifact_eval_helper.py < %s/use_defaults' % (SCRIPT_PATH, SCRIPT_PATH))
 else:
     os.system('%s/artifact_eval_helper.py' % (SCRIPT_PATH, SCRIPT_PATH))
