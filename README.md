@@ -66,7 +66,7 @@ docker run -t -i jdoerfert/cgo17_artifactevaluation
 
 # Customization and reusability
 
-The C/C++ compiler with Polly build-in that is by default created in
+The `clang` C/C++ compiler with Polly support that is by default created in
 `toolchain/llvm_obj/bin` can be used on other C/C++ benchmarks to evaluate the
 effects there. Details (including compiler flags) to reproduce all experiments
 are listed at the end of this document.
