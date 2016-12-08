@@ -28,11 +28,12 @@ The following three commands will download this repository and start one run of
 the evaluation process. Using the default configurations (recommended) Polly
 with assumptions will be run. As a result the *#S*, *#D* and *#E* row of *Figure
 15* will be recomputed from scratch as well as the *(a)* columns of *Figure 16*.
-(*Note that SPEC is proprietary and not included in this evaluation by default.
+
+*Note that SPEC is proprietary and not included in this evaluation by default.
 However the scripts will ask for the local SPEC sources and use them if given.
 Also note that some SPEC versions contain errors that need to be fixed in order
 for them to be compiler successfully. The fixes necessary for the versions we
-used are shown [here](#spec-fixes))
+used are shown [here](#spec-fixes)*
 
 ```
 git clone https://github.com/jdoerfert/CGO17_ArtifactEvaluation.git CGO_AE_OptimisticLoopOptimization
