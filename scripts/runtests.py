@@ -225,7 +225,7 @@ def compile_and_run_npb():
         SAMPLES = query_user_int("How often?", 1)
         for ex in os.listdir(RESULT_NPB_BIN):
             for i in range(SAMPLES):
-                run("%s/%s &>> %s/%s.out" % (RESULT_NPB_BIN,ex,RESULT_NPB_BIN,ex), False)
+                run("%s/%s &> %s/%s.out" % (RESULT_NPB_BIN,ex,RESULT_NPB_BIN,ex), False)
 
     print(os.linesep * 2)
     format_and_print("====== DONE RUNNING NPB ======")
