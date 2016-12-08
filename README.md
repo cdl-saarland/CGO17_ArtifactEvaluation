@@ -22,7 +22,14 @@ interface used in this evaluation.*
 
 
 Native Setup
-================
+==========================
+
+The following three commands will download this repository and start one run of
+the evaluation process. Using the default configurations (recommended) Polly
+with assumptions will be run. As a result the *#S*, *#D* and *#E* row of *Figure
+15* will be recomputed from scratch as well as the *(a)* columns of *Figure 16*.
+(Note that SPEC is proprietary and not included in this evaluation by default.
+However the scripts will ask for the local SPEC sources and use them if given.)
 
 ```
 git clone https://github.com/jdoerfert/CGO17_ArtifactEvaluation.git CGO_AE_OptimisticLoopOptimization
@@ -32,14 +39,12 @@ cd CGO_AE_OptimisticLoopOptimization
 
 
 Docker container Setup
-================
+======================
 
-We provide a docker container that is described by the *Dockerfile* in the
-*docker* directory. It is defined on top of a vanilla Ubuntu and will install
-all necessary software automatically at build time. Afterwards one can copy
-SPEC2000 and SPEC2006 into the container. The docker run command will invoke the
-interactive `artifact_eval.py` script that guides through the set up and
-evaluation process.
+We provide a docker container that is defined on top of a vanilla Ubuntu with
+all necessary software installed (`docker pull` below). The `docker run` command
+will invoke the interactive `artifact_eval.py` script that guides through the
+set up and evaluation process.
 
 ```
 docker pull jdoerfert/cgo17_artifactevaluation
@@ -48,7 +53,7 @@ docker run -t -i jdoerfert/cgo17_artifactevaluation
 
 ## System requirements [3]
   - at least 25+8=33GB of free space (LLVM/Clang/Polly debug build +
-    benchmarks), a release build does require much less space and memory.
+    benchmarks), a release build (default) does require much less space and memory.
   - at least 8GB of main memory, preferably more
   - A C/C++11 enabled compiler e.g., gcc >= 4.8.0 or clang >= 3.1
   - CMake >= 3.4.3
@@ -60,8 +65,59 @@ docker run -t -i jdoerfert/cgo17_artifactevaluation
     for a list of packages installed on top of a clean Ubuntu system)
 
 
-Manual Setup 
-=============================
+# Implementation notes
+
+Polly only has a "in-code" documentation. In addition to actual comments in the
+code, function declarations are often well documented. Either check the
+declarations in the header files or use the [doxygen documentation
+online](http://polly.llvm.org/doxygen/).
+
+
+## Assumption computation (Section 4)
+
+Assumption computation is spread over multiple functions in `ScopInfo.cpp` and
+`SCEVAffinator.cpp`. To identify the functions one can look for calls to
+`recordAssumption(...)` as well as `addAssumption(...)`. The difference between
+these calls is explained at their declaration in `ScopInfo.h`.
+
+
+
+## Assumption simplification (Section 5)
+
+The assumption simplification is partially performed during/after the assumption
+computation (e.g., using `isl_set_coalesce`) but also explicitly in the
+`Scop::simplifyContexts()` function. The distinction between *assumptions* and
+*restrictions* is implemented using the enum `AssumptionSign` in `ScopInfo.h`.
+Assumptions and respectively restrictions are collected in the
+`Scop::AssumedContext` and `Scop::InvalidContext`. Overapproximations are
+performed using the `isl_set_remove_divs` function, e.g., in the
+`buildMinMaxAccess` function that is used to derive runtime alias checks.
+
+
+## Runtime Check Generation (Section 6)
+
+#### Algorithm 1 (Runtime Check Generation)
+
+The overflow checks for addition (and multiplication) are implemented in the
+`IslExprBuilder::createBinOp(...)` function [`IslExprBuilder.cpp`]. The
+overflow tracking is enabled in the `IslNodeBuilder::createRTC(...)`
+function [`IslNodeBuilder.cpp`] with the `ExprBuilder.setTrackOverflow(true)`
+call. As described in the paper one can either bail as soon as an overflow
+occurred or track that fact and bail in the end. To avoid a complicated
+control flow graph the latter solution is implemented. The final overflow
+state is queried via `ExprBuilder.getOverflowState()` after the runtime
+check generation and combined with the runtime check result.
+
+####  Algorithm 2 (Parameter Generation)
+
+The entry point for the recursive parameter generation is the
+`IslNodeBuilder::preloadInvariantLoads()` function [`IslNodeBuilder.cpp`]. It
+is called by `CodeGeneration::runOnScop(...)` before a runtime check or the
+optimized code version is generated.
+
+
+Manual Setup & Evaluation Details
+=================================
 
 There are different levels of automation to choose from:
 
@@ -383,57 +439,6 @@ disable it apply the patch in `resources/` to Polly version
 b64b4a4603cd70579128b1aa4b598a5294f34d8f (or r287347). It will add the command
 line option `-polly-no-assumption-simplification` that will prevent assumption
 related simplifications.
-
-
-# Implementation notes
-
-Polly only has a "in-code" documentation. In addition to actual comments in the
-code, function declarations are often well documented. Either check the
-declarations in the header files or use the [doxygen documentation
-online](http://polly.llvm.org/doxygen/).
-
-
-## Assumption computation (Section 4)
-
-Assumption computation is spread over multiple functions in `ScopInfo.cpp` and
-`SCEVAffinator.cpp`. To identify the functions one can look for calls to
-`recordAssumption(...)` as well as `addAssumption(...)`. The difference between
-these calls is explained at their declaration in `ScopInfo.h`.
-
-
-
-## Assumption simplification (Section 5)
-
-The assumption simplification is partially performed during/after the assumption
-computation (e.g., using `isl_set_coalesce`) but also explicitly in the
-`Scop::simplifyContexts()` function. The distinction between *assumptions* and
-*restrictions* is implemented using the enum `AssumptionSign` in `ScopInfo.h`.
-Assumptions and respectively restrictions are collected in the
-`Scop::AssumedContext` and `Scop::InvalidContext`. Overapproximations are
-performed using the `isl_set_remove_divs` function, e.g., in the
-`buildMinMaxAccess` function that is used to derive runtime alias checks.
-
-
-## Runtime Check Generation (Section 6)
-
-#### Algorithm 1 (Runtime Check Generation)
-
-The overflow checks for addition (and multiplication) are implemented in the
-`IslExprBuilder::createBinOp(...)` function [`IslExprBuilder.cpp`]. The
-overflow tracking is enabled in the `IslNodeBuilder::createRTC(...)`
-function [`IslNodeBuilder.cpp`] with the `ExprBuilder.setTrackOverflow(true)`
-call. As described in the paper one can either bail as soon as an overflow
-occurred or track that fact and bail in the end. To avoid a complicated
-control flow graph the latter solution is implemented. The final overflow
-state is queried via `ExprBuilder.getOverflowState()` after the runtime
-check generation and combined with the runtime check result.
-
-####  Algorithm 2 (Parameter Generation)
-
-The entry point for the recursive parameter generation is the
-`IslNodeBuilder::preloadInvariantLoads()` function [`IslNodeBuilder.cpp`]. It
-is called by `CodeGeneration::runOnScop(...)` before a runtime check or the
-optimized code version is generated.
 
 
 
