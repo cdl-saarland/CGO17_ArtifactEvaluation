@@ -370,14 +370,18 @@ except Exception as e:
     print(e)
     pass
 
-print(os.linesep * 3 + "You can find all binaries and log files here:\n%s" % (RESULT_FOLDER))
+print(os.linesep * 4 + "You can find all binaries and log files here:\n%s" % (RESULT_FOLDER))
 for name,summary in summaries:
-    print("- Summary for %s is located here: %s" % (name, summary))
+    print("  - Summary for %s is located here: %s" % (name, summary))
 
 print(os.linesep * 2)
 format_and_print("""NOTE: Use `docker cp <container>:<src_path> <dst_path` to
                 copy files/folder (e.g., result summaries, the lnt server,
                     ...) from the docker container to the host system.""")
 print(os.linesep)
+
+for name,summary in summaries:
+    if query_user_bool("\n\nDo you want to print out the summary for %s?" % (name), False):
+        os.system("/usr/bin/cat %s" % summary)
 
 print(os.linesep + sys.argv[0] + " is done!" + os.linesep)
