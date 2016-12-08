@@ -166,7 +166,7 @@ def summarize(inp, out, name, rtc_folder, minimal=False):
         fd.write("\t%s assumptions were tracked [-mllm -polly-remarks-minimal=%s]\n\n" % ('Only non-implied' if minimal else 'All', "true" if minimal else "false" ))
 
         fd.write('Applicability & runtime results (if available):\n')
-        fd.write('----------------------------------------------\n')
+        fd.write('----------------------------------------------\n\nFigure 15:')
         fd.write('   %10s   w/ A  %10s |  w/o A  \n' % ('(a)','(b)'))
         fd.write('   %10s---------%10s-|---------\n' % ('-'*10,'-'*10))
         fd.write('#S %10s    |    %10s |  %5s    \n' % (str(s_a),str(s_b),str(s_na)))
@@ -174,7 +174,7 @@ def summarize(inp, out, name, rtc_folder, minimal=False):
         fd.write('#E %10s    |    %10s |  %5s    \n' % (str(e_a),str(e_b),str(e_na)))
 
         fd.write('\nAssumptions taken:\n')
-        fd.write('-----------------\n')
+        fd.write('-----------------\n\nFigure 16:')
         fd.write('      %10s   w/ A  %10s \n' % ('(a)','(b)'))
         fd.write('A[%s] %10s    |    %10s \n' % ('IB',str(ib_a),str(ib_b)))
         fd.write('A[%s] %10s    |    %10s \n' % ('EE',str(ee_a),str(ee_b)))
