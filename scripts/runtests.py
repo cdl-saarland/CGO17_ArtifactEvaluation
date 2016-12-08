@@ -348,16 +348,6 @@ if query_user_bool("Compile & run the SPEC test suite(s)?", True):
     LNT_SERVER = get_value("LNT_SERVER", [str, type(None)], query_lnt_server)
     compile_and_run_spec()
 
-print(os.linesep * 3 + "You can find all binaries and log files here:\n%s\n\n" % (RESULT_FOLDER))
-for name,summary in summaries:
-    print("\t Summary for %s is located here: %s" % (name, summary))
-
-print(os.linesep * 2)
-format_and_print("""NOTE: Use `docker cp <container>:<src_path> <dst_path` to
-                copy files/folder (e.g., result summaries, the lnt server,
-                    ...) from the docker container to the host system.""")
-print(os.linesep)
-
 try:
     if LNT_SERVER and os.path.isdir(LNT_SERVER):
         print("LNT server: %s" % (LNT_SERVER))
@@ -379,5 +369,15 @@ try:
 except Exception as e:
     print(e)
     pass
+
+print(os.linesep * 3 + "You can find all binaries and log files here:\n%s" % (RESULT_FOLDER))
+for name,summary in summaries:
+    print("- Summary for %s is located here: %s" % (name, summary))
+
+print(os.linesep * 2)
+format_and_print("""NOTE: Use `docker cp <container>:<src_path> <dst_path` to
+                copy files/folder (e.g., result summaries, the lnt server,
+                    ...) from the docker container to the host system.""")
+print(os.linesep)
 
 print(os.linesep + sys.argv[0] + " is done!" + os.linesep)
