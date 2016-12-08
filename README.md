@@ -461,16 +461,16 @@ related simplifications.
 
 
 
-[0] http://llvm.org/docs/GettingStarted.html
+[0]: http://llvm.org/docs/GettingStarted.html
 
-[1] http://clang.llvm.org/get_started.html
+[1]: http://clang.llvm.org/get_started.html
 
-[2] http://polly.llvm.org/get_started.html
+[2]: http://polly.llvm.org/get_started.html
 
-[3] http://llvm.org/docs/GettingStarted.html#requirements
+[3]: http://llvm.org/docs/GettingStarted.html#requirements
 
-[4] http://aces.snu.ac.kr/software/snu-npb/
+[4]: http://aces.snu.ac.kr/software/snu-npb/
 
-[5] http://llvm.org/docs/lnt/quickstart.html
+[5]: http://llvm.org/docs/lnt/quickstart.html
 
-[6] https://benchmarksgame.alioth.debian.org/u64q/program.php?test=spectralnorm&lang=gcc&id=1
+[6]: https://benchmarksgame.alioth.debian.org/u64q/program.php?test=spectralnorm&lang=gcc&id=1
