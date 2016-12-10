@@ -84,8 +84,14 @@ cd CGO_AE_OptimisticLoopOptimization
   - Common tools like: git, grep, sed, yacc, groff, ... (see `docker/Dockerfile`
     for a list of packages installed on top of a clean Ubuntu system)
 
-A list of all software packages necessary (on an ubuntu based system) is shown
-in the `apt-get install` command in the `docker/Dockerfile`.
+The docker image (ubuntu based) is initialized with following list of software
+packages to make the artifact evaluation possible:
+```
+build-essential cmake git git-svn kpartx libglib2.0-dev groff tclsh
+subversion zlib1g-dev flex libfdt1 git libfdt-dev libpixman-1-0
+libpixman-1-dev python-virtualenv sed python-dev vim emacs byacc flex
+```
+
 
 
 # Customization and reusability
