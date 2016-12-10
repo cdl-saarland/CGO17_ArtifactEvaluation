@@ -75,6 +75,10 @@ cd CGO_AE_OptimisticLoopOptimization
   - Common tools like: git, grep, sed, yacc, groff, ... (see `docker/Dockerfile`
     for a list of packages installed on top of a clean Ubuntu system)
 
+A list of all software packages necessary (on an ubuntu based system) is shown
+in the `apt-get install` command in the `docker/Dockerfile`.
+
+
 # Customization and reusability
 
 The `clang` C/C++ compiler with Polly support that is by default created in
