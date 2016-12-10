@@ -42,6 +42,15 @@ docker pull jdoerfert/cgo17_artifactevaluation
 docker run -t -i jdoerfert/cgo17_artifactevaluation
 ```
 
+Sample Session
+==============
+
+The file `resources/sample/evaluation_run_log.txt` contains the terminal output
+of one automatic run of the `scripts/artifact_eval.py` script. It allows to
+see what the expected result should look like. In addition the *summary* files
+of that evaluation run have been added in the same folder.
+
+
 Manual Setup
 ============
 

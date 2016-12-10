@@ -1,0 +1,1751 @@
+Script started on Sat 10 Dec 2016 03:08:56 PM CET
+
+git clone https://github.com/jdoerfert/CGO17_ArtifactEvaluation.git CGO_AE_OptimisticLoopOptimization
+Cloning into 'CGO_AE_OptimisticLoopOptimization'...
+remote: Counting objects: 593, done.[K
+remote: Compressing objects:   0% (1/143)   [Kremote: Compressing objects:   1% (2/143)   [Kremote: Compressing objects:   2% (3/143)   [Kremote: Compressing objects:   3% (5/143)   [Kremote: Compressing objects:   4% (6/143)   [Kremote: Compressing objects:   5% (8/143)   [Kremote: Compressing objects:   6% (9/143)   [Kremote: Compressing objects:   7% (11/143)   [Kremote: Compressing objects:   8% (12/143)   [Kremote: Compressing objects:   9% (13/143)   [Kremote: Compressing objects:  10% (15/143)   [Kremote: Compressing objects:  11% (16/143)   [Kremote: Compressing objects:  12% (18/143)   [Kremote: Compressing objects:  13% (19/143)   [Kremote: Compressing objects:  14% (21/143)   [Kremote: Compressing objects:  15% (22/143)   [Kremote: Compressing objects:  16% (23/143)   [Kremote: Compressing objects:  17% (25/143)   [Kremote: Compressing objects:  18% (26/143)   [Kremote: Compressing objects:  19% (28/143)   [Kremote: Compressing objects:  20% (29/143)   [Kremote: Compressing objects:  21% (31/143)   [Kremote: Compressing objects:  22% (32/143)   [Kremote: Compressing objects:  23% (33/143)   [Kremote: Compressing objects:  24% (35/143)   [Kremote: Compressing objects:  25% (36/143)   [Kremote: Compressing objects:  26% (38/143)   [Kremote: Compressing objects:  27% (39/143)   [Kremote: Compressing objects:  28% (41/143)   [Kremote: Compressing objects:  29% (42/143)   [Kremote: Compressing objects:  30% (43/143)   [Kremote: Compressing objects:  31% (45/143)   [Kremote: Compressing objects:  32% (46/143)   [Kremote: Compressing objects:  33% (48/143)   [Kremote: Compressing objects:  34% (49/143)   [Kremote: Compressing objects:  35% (51/143)   [Kremote: Compressing objects:  36% (52/143)   [Kremote: Compressing objects:  37% (53/143)   [Kremote: Compressing objects:  38% (55/143)   [Kremote: Compressing objects:  39% (56/143)   [Kremote: Compressing objects:  40% (58/143)   [Kremote: Compressing objects:  41% (59/143)   [Kremote: Compressing objects:  42% (61/143)   [Kremote: Compressing objects:  43% (62/143)   [Kremote: Compressing objects:  44% (63/143)   [Kremote: Compressing objects:  45% (65/143)   [Kremote: Compressing objects:  46% (66/143)   [Kremote: Compressing objects:  47% (68/143)   [Kremote: Compressing objects:  48% (69/143)   [Kremote: Compressing objects:  49% (71/143)   [Kremote: Compressing objects:  50% (72/143)   [Kremote: Compressing objects:  51% (73/143)   [Kremote: Compressing objects:  52% (75/143)   [Kremote: Compressing objects:  53% (76/143)   [Kremote: Compressing objects:  54% (78/143)   [Kremote: Compressing objects:  55% (79/143)   [Kremote: Compressing objects:  56% (81/143)   [Kremote: Compressing objects:  57% (82/143)   [Kremote: Compressing objects:  58% (83/143)   [Kremote: Compressing objects:  59% (85/143)   [Kremote: Compressing objects:  60% (86/143)   [Kremote: Compressing objects:  61% (88/143)   [Kremote: Compressing objects:  62% (89/143)   [Kremote: Compressing objects:  63% (91/143)   [Kremote: Compressing objects:  64% (92/143)   [Kremote: Compressing objects:  65% (93/143)   [Kremote: Compressing objects:  66% (95/143)   [Kremote: Compressing objects:  67% (96/143)   [Kremote: Compressing objects:  68% (98/143)   [Kremote: Compressing objects:  69% (99/143)   [Kremote: Compressing objects:  70% (101/143)   [Kremote: Compressing objects:  71% (102/143)   [Kremote: Compressing objects:  72% (103/143)   [Kremote: Compressing objects:  73% (105/143)   [Kremote: Compressing objects:  74% (106/143)   [Kremote: Compressing objects:  75% (108/143)   [Kremote: Compressing objects:  76% (109/143)   [Kremote: Compressing objects:  77% (111/143)   [Kremote: Compressing objects:  78% (112/143)   [Kremote: Compressing objects:  79% (113/143)   [Kremote: Compressing objects:  80% (115/143)   [Kremote: Compressing objects:  81% (116/143)   [Kremote: Compressing objects:  82% (118/143)   [Kremote: Compressing objects:  83% (119/143)   [Kremote: Compressing objects:  84% (121/143)   [Kremote: Compressing objects:  85% (122/143)   [Kremote: Compressing objects:  86% (123/143)   [Kremote: Compressing objects:  87% (125/143)   [Kremote: Compressing objects:  88% (126/143)   [Kremote: Compressing objects:  89% (128/143)   [Kremote: Compressing objects:  90% (129/143)   [Kremote: Compressing objects:  91% (131/143)   [Kremote: Compressing objects:  92% (132/143)   [Kremote: Compressing objects:  93% (133/143)   [Kremote: Compressing objects:  94% (135/143)   [Kremote: Compressing objects:  95% (136/143)   [Kremote: Compressing objects:  96% (138/143)   [Kremote: Compressing objects:  97% (139/143)   [Kremote: Compressing objects:  98% (141/143)   [Kremote: Compressing objects:  99% (142/143)   [Kremote: Compressing objects: 100% (143/143)   [Kremote: Compressing objects: 100% (143/143), done.[K
+Receiving objects:   0% (1/593)   Receiving objects:   1% (6/593)   Receiving objects:   2% (12/593)   Receiving objects:   3% (18/593)   Receiving objects:   4% (24/593)   Receiving objects:   5% (30/593)   Receiving objects:   6% (36/593)   Receiving objects:   7% (42/593)   Receiving objects:   8% (48/593)   Receiving objects:   9% (54/593)   Receiving objects:  10% (60/593)   Receiving objects:  11% (66/593)   Receiving objects:  12% (72/593)   Receiving objects:  13% (78/593)   Receiving objects:  14% (84/593)   Receiving objects:  15% (89/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  16% (95/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  17% (101/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  18% (107/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  19% (113/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  20% (119/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  21% (125/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  22% (131/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  23% (137/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  24% (143/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  25% (149/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  26% (155/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  27% (161/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  28% (167/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  29% (172/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  30% (178/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  31% (184/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  32% (190/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  33% (196/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  34% (202/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  35% (208/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  36% (214/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  37% (220/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  38% (226/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  39% (232/593), 460.01 KiB | 866.00 KiB/s   Receiving objects:  39% (234/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  40% (238/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  41% (244/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  42% (250/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  43% (255/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  44% (261/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  45% (267/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  46% (273/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  47% (279/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  48% (285/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  49% (291/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  50% (297/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  51% (303/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  52% (309/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  53% (315/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  54% (321/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  55% (327/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  56% (333/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  57% (339/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  58% (344/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  59% (350/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  60% (356/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  61% (362/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  62% (368/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  63% (374/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  64% (380/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  65% (386/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  66% (392/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  67% (398/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  68% (404/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  69% (410/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  70% (416/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  71% (422/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  72% (427/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  73% (433/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  74% (439/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  75% (445/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  76% (451/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  77% (457/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  78% (463/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  79% (469/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  80% (475/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  81% (481/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  82% (487/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  83% (493/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  84% (499/593), 2.36 MiB | 2.21 MiB/s   remote: Total 593 (delta 95), reused 0 (delta 0), pack-reused 449[K
+Receiving objects:  85% (505/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  86% (510/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  87% (516/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  88% (522/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  89% (528/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  90% (534/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  91% (540/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  92% (546/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  93% (552/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  94% (558/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  95% (564/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  96% (570/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  97% (576/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  98% (582/593), 2.36 MiB | 2.21 MiB/s   Receiving objects:  99% (588/593), 2.36 MiB | 2.21 MiB/s   Receiving objects: 100% (593/593), 2.36 MiB | 2.21 MiB/s   Receiving objects: 100% (593/593), 2.44 MiB | 2.21 MiB/s, done.
+Resolving deltas:   0% (0/323)   Resolving deltas:   2% (8/323)   Resolving deltas:   8% (26/323)   Resolving deltas:   9% (31/323)   Resolving deltas:  10% (34/323)   Resolving deltas:  11% (37/323)   Resolving deltas:  13% (42/323)   Resolving deltas:  14% (48/323)   Resolving deltas:  15% (50/323)   Resolving deltas:  16% (53/323)   Resolving deltas:  17% (57/323)   Resolving deltas:  18% (60/323)   Resolving deltas:  19% (63/323)   Resolving deltas:  20% (65/323)   Resolving deltas:  21% (69/323)   Resolving deltas:  26% (84/323)   Resolving deltas:  27% (90/323)   Resolving deltas:  29% (95/323)   Resolving deltas:  30% (100/323)   Resolving deltas:  32% (105/323)   Resolving deltas:  33% (108/323)   Resolving deltas:  36% (117/323)   Resolving deltas:  41% (134/323)   Resolving deltas:  43% (142/323)   Resolving deltas:  44% (143/323)   Resolving deltas:  47% (152/323)   Resolving deltas:  48% (157/323)   Resolving deltas:  52% (169/323)   Resolving deltas:  55% (180/323)   Resolving deltas:  56% (181/323)   Resolving deltas:  57% (186/323)   Resolving deltas:  60% (197/323)   Resolving deltas:  65% (210/323)   Resolving deltas:  67% (218/323)   Resolving deltas:  68% (222/323)   Resolving deltas:  69% (224/323)   Resolving deltas:  70% (227/323)   Resolving deltas:  83% (271/323)   Resolving deltas:  89% (289/323)   Resolving deltas:  91% (297/323)   Resolving deltas:  92% (300/323)   Resolving deltas:  95% (309/323)   Resolving deltas:  99% (321/323)   Resolving deltas: 100% (323/323)   Resolving deltas: 100% (323/323), done.
+
+cd CGO_AE_OptimisticLoopOptimization
+./scripts/artifact_eval.py
+
+Written for the CGO'17 artifact evaluation of the "Optimistic Loop Optimization"
+paper. Please use with caution.
+
+********************************************************************************
+The ./scripts/artifact_eval.py script will execute all other scripts
+automatically.
+********************************************************************************
+
+
+
+NOTE: SPEC2000 and SPEC2006 are proprietary benchmarks that we cannot distribute.
+
+Do you have SPEC2000 and/or SPEC2006 locally available?
+[y/n] >> y
+
+Run: 'hostname'
+
+
+
+----------------------------------------
+Note: This is only for people using the docker container:
+
+Use `docker cp <src_path> arch-linux-jd:/` to copy files/folder (e.g., SPEC)
+from the host system to the root directory of a docker container.
+
+----------------------------------------
+
+
+[Existing] SPEC2000 folder:
+>> /tmp/benchmarks/speccdp  pu2000
+
+Run: 'ln -s /tmp/benchmarks/speccpu2000 /tmp/CGO_AE_OptimisticLoopOptimization/SPEC/speccpu2000'
+SPEC2000 was set up!
+
+[Existing] SPEC2006 folder:
+>> /tmp/benchmars ks/speccpu2006
+
+Run: 'ln -s /tmp/benchmarks/speccpu2006 /tmp/CGO_AE_OptimisticLoopOptimization/SPEC/speccpu2006'
+SPEC2006 was set up!
+
+Do you want to use the defaults (build paths, build options, etc.) for all values [recommended]?
+[Y/n] >> y Y
+Written for the CGO'17 artifact evaluation of the "Optimistic Loop Optimization"
+paper. Please use with caution.
+
+********************************************************************************
+The /tmp/CGO_AE_OptimisticLoopOptimization/scripts/artifact_eval_helper.py
+script will execute all other scripts automatically.
+********************************************************************************
+
+********************************************************************************
+Read /tmp/CGO_AE_OptimisticLoopOptimization/scripts/config.py
+Successfully initialized 1 values!
+
+********************************************************************************
+
+
+
+********************************************************************************
+                            1. Set up the toolchain!                            
+********************************************************************************
+
+********************************************************************************
+Read /tmp/CGO_AE_OptimisticLoopOptimization/scripts/config.py
+Successfully initialized 1 values!
+
+********************************************************************************
+
+********************************************************************************
+  The setup_toolchain.py script will download and build LLVM, Clang and Polly.  
+********************************************************************************
+
+********************************************************************************
+Read /tmp/CGO_AE_OptimisticLoopOptimization/scripts/config.py
+Successfully initialized 1 values!
+
+********************************************************************************
+
+
+1. Determine the system parameters:
+
+Run: 'cat /proc/cpuinfo | grep processor | wc -l'
+
+How many jobs should be used?
+[8] >> 
+Run: 'free -g | grep 'Mem' | grep -o -E '[0-9]*$''
+
+How much memory in GB is available?
+[14] >> 
+[Existing] Path to the C11 compatible compiler [use system compiler]
+>> 
+[Existing] Path to the C++11 compatible compiler [use system compiler]
+>> 
+[New] Toolchain base folder:
+[/tmp/CGO_AE_OptimisticLoopOptimization/toolchain] >> 
+System parameters determined! Summary:
+
+           Jobs: 8
+         Memory: 14GB
+             CC: system default
+            CXX: system default
+      Base path: /tmp/CGO_AE_OptimisticLoopOptimization/toolchain
+
+Press <Enter> to continue or <Ctr-C> to abort.
+>> 
+Download LLVM, Clang and Polly:
+
+  LLVM src: /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src
+Clone LLVM:
+
+Run: 'git clone http://llvm.org/git/llvm.git /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src'
+Cloning into '/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src'...
+remote: Counting objects: 26344   [Kremote: Counting objects: 53216   [Kremote: Counting objects: 81297   [Kremote: Counting objects: 108920   [Kremote: Counting objects: 136690   [Kremote: Counting objects: 170593   [Kremote: Counting objects: 191187   [Kremote: Counting objects: 210297   [Kremote: Counting objects: 229180   [Kremote: Counting objects: 249416   [Kremote: Counting objects: 271489   [Kremote: Counting objects: 292032   [Kremote: Counting objects: 311630   [Kremote: Counting objects: 334828   [Kremote: Counting objects: 354795   [Kremote: Counting objects: 373909   [Kremote: Counting objects: 400083   [Kremote: Counting objects: 420709   [Kremote: Counting objects: 445172   [Kremote: Counting objects: 466677   [Kremote: Counting objects: 488131   [Kremote: Counting objects: 509149   [Kremote: Counting objects: 532442   [Kremote: Counting objects: 558064   [Kremote: Counting objects: 580163   [Kremote: Counting objects: 603233   [Kremote: Counting objects: 629321   [Kremote: Counting objects: 654537   [Kremote: Counting objects: 681019   [Kremote: Counting objects: 704366   [Kremote: Counting objects: 726051   [Kremote: Counting objects: 749914   [Kremote: Counting objects: 774137   [Kremote: Counting objects: 798954   [Kremote: Counting objects: 822860   [Kremote: Counting objects: 849728   [Kremote: Counting objects: 875680   [Kremote: Counting objects: 890560   [Kremote: Counting objects: 903900   [Kremote: Counting objects: 916406   [Kremote: Counting objects: 927773   [Kremote: Counting objects: 941624   [Kremote: Counting objects: 956610   [Kremote: Counting objects: 974909   [Kremote: Counting objects: 990239   [Kremote: Counting objects: 1001144   [Kremote: Counting objects: 1008631   [Kremote: Counting objects: 1022691   [Kremote: Counting objects: 1034960   [Kremote: Counting objects: 1050994   [Kremote: Counting objects: 1063587   [Kremote: Counting objects: 1087498   [Kremote: Counting objects: 1114413   [Kremote: Counting objects: 1138198   [Kremote: Counting objects: 1164706   [Kremote: Counting objects: 1195410   [Kremote: Counting objects: 1227792   [Kremote: Counting objects: 1261624   [Kremote: Counting objects: 1278326, done.[K
+remote: Compressing objects:   0% (1/324875)   [Kremote: Compressing objects:   1% (3249/324875)   [Kremote: Compressing objects:   2% (6498/324875)   [Kremote: Compressing objects:   3% (9747/324875)   [Kremote: Compressing objects:   4% (12995/324875)   [Kremote: Compressing objects:   5% (16244/324875)   [Kremote: Compressing objects:   5% (18289/324875)   [Kremote: Compressing objects:   6% (19493/324875)   [Kremote: Compressing objects:   7% (22742/324875)   [Kremote: Compressing objects:   8% (25990/324875)   [Kremote: Compressing objects:   9% (29239/324875)   [Kremote: Compressing objects:  10% (32488/324875)   [Kremote: Compressing objects:  11% (35737/324875)   [Kremote: Compressing objects:  12% (38985/324875)   [Kremote: Compressing objects:  12% (39653/324875)   [Kremote: Compressing objects:  13% (42234/324875)   [Kremote: Compressing objects:  14% (45483/324875)   [Kremote: Compressing objects:  15% (48732/324875)   [Kremote: Compressing objects:  16% (51980/324875)   [Kremote: Compressing objects:  17% (55229/324875)   [Kremote: Compressing objects:  18% (58478/324875)   [Kremote: Compressing objects:  18% (61244/324875)   [Kremote: Compressing objects:  19% (61727/324875)   [Kremote: Compressing objects:  20% (64975/324875)   [Kremote: Compressing objects:  21% (68224/324875)   [Kremote: Compressing objects:  22% (71473/324875)   [Kremote: Compressing objects:  23% (74722/324875)   [Kremote: Compressing objects:  24% (77970/324875)   [Kremote: Compressing objects:  25% (81219/324875)   [Kremote: Compressing objects:  26% (84468/324875)   [Kremote: Compressing objects:  26% (85081/324875)   [Kremote: Compressing objects:  27% (87717/324875)   [Kremote: Compressing objects:  28% (90965/324875)   [Kremote: Compressing objects:  29% (94214/324875)   [Kremote: Compressing objects:  30% (97463/324875)   [Kremote: Compressing objects:  31% (100712/324875)   [Kremote: Compressing objects:  32% (103960/324875)   [Kremote: Compressing objects:  33% (107209/324875)   [Kremote: Compressing objects:  34% (110458/324875)   [Kremote: Compressing objects:  35% (113707/324875)   [Kremote: Compressing objects:  36% (116955/324875)   [Kremote: Compressing objects:  37% (120204/324875)   [Kremote: Compressing objects:  38% (123453/324875)   [Kremote: Compressing objects:  38% (126056/324875)   [Kremote: Compressing objects:  39% (126702/324875)   [Kremote: Compressing objects:  40% (129950/324875)   [Kremote: Compressing objects:  41% (133199/324875)   [Kremote: Compressing objects:  42% (136448/324875)   [Kremote: Compressing objects:  42% (139314/324875)   [Kremote: Compressing objects:  43% (139697/324875)   [Kremote: Compressing objects:  44% (142945/324875)   [Kremote: Compressing objects:  45% (146194/324875)   [Kremote: Compressing objects:  46% (149443/324875)   [Kremote: Compressing objects:  46% (151221/324875)   [Kremote: Compressing objects:  47% (152692/324875)   [Kremote: Compressing objects:  48% (155940/324875)   [Kremote: Compressing objects:  49% (159189/324875)   [Kremote: Compressing objects:  50% (162438/324875)   [Kremote: Compressing objects:  51% (165687/324875)   [Kremote: Compressing objects:  51% (166098/324875)   [Kremote: Compressing objects:  52% (168935/324875)   [Kremote: Compressing objects:  53% (172184/324875)   [Kremote: Compressing objects:  54% (175433/324875)   [Kremote: Compressing objects:  55% (178682/324875)   [Kremote: Compressing objects:  55% (179578/324875)   [Kremote: Compressing objects:  56% (181930/324875)   [Kremote: Compressing objects:  57% (185179/324875)   [Kremote: Compressing objects:  58% (188428/324875)   [Kremote: Compressing objects:  59% (191677/324875)   [Kremote: Compressing objects:  59% (192189/324875)   [Kremote: Compressing objects:  60% (194925/324875)   [Kremote: Compressing objects:  61% (198174/324875)   [Kremote: Compressing objects:  62% (201423/324875)   [Kremote: Compressing objects:  62% (202277/324875)   [Kremote: Compressing objects:  63% (204672/324875)   [Kremote: Compressing objects:  64% (207920/324875)   [Kremote: Compressing objects:  65% (211169/324875)   [Kremote: Compressing objects:  66% (214418/324875)   [Kremote: Compressing objects:  66% (215700/324875)   [Kremote: Compressing objects:  67% (217667/324875)   [Kremote: Compressing objects:  68% (220915/324875)   [Kremote: Compressing objects:  68% (222938/324875)   [Kremote: Compressing objects:  69% (224164/324875)   [Kremote: Compressing objects:  70% (227413/324875)   [Kremote: Compressing objects:  70% (230201/324875)   [Kremote: Compressing objects:  71% (230662/324875)   [Kremote: Compressing objects:  72% (233910/324875)   [Kremote: Compressing objects:  73% (237159/324875)   [Kremote: Compressing objects:  73% (238703/324875)   [Kremote: Compressing objects:  74% (240408/324875)   [Kremote: Compressing objects:  75% (243657/324875)   [Kremote: Compressing objects:  76% (246905/324875)   [Kremote: Compressing objects:  76% (248287/324875)   [Kremote: Compressing objects:  77% (250154/324875)   [Kremote: Compressing objects:  78% (253403/324875)   [Kremote: Compressing objects:  79% (256652/324875)   [Kremote: Compressing objects:  79% (256791/324875)   [Kremote: Compressing objects:  80% (259900/324875)   [Kremote: Compressing objects:  81% (263149/324875)   [Kremote: Compressing objects:  81% (264648/324875)   [Kremote: Compressing objects:  82% (266398/324875)   [Kremote: Compressing objects:  83% (269647/324875)   [Kremote: Compressing objects:  83% (271182/324875)   [Kremote: Compressing objects:  84% (272895/324875)   [Kremote: Compressing objects:  85% (276144/324875)   [Kremote: Compressing objects:  85% (276193/324875)   [Kremote: Compressing objects:  86% (279393/324875)   [Kremote: Compressing objects:  86% (281019/324875)   [Kremote: Compressing objects:  87% (282642/324875)   [Kremote: Compressing objects:  87% (285146/324875)   [Kremote: Compressing objects:  88% (285890/324875)   [Kremote: Compressing objects:  88% (289004/324875)   [Kremote: Compressing objects:  89% (289139/324875)   [Kremote: Compressing objects:  90% (292388/324875)   [Kremote: Compressing objects:  90% (293399/324875)   [Kremote: Compressing objects:  91% (295637/324875)   [Kremote: Compressing objects:  91% (296985/324875)   [Kremote: Compressing objects:  92% (298885/324875)   [Kremote: Compressing objects:  92% (300885/324875)   [Kremote: Compressing objects:  93% (302134/324875)   [Kremote: Compressing objects:  93% (305347/324875)   [Kremote: Compressing objects:  94% (305383/324875)   [Kremote: Compressing objects:  95% (308632/324875)   [Kremote: Compressing objects:  95% (309163/324875)   [Kremote: Compressing objects:  96% (311880/324875)   [Kremote: Compressing objects:  96% (312436/324875)   [Kremote: Compressing objects:  97% (315129/324875)   [Kremote: Compressing objects:  97% (315467/324875)   [Kremote: Compressing objects:  98% (318378/324875)   [Kremote: Compressing objects:  98% (318474/324875)   [Kremote: Compressing objects:  98% (320862/324875)   [Kremote: Compressing objects:  99% (321627/324875)   [Kremote: Compressing objects:  99% (322733/324875)   [Kremote: Compressing objects:  99% (324420/324875)   [Kremote: Compressing objects:  99% (324874/324875)   [Kremote: Compressing objects: 100% (324875/324875)   [Kremote: Compressing objects: 100% (324875/324875), done.[K
+Receiving objects:   0% (1/1278326)   Receiving objects:   0% (2068/1278326), 732.00 KiB | 668.00 KiB/s   Receiving objects:   0% (5715/1278326), 1.50 MiB | 945.00 KiB/s   Receiving objects:   0% (9379/1278326), 2.79 MiB | 1.05 MiB/s   Receiving objects:   1% (12784/1278326), 4.32 MiB | 1.17 MiB/s   Receiving objects:   1% (14094/1278326), 4.32 MiB | 1.17 MiB/s   Receiving objects:   1% (18742/1278326), 5.97 MiB | 1.27 MiB/s   Receiving objects:   1% (23299/1278326), 7.57 MiB | 1.48 MiB/s   Receiving objects:   2% (25567/1278326), 8.38 MiB | 1.49 MiB/s   Receiving objects:   2% (27828/1278326), 9.21 MiB | 1.55 MiB/s   Receiving objects:   2% (32533/1278326), 10.86 MiB | 1.61 MiB/s   Receiving objects:   2% (37110/1278326), 12.49 MiB | 1.61 MiB/s   Receiving objects:   3% (38350/1278326), 12.49 MiB | 1.61 MiB/s   Receiving objects:   3% (42034/1278326), 14.14 MiB | 1.61 MiB/s   Receiving objects:   3% (47996/1278326), 16.06 MiB | 1.67 MiB/s   Receiving objects:   4% (51134/1278326), 17.19 MiB | 1.73 MiB/s   Receiving objects:   4% (55375/1278326), 18.42 MiB | 1.81 MiB/s   Receiving objects:   4% (63179/1278326), 20.88 MiB | 1.98 MiB/s   Receiving objects:   5% (63917/1278326), 20.88 MiB | 1.98 MiB/s   Receiving objects:   5% (70988/1278326), 23.20 MiB | 2.12 MiB/s   Receiving objects:   6% (76700/1278326), 24.50 MiB | 2.22 MiB/s   Receiving objects:   6% (80556/1278326), 25.81 MiB | 2.33 MiB/s   Receiving objects:   7% (89483/1278326), 27.18 MiB | 2.40 MiB/s   Receiving objects:   7% (90638/1278326), 28.60 MiB | 2.47 MiB/s   Receiving objects:   7% (100624/1278326), 31.35 MiB | 2.53 MiB/s   Receiving objects:   8% (102267/1278326), 31.35 MiB | 2.53 MiB/s   Receiving objects:   8% (106634/1278326), 33.00 MiB | 127.00 KiB/s   Receiving objects:   8% (106667/1278326), 33.00 MiB | 127.00 KiB/s   Receiving objects:   8% (108823/1278326), 33.57 MiB | 104.00 KiB/s   Receiving objects:   9% (115050/1278326), 34.37 MiB | 99.00 KiB/s   Receiving objects:   9% (116606/1278326), 35.55 MiB | 96.00 KiB/s   Receiving objects:  10% (127833/1278326), 36.94 MiB | 96.00 KiB/s   Receiving objects:  10% (129021/1278326), 38.73 MiB | 101.00 KiB/s   Receiving objects:  11% (140616/1278326), 40.44 MiB | 105.00 KiB/s   Receiving objects:  11% (142048/1278326), 42.07 MiB | 111.00 KiB/s   Receiving objects:  11% (145427/1278326), 45.61 MiB | 2.78 MiB/s   Receiving objects:  11% (147705/1278326), 49.57 MiB | 3.37 MiB/s   Receiving objects:  11% (150030/1278326), 53.74 MiB | 3.73 MiB/s   Receiving objects:  11% (152349/1278326), 55.85 MiB | 3.79 MiB/s   Receiving objects:  12% (153400/1278326), 60.19 MiB | 4.02 MiB/s   Receiving objects:  12% (155690/1278326), 60.19 MiB | 4.02 MiB/s   Receiving objects:  12% (164049/1278326), 64.54 MiB | 4.18 MiB/s   Receiving objects:  13% (166183/1278326), 66.71 MiB | 4.24 MiB/s   Receiving objects:  13% (169926/1278326), 68.88 MiB | 4.26 MiB/s   Receiving objects:  13% (176369/1278326), 73.07 MiB | 4.26 MiB/s   Receiving objects:  14% (178966/1278326), 74.65 MiB | 4.15 MiB/s   Receiving objects:  14% (179479/1278326), 76.39 MiB | 4.04 MiB/s   Receiving objects:  14% (186854/1278326), 80.20 MiB | 3.93 MiB/s   Receiving objects:  15% (191749/1278326), 82.10 MiB | 3.87 MiB/s   Receiving objects:  16% (204533/1278326), 84.23 MiB | 3.86 MiB/s   Receiving objects:  16% (213575/1278326), 84.23 MiB | 3.86 MiB/s   Receiving objects:  17% (217316/1278326), 84.23 MiB | 3.86 MiB/s   Receiving objects:  18% (230099/1278326), 86.34 MiB | 3.85 MiB/s   Receiving objects:  19% (242882/1278326), 87.89 MiB | 3.71 MiB/s   Receiving objects:  19% (245214/1278326), 87.89 MiB | 3.71 MiB/s   Receiving objects:  20% (255666/1278326), 89.46 MiB | 3.62 MiB/s   Receiving objects:  20% (263325/1278326), 91.11 MiB | 3.63 MiB/s   Receiving objects:  21% (268449/1278326), 92.79 MiB | 3.62 MiB/s   Receiving objects:  21% (277192/1278326), 94.46 MiB | 3.55 MiB/s   Receiving objects:  22% (281232/1278326), 96.21 MiB | 3.51 MiB/s   Receiving objects:  23% (294015/1278326), 96.21 MiB | 3.51 MiB/s   Receiving objects:  24% (306799/1278326), 98.07 MiB | 3.51 MiB/s   Receiving objects:  24% (313835/1278326), 98.07 MiB | 3.51 MiB/s   Receiving objects:  25% (319582/1278326), 99.78 MiB | 3.42 MiB/s   Receiving objects:  25% (331591/1278326), 100.81 MiB | 3.17 MiB/s   Receiving objects:  26% (332365/1278326), 101.74 MiB | 3.00 MiB/s   Receiving objects:  26% (341678/1278326), 102.66 MiB | 2.85 MiB/s   Receiving objects:  27% (345149/1278326), 103.73 MiB | 2.73 MiB/s   Receiving objects:  27% (351968/1278326), 104.85 MiB | 2.61 MiB/s   Receiving objects:  28% (357932/1278326), 105.90 MiB | 2.48 MiB/s   Receiving objects:  28% (368824/1278326), 106.96 MiB | 2.34 MiB/s   Receiving objects:  29% (370715/1278326), 106.96 MiB | 2.34 MiB/s   Receiving objects:  30% (383498/1278326), 109.11 MiB | 2.03 MiB/s   Receiving objects:  30% (386068/1278326), 109.11 MiB | 2.03 MiB/s   Receiving objects:  30% (393477/1278326), 111.22 MiB | 2.09 MiB/s   Receiving objects:  31% (396282/1278326), 112.29 MiB | 2.13 MiB/s   Receiving objects:  31% (405297/1278326), 113.38 MiB | 2.13 MiB/s   Receiving objects:  32% (409065/1278326), 114.45 MiB | 2.12 MiB/s   Receiving objects:  33% (421848/1278326), 115.54 MiB | 2.13 MiB/s   Receiving objects:  33% (421890/1278326), 115.54 MiB | 2.13 MiB/s   Receiving objects:  33% (433946/1278326), 117.61 MiB | 2.11 MiB/s   Receiving objects:  34% (434631/1278326), 117.61 MiB | 2.11 MiB/s   Receiving objects:  34% (440644/1278326), 119.41 MiB | 2.02 MiB/s   Receiving objects:  35% (447415/1278326), 120.55 MiB | 2.04 MiB/s   Receiving objects:  35% (452325/1278326), 121.58 MiB | 2.03 MiB/s   Receiving objects:  36% (460198/1278326), 122.70 MiB | 2.04 MiB/s   Receiving objects:  37% (472981/1278326), 123.86 MiB | 2.06 MiB/s   Receiving objects:  37% (474660/1278326), 123.86 MiB | 2.06 MiB/s   Receiving objects:  38% (485764/1278326), 124.93 MiB | 2.05 MiB/s   Receiving objects:  38% (497008/1278326), 126.06 MiB | 2.05 MiB/s   Receiving objects:  39% (498548/1278326), 126.06 MiB | 2.05 MiB/s   Receiving objects:  40% (511331/1278326), 127.26 MiB | 2.11 MiB/s   Receiving objects:  40% (516982/1278326), 128.35 MiB | 2.17 MiB/s   Receiving objects:  41% (524114/1278326), 129.46 MiB | 2.21 MiB/s   Receiving objects:  41% (536152/1278326), 130.64 MiB | 2.21 MiB/s   Receiving objects:  42% (536897/1278326), 130.64 MiB | 2.21 MiB/s   Receiving objects:  42% (542558/1278326), 132.94 MiB | 2.25 MiB/s   Receiving objects:  42% (548215/1278326), 134.70 MiB | 2.14 MiB/s   Receiving objects:  43% (549681/1278326), 134.70 MiB | 2.14 MiB/s   Receiving objects:  43% (557407/1278326), 135.80 MiB | 1.87 MiB/s   Receiving objects:  44% (562464/1278326), 136.42 MiB | 1.76 MiB/s   Receiving objects:  44% (568702/1278326), 137.04 MiB | 1.65 MiB/s   Receiving objects:  45% (575247/1278326), 137.66 MiB | 1.53 MiB/s   Receiving objects:  45% (582228/1278326), 138.28 MiB | 1.41 MiB/s   Receiving objects:  46% (588030/1278326), 138.28 MiB | 1.41 MiB/s   Receiving objects:  46% (596124/1278326), 138.90 MiB | 1.29 MiB/s   Receiving objects:  47% (600814/1278326), 139.52 MiB | 1.19 MiB/s   Receiving objects:  47% (606376/1278326), 140.12 MiB | 1.17 MiB/s   Receiving objects:  48% (613597/1278326), 141.43 MiB | 1.21 MiB/s   Receiving objects:  48% (613849/1278326), 141.43 MiB | 1.21 MiB/s   Receiving objects:  48% (617066/1278326), 142.68 MiB | 1.23 MiB/s   Receiving objects:  49% (626380/1278326), 144.13 MiB | 1.27 MiB/s   Receiving objects:  49% (631814/1278326), 144.13 MiB | 1.27 MiB/s   Receiving objects:  50% (639163/1278326), 144.98 MiB | 1.33 MiB/s   Receiving objects:  50% (650126/1278326), 145.85 MiB | 1.38 MiB/s   Receiving objects:  51% (651947/1278326), 145.85 MiB | 1.38 MiB/s   Receiving objects:  52% (664730/1278326), 147.96 MiB | 1.57 MiB/s   Receiving objects:  52% (666889/1278326), 147.96 MiB | 1.57 MiB/s   Receiving objects:  53% (677513/1278326), 150.63 MiB | 1.86 MiB/s   Receiving objects:  53% (677809/1278326), 150.63 MiB | 1.86 MiB/s   Receiving objects:  53% (687106/1278326), 153.66 MiB | 2.23 MiB/s   Receiving objects:  54% (690297/1278326), 153.66 MiB | 2.23 MiB/s   Receiving objects:  55% (703080/1278326), 156.28 MiB | 2.47 MiB/s   Receiving objects:  55% (710301/1278326), 156.28 MiB | 2.47 MiB/s   Receiving objects:  56% (715863/1278326), 157.80 MiB | 2.62 MiB/s   Receiving objects:  56% (726295/1278326), 159.38 MiB | 2.75 MiB/s   Receiving objects:  57% (728646/1278326), 159.38 MiB | 2.75 MiB/s   Receiving objects:  58% (741430/1278326), 161.00 MiB | 2.86 MiB/s   Receiving objects:  58% (751857/1278326), 162.66 MiB | 2.95 MiB/s   Receiving objects:  59% (754213/1278326), 162.66 MiB | 2.95 MiB/s   Receiving objects:  60% (766996/1278326), 165.64 MiB | 2.94 MiB/s   Receiving objects:  60% (771546/1278326), 165.64 MiB | 2.94 MiB/s   Receiving objects:  61% (779779/1278326), 166.96 MiB | 2.92 MiB/s   Receiving objects:  62% (792563/1278326), 168.32 MiB | 2.93 MiB/s   Receiving objects:  62% (794281/1278326), 168.32 MiB | 2.93 MiB/s   Receiving objects:  63% (805346/1278326), 169.68 MiB | 2.94 MiB/s   Receiving objects:  63% (811884/1278326), 171.07 MiB | 2.91 MiB/s   Receiving objects:  64% (818129/1278326), 172.41 MiB | 2.85 MiB/s   Receiving objects:  64% (828818/1278326), 173.78 MiB | 2.80 MiB/s   Receiving objects:  65% (830912/1278326), 173.78 MiB | 2.80 MiB/s   Receiving objects:  66% (843696/1278326), 175.88 MiB | 2.54 MiB/s   Receiving objects:  66% (845337/1278326), 175.88 MiB | 2.54 MiB/s   Receiving objects:  67% (856479/1278326), 177.88 MiB | 2.38 MiB/s   Receiving objects:  67% (857574/1278326), 177.88 MiB | 2.38 MiB/s   Receiving objects:  68% (869262/1278326), 178.95 MiB | 2.32 MiB/s   Receiving objects:  68% (870540/1278326), 180.05 MiB | 2.26 MiB/s   Receiving objects:  69% (882045/1278326), 182.22 MiB | 2.14 MiB/s   Receiving objects:  69% (884826/1278326), 182.22 MiB | 2.14 MiB/s   Receiving objects:  70% (894829/1278326), 183.09 MiB | 2.03 MiB/s   Receiving objects:  70% (903920/1278326), 184.07 MiB | 1.99 MiB/s   Receiving objects:  71% (907612/1278326), 184.07 MiB | 1.99 MiB/s   Receiving objects:  72% (920395/1278326), 185.57 MiB | 1.92 MiB/s   Receiving objects:  72% (921125/1278326), 185.57 MiB | 1.92 MiB/s   Receiving objects:  73% (933178/1278326), 186.40 MiB | 1.86 MiB/s   Receiving objects:  73% (940194/1278326), 187.22 MiB | 1.81 MiB/s   Receiving objects:  74% (945962/1278326), 188.05 MiB | 1.74 MiB/s   Receiving objects:  74% (952259/1278326), 188.90 MiB | 1.69 MiB/s   Receiving objects:  75% (958745/1278326), 188.90 MiB | 1.69 MiB/s   Receiving objects:  76% (971528/1278326), 190.50 MiB | 1.62 MiB/s   Receiving objects:  76% (972698/1278326), 190.50 MiB | 1.62 MiB/s   Receiving objects:  77% (984312/1278326), 191.34 MiB | 1.59 MiB/s   Receiving objects:  77% (989539/1278326), 192.15 MiB | 1.61 MiB/s   Receiving objects:  78% (997095/1278326), 192.15 MiB | 1.61 MiB/s   Receiving objects:  78% (1006674/1278326), 193.89 MiB | 1.63 MiB/s   Receiving objects:  79% (1009878/1278326), 193.89 MiB | 1.63 MiB/s   Receiving objects:  80% (1022661/1278326), 194.76 MiB | 1.64 MiB/s   Receiving objects:  80% (1023510/1278326), 195.63 MiB | 1.65 MiB/s   Receiving objects:  80% (1035021/1278326), 196.43 MiB | 1.64 MiB/s   Receiving objects:  81% (1035445/1278326), 196.89 MiB | 1.56 MiB/s   Receiving objects:  81% (1042536/1278326), 197.31 MiB | 1.47 MiB/s   Receiving objects:  82% (1048228/1278326), 198.21 MiB | 1.31 MiB/s   Receiving objects:  82% (1050318/1278326), 198.21 MiB | 1.31 MiB/s   Receiving objects:  82% (1055150/1278326), 199.11 MiB | 1.13 MiB/s   Receiving objects:  83% (1061011/1278326), 200.01 MiB | 975.00 KiB/s   Receiving objects:  83% (1063037/1278326), 200.01 MiB | 975.00 KiB/s   Receiving objects:  83% (1069670/1278326), 200.93 MiB | 898.00 KiB/s   Receiving objects:  84% (1073794/1278326), 201.34 MiB | 899.00 KiB/s   Receiving objects:  84% (1079823/1278326), 201.90 MiB | 921.00 KiB/s   Receiving objects:  85% (1086578/1278326), 202.47 MiB | 944.00 KiB/s   Receiving objects:  85% (1090324/1278326), 203.01 MiB | 965.00 KiB/s   Receiving objects:  86% (1099361/1278326), 204.28 MiB | 1.02 MiB/s   Receiving objects:  86% (1100771/1278326), 204.28 MiB | 1.02 MiB/s   Receiving objects:  87% (1112144/1278326), 205.94 MiB | 1.18 MiB/s   Receiving objects:  87% (1113656/1278326), 205.94 MiB | 1.18 MiB/s   Receiving objects:  87% (1122209/1278326), 207.93 MiB | 1.42 MiB/s   Receiving objects:  88% (1124927/1278326), 207.93 MiB | 1.42 MiB/s   Receiving objects:  89% (1137711/1278326), 209.23 MiB | 1.58 MiB/s   Receiving objects:  89% (1145081/1278326), 210.64 MiB | 1.77 MiB/s   Receiving objects:  90% (1150494/1278326), 212.21 MiB | 2.00 MiB/s   Receiving objects:  91% (1163277/1278326), 212.21 MiB | 2.00 MiB/s   Receiving objects:  91% (1167887/1278326), 213.75 MiB | 2.21 MiB/s   Receiving objects:  92% (1176060/1278326), 213.75 MiB | 2.21 MiB/s   Receiving objects:  93% (1188844/1278326), 215.18 MiB | 2.38 MiB/s   Receiving objects:  93% (1193402/1278326), 216.56 MiB | 2.53 MiB/s   Receiving objects:  94% (1201627/1278326), 216.56 MiB | 2.53 MiB/s   Receiving objects:  95% (1214410/1278326), 218.22 MiB | 2.71 MiB/s   Receiving objects:  95% (1224803/1278326), 219.89 MiB | 2.87 MiB/s   Receiving objects:  96% (1227193/1278326), 219.89 MiB | 2.87 MiB/s   Receiving objects:  97% (1239977/1278326), 221.51 MiB | 3.00 MiB/s   Receiving objects:  98% (1252760/1278326), 221.51 MiB | 3.00 MiB/s   Receiving objects:  98% (1261142/1278326), 223.25 MiB | 3.09 MiB/s   Receiving objects:  99% (1265543/1278326), 223.25 MiB | 3.09 MiB/s   remote: Total 1278326 (delta 1057854), reused 1168094 (delta 948626)[K
+Receiving objects: 100% (1278326/1278326), 224.62 MiB | 3.07 MiB/s   Receiving objects: 100% (1278326/1278326), 225.27 MiB | 3.06 MiB/s, done.
+Resolving deltas:   0% (0/1057854)   Resolving deltas:   1% (10582/1057854)   Resolving deltas:   1% (14505/1057854)   Resolving deltas:   2% (21163/1057854)   Resolving deltas:   2% (27508/1057854)   Resolving deltas:   3% (32038/1057854)   Resolving deltas:   3% (40757/1057854)   Resolving deltas:   4% (42357/1057854)   Resolving deltas:   5% (53246/1057854)   Resolving deltas:   5% (54157/1057854)   Resolving deltas:   6% (63539/1057854)   Resolving deltas:   7% (74358/1057854)   Resolving deltas:   7% (77082/1057854)   Resolving deltas:   8% (84670/1057854)   Resolving deltas:   9% (95261/1057854)   Resolving deltas:  10% (106455/1057854)   Resolving deltas:  11% (116383/1057854)   Resolving deltas:  11% (119304/1057854)   Resolving deltas:  12% (126994/1057854)   Resolving deltas:  13% (137769/1057854)   Resolving deltas:  13% (145953/1057854)   Resolving deltas:  14% (148273/1057854)   Resolving deltas:  15% (158682/1057854)   Resolving deltas:  16% (169257/1057854)   Resolving deltas:  17% (179840/1057854)   Resolving deltas:  18% (190507/1057854)   Resolving deltas:  19% (200998/1057854)   Resolving deltas:  20% (211571/1057854)   Resolving deltas:  21% (222151/1057854)   Resolving deltas:  22% (232729/1057854)   Resolving deltas:  23% (243326/1057854)   Resolving deltas:  24% (254215/1057854)   Resolving deltas:  25% (264623/1057854)   Resolving deltas:  25% (265172/1057854)   Resolving deltas:  26% (275078/1057854)   Resolving deltas:  27% (285699/1057854)   Resolving deltas:  28% (296309/1057854)   Resolving deltas:  29% (306973/1057854)   Resolving deltas:  30% (317380/1057854)   Resolving deltas:  31% (327954/1057854)   Resolving deltas:  32% (338546/1057854)   Resolving deltas:  33% (349222/1057854)   Resolving deltas:  34% (359673/1057854)   Resolving deltas:  35% (370301/1057854)   Resolving deltas:  35% (370885/1057854)   Resolving deltas:  36% (381109/1057854)   Resolving deltas:  37% (392108/1057854)   Resolving deltas:  38% (402192/1057854)   Resolving deltas:  39% (412636/1057854)   Resolving deltas:  40% (423145/1057854)   Resolving deltas:  41% (433723/1057854)   Resolving deltas:  42% (444509/1057854)   Resolving deltas:  42% (449468/1057854)   Resolving deltas:  43% (454943/1057854)   Resolving deltas:  44% (465465/1057854)   Resolving deltas:  45% (476041/1057854)   Resolving deltas:  46% (486643/1057854)   Resolving deltas:  47% (497296/1057854)   Resolving deltas:  48% (507793/1057854)   Resolving deltas:  49% (518397/1057854)   Resolving deltas:  50% (528969/1057854)   Resolving deltas:  51% (539517/1057854)   Resolving deltas:  51% (547540/1057854)   Resolving deltas:  52% (550092/1057854)   Resolving deltas:  53% (560703/1057854)   Resolving deltas:  54% (571833/1057854)   Resolving deltas:  55% (582106/1057854)   Resolving deltas:  56% (592446/1057854)   Resolving deltas:  57% (603428/1057854)   Resolving deltas:  58% (613583/1057854)   Resolving deltas:  59% (624876/1057854)   Resolving deltas:  60% (634733/1057854)   Resolving deltas:  60% (643630/1057854)   Resolving deltas:  61% (645370/1057854)   Resolving deltas:  62% (655874/1057854)   Resolving deltas:  63% (666464/1057854)   Resolving deltas:  64% (677063/1057854)   Resolving deltas:  65% (687695/1057854)   Resolving deltas:  66% (698220/1057854)   Resolving deltas:  67% (708791/1057854)   Resolving deltas:  68% (720069/1057854)   Resolving deltas:  69% (729958/1057854)   Resolving deltas:  70% (740503/1057854)   Resolving deltas:  70% (746462/1057854)   Resolving deltas:  71% (751327/1057854)   Resolving deltas:  72% (762071/1057854)   Resolving deltas:  73% (772742/1057854)   Resolving deltas:  74% (783608/1057854)   Resolving deltas:  75% (793420/1057854)   Resolving deltas:  76% (804047/1057854)   Resolving deltas:  77% (815170/1057854)   Resolving deltas:  77% (823834/1057854)   Resolving deltas:  78% (825284/1057854)   Resolving deltas:  79% (835724/1057854)   Resolving deltas:  80% (846725/1057854)   Resolving deltas:  81% (857001/1057854)   Resolving deltas:  82% (867579/1057854)   Resolving deltas:  83% (878631/1057854)   Resolving deltas:  84% (888604/1057854)   Resolving deltas:  85% (899213/1057854)   Resolving deltas:  86% (909855/1057854)   Resolving deltas:  87% (920335/1057854)   Resolving deltas:  88% (931409/1057854)   Resolving deltas:  89% (941535/1057854)   Resolving deltas:  90% (952153/1057854)   Resolving deltas:  91% (963496/1057854)   Resolving deltas:  92% (973450/1057854)   Resolving deltas:  92% (976582/1057854)   Resolving deltas:  93% (984113/1057854)   Resolving deltas:  94% (995018/1057854)   Resolving deltas:  95% (1005111/1057854)   Resolving deltas:  96% (1015586/1057854)   Resolving deltas:  97% (1026129/1057854)   Resolving deltas:  98% (1037302/1057854)   Resolving deltas:  99% (1047280/1057854)   Resolving deltas: 100% (1057854/1057854)   Resolving deltas: 100% (1057854/1057854), done.
+
+ Clang src: /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/tools/clang
+Clone Clang:
+
+Run: 'git clone http://llvm.org/git/clang.git /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/tools/clang'
+Cloning into '/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/tools/clang'...
+remote: Counting objects: 44912   [Kremote: Counting objects: 96116   [Kremote: Counting objects: 134757   [Kremote: Counting objects: 173308   [Kremote: Counting objects: 212907   [Kremote: Counting objects: 257085   [Kremote: Counting objects: 304333   [Kremote: Counting objects: 350720   [Kremote: Counting objects: 399699   [Kremote: Counting objects: 451663   [Kremote: Counting objects: 479980   [Kremote: Counting objects: 506601   [Kremote: Counting objects: 545221   [Kremote: Counting objects: 594199   [Kremote: Counting objects: 613463, done.[K
+remote: Compressing objects:   0% (1/120605)   [Kremote: Compressing objects:   1% (1207/120605)   [Kremote: Compressing objects:   2% (2413/120605)   [Kremote: Compressing objects:   3% (3619/120605)   [Kremote: Compressing objects:   4% (4825/120605)   [Kremote: Compressing objects:   5% (6031/120605)   [Kremote: Compressing objects:   6% (7237/120605)   [Kremote: Compressing objects:   7% (8443/120605)   [Kremote: Compressing objects:   8% (9649/120605)   [Kremote: Compressing objects:   9% (10855/120605)   [Kremote: Compressing objects:  10% (12061/120605)   [Kremote: Compressing objects:  11% (13267/120605)   [Kremote: Compressing objects:  12% (14473/120605)   [Kremote: Compressing objects:  13% (15679/120605)   [Kremote: Compressing objects:  14% (16885/120605)   [Kremote: Compressing objects:  15% (18091/120605)   [Kremote: Compressing objects:  15% (18724/120605)   [Kremote: Compressing objects:  16% (19297/120605)   [Kremote: Compressing objects:  17% (20503/120605)   [Kremote: Compressing objects:  18% (21709/120605)   [Kremote: Compressing objects:  19% (22915/120605)   [Kremote: Compressing objects:  20% (24121/120605)   [Kremote: Compressing objects:  21% (25328/120605)   [Kremote: Compressing objects:  22% (26534/120605)   [Kremote: Compressing objects:  23% (27740/120605)   [Kremote: Compressing objects:  24% (28946/120605)   [Kremote: Compressing objects:  25% (30152/120605)   [Kremote: Compressing objects:  26% (31358/120605)   [Kremote: Compressing objects:  27% (32564/120605)   [Kremote: Compressing objects:  28% (33770/120605)   [Kremote: Compressing objects:  29% (34976/120605)   [Kremote: Compressing objects:  30% (36182/120605)   [Kremote: Compressing objects:  31% (37388/120605)   [Kremote: Compressing objects:  32% (38594/120605)   [Kremote: Compressing objects:  33% (39800/120605)   [Kremote: Compressing objects:  33% (40384/120605)   [Kremote: Compressing objects:  34% (41006/120605)   [Kremote: Compressing objects:  35% (42212/120605)   [Kremote: Compressing objects:  36% (43418/120605)   [Kremote: Compressing objects:  37% (44624/120605)   [Kremote: Compressing objects:  38% (45830/120605)   [Kremote: Compressing objects:  39% (47036/120605)   [Kremote: Compressing objects:  40% (48242/120605)   [Kremote: Compressing objects:  41% (49449/120605)   [Kremote: Compressing objects:  42% (50655/120605)   [Kremote: Compressing objects:  43% (51861/120605)   [Kremote: Compressing objects:  44% (53067/120605)   [Kremote: Compressing objects:  45% (54273/120605)   [Kremote: Compressing objects:  46% (55479/120605)   [Kremote: Compressing objects:  47% (56685/120605)   [Kremote: Compressing objects:  47% (57725/120605)   [Kremote: Compressing objects:  48% (57891/120605)   [Kremote: Compressing objects:  49% (59097/120605)   [Kremote: Compressing objects:  50% (60303/120605)   [Kremote: Compressing objects:  51% (61509/120605)   [Kremote: Compressing objects:  52% (62715/120605)   [Kremote: Compressing objects:  53% (63921/120605)   [Kremote: Compressing objects:  54% (65127/120605)   [Kremote: Compressing objects:  55% (66333/120605)   [Kremote: Compressing objects:  56% (67539/120605)   [Kremote: Compressing objects:  57% (68745/120605)   [Kremote: Compressing objects:  57% (68755/120605)   [Kremote: Compressing objects:  58% (69951/120605)   [Kremote: Compressing objects:  59% (71157/120605)   [Kremote: Compressing objects:  60% (72363/120605)   [Kremote: Compressing objects:  61% (73570/120605)   [Kremote: Compressing objects:  62% (74776/120605)   [Kremote: Compressing objects:  63% (75982/120605)   [Kremote: Compressing objects:  64% (77188/120605)   [Kremote: Compressing objects:  65% (78394/120605)   [Kremote: Compressing objects:  65% (79443/120605)   [Kremote: Compressing objects:  66% (79600/120605)   [Kremote: Compressing objects:  67% (80806/120605)   [Kremote: Compressing objects:  68% (82012/120605)   [Kremote: Compressing objects:  69% (83218/120605)   [Kremote: Compressing objects:  70% (84424/120605)   [Kremote: Compressing objects:  71% (85630/120605)   [Kremote: Compressing objects:  72% (86836/120605)   [Kremote: Compressing objects:  73% (88042/120605)   [Kremote: Compressing objects:  73% (88091/120605)   [Kremote: Compressing objects:  74% (89248/120605)   [Kremote: Compressing objects:  75% (90454/120605)   [Kremote: Compressing objects:  76% (91660/120605)   [Kremote: Compressing objects:  77% (92866/120605)   [Kremote: Compressing objects:  78% (94072/120605)   [Kremote: Compressing objects:  79% (95278/120605)   [Kremote: Compressing objects:  79% (95346/120605)   [Kremote: Compressing objects:  80% (96484/120605)   [Kremote: Compressing objects:  81% (97691/120605)   [Kremote: Compressing objects:  82% (98897/120605)   [Kremote: Compressing objects:  83% (100103/120605)   [Kremote: Compressing objects:  84% (101309/120605)   [Kremote: Compressing objects:  85% (102515/120605)   [Kremote: Compressing objects:  85% (102554/120605)   [Kremote: Compressing objects:  86% (103721/120605)   [Kremote: Compressing objects:  87% (104927/120605)   [Kremote: Compressing objects:  88% (106133/120605)   [Kremote: Compressing objects:  89% (107339/120605)   [Kremote: Compressing objects:  89% (108417/120605)   [Kremote: Compressing objects:  90% (108545/120605)   [Kremote: Compressing objects:  91% (109751/120605)   [Kremote: Compressing objects:  92% (110957/120605)   [Kremote: Compressing objects:  93% (112163/120605)   [Kremote: Compressing objects:  93% (112881/120605)   [Kremote: Compressing objects:  94% (113369/120605)   [Kremote: Compressing objects:  95% (114575/120605)   [Kremote: Compressing objects:  96% (115781/120605)   [Kremote: Compressing objects:  96% (116635/120605)   [Kremote: Compressing objects:  97% (116987/120605)   [Kremote: Compressing objects:  98% (118193/120605)   [Kremote: Compressing objects:  99% (119399/120605)   [Kremote: Compressing objects:  99% (119858/120605)   [Kremote: Compressing objects: 100% (120605/120605)   [Kremote: Compressing objects: 100% (120605/120605), done.[K
+Receiving objects:   0% (1/613463)   Receiving objects:   0% (2630/613463), 172.00 KiB | 320.00 KiB/s   Receiving objects:   1% (6135/613463), 1.79 MiB | 1.14 MiB/s   Receiving objects:   1% (7444/613463), 1.79 MiB | 1.14 MiB/s   Receiving objects:   2% (12270/613463), 3.62 MiB | 1.38 MiB/s   Receiving objects:   2% (12982/613463), 3.62 MiB | 1.38 MiB/s   Receiving objects:   3% (18404/613463), 5.61 MiB | 1.54 MiB/s   Receiving objects:   3% (18512/613463), 5.61 MiB | 1.54 MiB/s   Receiving objects:   3% (23458/613463), 7.18 MiB | 1.55 MiB/s   Receiving objects:   4% (24539/613463), 8.03 MiB | 1.69 MiB/s   Receiving objects:   4% (28840/613463), 8.89 MiB | 1.69 MiB/s   Receiving objects:   5% (30674/613463), 9.74 MiB | 1.72 MiB/s   Receiving objects:   5% (34143/613463), 10.61 MiB | 1.71 MiB/s   Receiving objects:   6% (36808/613463), 11.48 MiB | 1.70 MiB/s   Receiving objects:   6% (39024/613463), 12.20 MiB | 1.63 MiB/s   Receiving objects:   7% (42943/613463), 13.61 MiB | 1.57 MiB/s   Receiving objects:   7% (44042/613463), 13.61 MiB | 1.57 MiB/s   Receiving objects:   8% (49078/613463), 15.25 MiB | 1.58 MiB/s   Receiving objects:   8% (49818/613463), 15.25 MiB | 1.58 MiB/s   Receiving objects:   9% (55212/613463), 16.94 MiB | 1.58 MiB/s   Receiving objects:   9% (55995/613463), 16.94 MiB | 1.58 MiB/s   Receiving objects:   9% (60658/613463), 18.47 MiB | 1.52 MiB/s   Receiving objects:  10% (61347/613463), 18.47 MiB | 1.52 MiB/s   Receiving objects:  10% (65311/613463), 19.70 MiB | 1.49 MiB/s   Receiving objects:  10% (66603/613463), 21.05 MiB | 1.43 MiB/s   Receiving objects:  10% (67228/613463), 22.30 MiB | 1.33 MiB/s   Receiving objects:  11% (67481/613463), 22.30 MiB | 1.33 MiB/s   Receiving objects:  11% (67679/613463), 23.61 MiB | 1.27 MiB/s   Receiving objects:  11% (67994/613463), 24.94 MiB | 1.25 MiB/s   Receiving objects:  11% (68477/613463), 25.64 MiB | 1.27 MiB/s   Receiving objects:  11% (68632/613463), 27.14 MiB | 1.31 MiB/s   Receiving objects:  11% (69458/613463), 28.76 MiB | 1.40 MiB/s   Receiving objects:  11% (72539/613463), 30.64 MiB | 1.54 MiB/s   Receiving objects:  12% (73616/613463), 31.68 MiB | 1.62 MiB/s   Receiving objects:  12% (78710/613463), 32.86 MiB | 1.74 MiB/s   Receiving objects:  13% (79751/613463), 33.92 MiB | 1.82 MiB/s   Receiving objects:  13% (81816/613463), 34.75 MiB | 1.85 MiB/s   Receiving objects:  13% (83365/613463), 36.14 MiB | 1.80 MiB/s   Receiving objects:  13% (85141/613463), 37.32 MiB | 1.69 MiB/s   Receiving objects:  14% (85885/613463), 37.95 MiB | 1.60 MiB/s   Receiving objects:  15% (92020/613463), 38.57 MiB | 1.51 MiB/s   Receiving objects:  15% (93237/613463), 38.57 MiB | 1.51 MiB/s   Receiving objects:  16% (98155/613463), 39.23 MiB | 1.40 MiB/s   Receiving objects:  16% (100742/613463), 39.81 MiB | 1.28 MiB/s   Receiving objects:  17% (104289/613463), 40.43 MiB | 1.24 MiB/s   Receiving objects:  18% (110424/613463), 41.05 MiB | 1.21 MiB/s   Receiving objects:  18% (111752/613463), 41.05 MiB | 1.21 MiB/s   Receiving objects:  19% (116558/613463), 41.67 MiB | 1.20 MiB/s   Receiving objects:  20% (122693/613463), 42.36 MiB | 1.22 MiB/s   Receiving objects:  20% (123558/613463), 42.36 MiB | 1.22 MiB/s   Receiving objects:  21% (128828/613463), 43.04 MiB | 1.25 MiB/s   Receiving objects:  21% (133286/613463), 43.68 MiB | 1.25 MiB/s   Receiving objects:  22% (134962/613463), 43.68 MiB | 1.25 MiB/s   Receiving objects:  23% (141097/613463), 44.36 MiB | 1.26 MiB/s   Receiving objects:  23% (145567/613463), 45.06 MiB | 1.24 MiB/s   Receiving objects:  24% (147232/613463), 45.06 MiB | 1.24 MiB/s   Receiving objects:  24% (151892/613463), 46.07 MiB | 1.21 MiB/s   Receiving objects:  25% (153366/613463), 46.51 MiB | 1.17 MiB/s   Receiving objects:  25% (159288/613463), 47.07 MiB | 1.16 MiB/s   Receiving objects:  26% (159501/613463), 47.07 MiB | 1.16 MiB/s   Receiving objects:  27% (165636/613463), 47.64 MiB | 1.12 MiB/s   Receiving objects:  27% (166784/613463), 48.18 MiB | 1.09 MiB/s   Receiving objects:  28% (171770/613463), 48.18 MiB | 1.09 MiB/s   Receiving objects:  29% (177905/613463), 48.75 MiB | 1.07 MiB/s   Receiving objects:  29% (178553/613463), 49.30 MiB | 1.04 MiB/s   Receiving objects:  30% (184039/613463), 49.30 MiB | 1.04 MiB/s   Receiving objects:  31% (190174/613463), 49.87 MiB | 1.03 MiB/s   Receiving objects:  31% (191160/613463), 49.87 MiB | 1.03 MiB/s   Receiving objects:  32% (196309/613463), 50.37 MiB | 1.01 MiB/s   Receiving objects:  32% (201457/613463), 50.92 MiB | 1.04 MiB/s   Receiving objects:  33% (202443/613463), 51.49 MiB | 1.06 MiB/s   Receiving objects:  33% (206291/613463), 52.04 MiB | 1.06 MiB/s   Receiving objects:  34% (208578/613463), 52.65 MiB | 1.08 MiB/s   Receiving objects:  35% (214713/613463), 53.18 MiB | 1.07 MiB/s   Receiving objects:  35% (215251/613463), 53.18 MiB | 1.07 MiB/s   Receiving objects:  36% (220847/613463), 53.58 MiB | 1.04 MiB/s   Receiving objects:  36% (224348/613463), 54.10 MiB | 1.03 MiB/s   Receiving objects:  37% (226982/613463), 54.50 MiB | 1024.00 KiB/s   Receiving objects:  38% (233116/613463), 54.95 MiB | 1007.00 KiB/s   Receiving objects:  38% (235267/613463), 54.95 MiB | 1007.00 KiB/s   Receiving objects:  39% (239251/613463), 55.37 MiB | 980.00 KiB/s   Receiving objects:  39% (243866/613463), 55.78 MiB | 942.00 KiB/s   Receiving objects:  40% (245386/613463), 56.23 MiB | 921.00 KiB/s   Receiving objects:  40% (248115/613463), 56.63 MiB | 874.00 KiB/s   Receiving objects:  41% (251520/613463), 57.10 MiB | 864.00 KiB/s   Receiving objects:  41% (256788/613463), 57.50 MiB | 865.00 KiB/s   Receiving objects:  42% (257655/613463), 57.50 MiB | 865.00 KiB/s   Receiving objects:  43% (263790/613463), 57.94 MiB | 847.00 KiB/s   Receiving objects:  43% (267784/613463), 58.39 MiB | 855.00 KiB/s   Receiving objects:  44% (269924/613463), 58.39 MiB | 855.00 KiB/s   Receiving objects:  45% (276059/613463), 59.46 MiB | 900.00 KiB/s   Receiving objects:  45% (277064/613463), 59.46 MiB | 900.00 KiB/s   Receiving objects:  46% (282193/613463), 60.00 MiB | 933.00 KiB/s   Receiving objects:  46% (286365/613463), 60.61 MiB | 967.00 KiB/s   Receiving objects:  47% (288328/613463), 60.61 MiB | 967.00 KiB/s   Receiving objects:  47% (291135/613463), 61.67 MiB | 1011.00 KiB/s   Receiving objects:  47% (292004/613463), 62.82 MiB | 1.06 MiB/s   Receiving objects:  48% (294463/613463), 63.43 MiB | 1.08 MiB/s   Receiving objects:  48% (296231/613463), 64.05 MiB | 1.12 MiB/s   Receiving objects:  49% (300597/613463), 64.70 MiB | 1.12 MiB/s   Receiving objects:  49% (304718/613463), 64.70 MiB | 1.12 MiB/s   Receiving objects:  50% (306732/613463), 65.36 MiB | 1.13 MiB/s   Receiving objects:  51% (312867/613463), 65.93 MiB | 1.13 MiB/s   Receiving objects:  51% (316369/613463), 65.93 MiB | 1.13 MiB/s   Receiving objects:  52% (319001/613463), 66.56 MiB | 1.15 MiB/s   Receiving objects:  53% (325136/613463), 67.18 MiB | 1.17 MiB/s   Receiving objects:  53% (327574/613463), 67.18 MiB | 1.17 MiB/s   Receiving objects:  54% (331271/613463), 67.78 MiB | 1.18 MiB/s   Receiving objects:  54% (336338/613463), 68.45 MiB | 1.19 MiB/s   Receiving objects:  55% (337405/613463), 68.45 MiB | 1.19 MiB/s   Receiving objects:  56% (343540/613463), 69.07 MiB | 1.20 MiB/s   Receiving objects:  56% (349403/613463), 69.76 MiB | 1.22 MiB/s   Receiving objects:  57% (349674/613463), 69.76 MiB | 1.22 MiB/s   Receiving objects:  58% (355809/613463), 70.40 MiB | 1.23 MiB/s   Receiving objects:  59% (361944/613463), 71.17 MiB | 1.27 MiB/s   Receiving objects:  59% (365063/613463), 71.17 MiB | 1.27 MiB/s   Receiving objects:  60% (368078/613463), 71.17 MiB | 1.27 MiB/s   Receiving objects:  61% (374213/613463), 72.02 MiB | 1.32 MiB/s   Receiving objects:  62% (380348/613463), 72.89 MiB | 1.37 MiB/s   Receiving objects:  62% (380928/613463), 72.89 MiB | 1.37 MiB/s   Receiving objects:  63% (386482/613463), 73.93 MiB | 1.47 MiB/s   Receiving objects:  64% (392617/613463), 73.93 MiB | 1.47 MiB/s   Receiving objects:  65% (398751/613463), 75.00 MiB | 1.57 MiB/s   Receiving objects:  65% (400085/613463), 75.00 MiB | 1.57 MiB/s   Receiving objects:  66% (404886/613463), 76.24 MiB | 1.70 MiB/s   Receiving objects:  67% (411021/613463), 76.24 MiB | 1.70 MiB/s   Receiving objects:  68% (417155/613463), 77.61 MiB | 1.86 MiB/s   Receiving objects:  69% (423290/613463), 77.61 MiB | 1.86 MiB/s   Receiving objects:  69% (423509/613463), 77.61 MiB | 1.86 MiB/s   Receiving objects:  70% (429425/613463), 77.61 MiB | 1.86 MiB/s   Receiving objects:  71% (435559/613463), 79.22 MiB | 2.06 MiB/s   Receiving objects:  72% (441694/613463), 79.22 MiB | 2.06 MiB/s   Receiving objects:  72% (444314/613463), 80.88 MiB | 2.28 MiB/s   Receiving objects:  73% (447828/613463), 82.20 MiB | 2.40 MiB/s   Receiving objects:  74% (453963/613463), 82.20 MiB | 2.40 MiB/s   Receiving objects:  75% (460098/613463), 83.57 MiB | 2.51 MiB/s   Receiving objects:  75% (465205/613463), 83.57 MiB | 2.51 MiB/s   Receiving objects:  76% (466232/613463), 83.57 MiB | 2.51 MiB/s   Receiving objects:  77% (472367/613463), 83.57 MiB | 2.51 MiB/s   Receiving objects:  78% (478502/613463), 85.18 MiB | 2.69 MiB/s   Receiving objects:  79% (484636/613463), 85.18 MiB | 2.69 MiB/s   Receiving objects:  80% (490771/613463), 85.18 MiB | 2.69 MiB/s   Receiving objects:  81% (496906/613463), 86.79 MiB | 2.81 MiB/s   Receiving objects:  82% (503040/613463), 86.79 MiB | 2.81 MiB/s   Receiving objects:  82% (505129/613463), 86.79 MiB | 2.81 MiB/s   Receiving objects:  83% (509175/613463), 86.79 MiB | 2.81 MiB/s   Receiving objects:  84% (515309/613463), 88.40 MiB | 2.94 MiB/s   Receiving objects:  85% (521444/613463), 88.40 MiB | 2.94 MiB/s   Receiving objects:  86% (527579/613463), 88.40 MiB | 2.94 MiB/s   Receiving objects:  87% (533713/613463), 90.08 MiB | 3.03 MiB/s   Receiving objects:  87% (537211/613463), 90.08 MiB | 3.03 MiB/s   Receiving objects:  88% (539848/613463), 90.08 MiB | 3.03 MiB/s   Receiving objects:  89% (545983/613463), 90.08 MiB | 3.03 MiB/s   Receiving objects:  90% (552117/613463), 91.64 MiB | 3.09 MiB/s   Receiving objects:  91% (558252/613463), 91.64 MiB | 3.09 MiB/s   Receiving objects:  92% (564386/613463), 92.89 MiB | 3.01 MiB/s   Receiving objects:  92% (569150/613463), 92.89 MiB | 3.01 MiB/s   Receiving objects:  93% (570521/613463), 92.89 MiB | 3.01 MiB/s   Receiving objects:  94% (576656/613463), 92.89 MiB | 3.01 MiB/s   Receiving objects:  95% (582790/613463), 94.30 MiB | 2.94 MiB/s   Receiving objects:  96% (588925/613463), 94.30 MiB | 2.94 MiB/s   Receiving objects:  97% (595060/613463), 94.30 MiB | 2.94 MiB/s   Receiving objects:  97% (600636/613463), 95.67 MiB | 2.95 MiB/s   Receiving objects:  98% (601194/613463), 95.67 MiB | 2.95 MiB/s   Receiving objects:  99% (607329/613463), 95.67 MiB | 2.95 MiB/s   remote: Total 613463 (delta 518962), reused 580805 (delta 486634)[K
+Receiving objects: 100% (613463/613463), 97.04 MiB | 2.96 MiB/s   Receiving objects: 100% (613463/613463), 97.12 MiB | 2.92 MiB/s, done.
+Resolving deltas:   0% (0/518962)   Resolving deltas:   1% (5224/518962)   Resolving deltas:   2% (10487/518962)   Resolving deltas:   3% (15608/518962)   Resolving deltas:   4% (20828/518962)   Resolving deltas:   5% (25959/518962)   Resolving deltas:   6% (31169/518962)   Resolving deltas:   6% (31931/518962)   Resolving deltas:   7% (36500/518962)   Resolving deltas:   8% (42053/518962)   Resolving deltas:   9% (46714/518962)   Resolving deltas:  10% (52053/518962)   Resolving deltas:  10% (53163/518962)   Resolving deltas:  11% (57138/518962)   Resolving deltas:  12% (62302/518962)   Resolving deltas:  13% (67516/518962)   Resolving deltas:  13% (70769/518962)   Resolving deltas:  14% (72806/518962)   Resolving deltas:  15% (78622/518962)   Resolving deltas:  16% (83061/518962)   Resolving deltas:  17% (88224/518962)   Resolving deltas:  18% (93456/518962)   Resolving deltas:  19% (98612/518962)   Resolving deltas:  20% (103794/518962)   Resolving deltas:  21% (109000/518962)   Resolving deltas:  22% (114216/518962)   Resolving deltas:  23% (119368/518962)   Resolving deltas:  24% (124552/518962)   Resolving deltas:  25% (129772/518962)   Resolving deltas:  26% (134938/518962)   Resolving deltas:  27% (140131/518962)   Resolving deltas:  27% (142765/518962)   Resolving deltas:  28% (145383/518962)   Resolving deltas:  29% (150530/518962)   Resolving deltas:  30% (155693/518962)   Resolving deltas:  31% (161322/518962)   Resolving deltas:  32% (166079/518962)   Resolving deltas:  33% (171261/518962)   Resolving deltas:  34% (176873/518962)   Resolving deltas:  35% (181741/518962)   Resolving deltas:  36% (186828/518962)   Resolving deltas:  37% (192079/518962)   Resolving deltas:  38% (197296/518962)   Resolving deltas:  39% (202436/518962)   Resolving deltas:  40% (209838/518962)   Resolving deltas:  41% (212796/518962)   Resolving deltas:  42% (218059/518962)   Resolving deltas:  43% (223209/518962)   Resolving deltas:  44% (228736/518962)   Resolving deltas:  44% (230523/518962)   Resolving deltas:  45% (233690/518962)   Resolving deltas:  46% (238881/518962)   Resolving deltas:  47% (244017/518962)   Resolving deltas:  48% (249108/518962)   Resolving deltas:  49% (254363/518962)   Resolving deltas:  50% (259529/518962)   Resolving deltas:  51% (264724/518962)   Resolving deltas:  52% (270958/518962)   Resolving deltas:  53% (275068/518962)   Resolving deltas:  54% (280322/518962)   Resolving deltas:  55% (286635/518962)   Resolving deltas:  56% (290621/518962)   Resolving deltas:  57% (295909/518962)   Resolving deltas:  58% (301135/518962)   Resolving deltas:  59% (306250/518962)   Resolving deltas:  60% (311396/518962)   Resolving deltas:  61% (316793/518962)   Resolving deltas:  62% (321805/518962)   Resolving deltas:  63% (327027/518962)   Resolving deltas:  63% (329708/518962)   Resolving deltas:  64% (332217/518962)   Resolving deltas:  65% (337407/518962)   Resolving deltas:  66% (342639/518962)   Resolving deltas:  67% (347710/518962)   Resolving deltas:  68% (352912/518962)   Resolving deltas:  69% (358128/518962)   Resolving deltas:  70% (363280/518962)   Resolving deltas:  71% (368483/518962)   Resolving deltas:  72% (373787/518962)   Resolving deltas:  73% (378844/518962)   Resolving deltas:  74% (384099/518962)   Resolving deltas:  75% (389225/518962)   Resolving deltas:  76% (394508/518962)   Resolving deltas:  77% (399946/518962)   Resolving deltas:  77% (404742/518962)   Resolving deltas:  78% (404959/518962)   Resolving deltas:  79% (410602/518962)   Resolving deltas:  80% (415457/518962)   Resolving deltas:  81% (420406/518962)   Resolving deltas:  82% (425565/518962)   Resolving deltas:  83% (430849/518962)   Resolving deltas:  84% (436505/518962)   Resolving deltas:  85% (441286/518962)   Resolving deltas:  86% (446378/518962)   Resolving deltas:  87% (451497/518962)   Resolving deltas:  88% (456707/518962)   Resolving deltas:  89% (461937/518962)   Resolving deltas:  89% (462229/518962)   Resolving deltas:  90% (467258/518962)   Resolving deltas:  91% (472686/518962)   Resolving deltas:  92% (477495/518962)   Resolving deltas:  93% (482851/518962)   Resolving deltas:  94% (487962/518962)   Resolving deltas:  95% (493063/518962)   Resolving deltas:  96% (498219/518962)   Resolving deltas:  97% (503506/518962)   Resolving deltas:  98% (508762/518962)   Resolving deltas:  99% (514106/518962)   Resolving deltas: 100% (518962/518962)   Resolving deltas: 100% (518962/518962), done.
+
+ Polly src: /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/tools/polly
+Clone Polly:
+
+Run: 'git clone http://llvm.org/git/polly.git /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/tools/polly'
+Cloning into '/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/tools/polly'...
+remote: Counting objects: 29301, done.[K
+remote: Compressing objects:   0% (1/8890)   [Kremote: Compressing objects:   1% (89/8890)   [Kremote: Compressing objects:   2% (178/8890)   [Kremote: Compressing objects:   3% (267/8890)   [Kremote: Compressing objects:   4% (356/8890)   [Kremote: Compressing objects:   5% (445/8890)   [Kremote: Compressing objects:   6% (534/8890)   [Kremote: Compressing objects:   7% (623/8890)   [Kremote: Compressing objects:   8% (712/8890)   [Kremote: Compressing objects:   9% (801/8890)   [Kremote: Compressing objects:  10% (889/8890)   [Kremote: Compressing objects:  11% (978/8890)   [Kremote: Compressing objects:  12% (1067/8890)   [Kremote: Compressing objects:  13% (1156/8890)   [Kremote: Compressing objects:  14% (1245/8890)   [Kremote: Compressing objects:  15% (1334/8890)   [Kremote: Compressing objects:  16% (1423/8890)   [Kremote: Compressing objects:  17% (1512/8890)   [Kremote: Compressing objects:  18% (1601/8890)   [Kremote: Compressing objects:  19% (1690/8890)   [Kremote: Compressing objects:  20% (1778/8890)   [Kremote: Compressing objects:  21% (1867/8890)   [Kremote: Compressing objects:  22% (1956/8890)   [Kremote: Compressing objects:  23% (2045/8890)   [Kremote: Compressing objects:  24% (2134/8890)   [Kremote: Compressing objects:  25% (2223/8890)   [Kremote: Compressing objects:  26% (2312/8890)   [Kremote: Compressing objects:  27% (2401/8890)   [Kremote: Compressing objects:  28% (2490/8890)   [Kremote: Compressing objects:  29% (2579/8890)   [Kremote: Compressing objects:  30% (2667/8890)   [Kremote: Compressing objects:  31% (2756/8890)   [Kremote: Compressing objects:  32% (2845/8890)   [Kremote: Compressing objects:  33% (2934/8890)   [Kremote: Compressing objects:  34% (3023/8890)   [Kremote: Compressing objects:  35% (3112/8890)   [Kremote: Compressing objects:  36% (3201/8890)   [Kremote: Compressing objects:  37% (3290/8890)   [Kremote: Compressing objects:  38% (3379/8890)   [Kremote: Compressing objects:  39% (3468/8890)   [Kremote: Compressing objects:  40% (3556/8890)   [Kremote: Compressing objects:  41% (3645/8890)   [Kremote: Compressing objects:  42% (3734/8890)   [Kremote: Compressing objects:  43% (3823/8890)   [Kremote: Compressing objects:  44% (3912/8890)   [Kremote: Compressing objects:  45% (4001/8890)   [Kremote: Compressing objects:  46% (4090/8890)   [Kremote: Compressing objects:  47% (4179/8890)   [Kremote: Compressing objects:  48% (4268/8890)   [Kremote: Compressing objects:  49% (4357/8890)   [Kremote: Compressing objects:  50% (4445/8890)   [Kremote: Compressing objects:  51% (4534/8890)   [Kremote: Compressing objects:  52% (4623/8890)   [Kremote: Compressing objects:  53% (4712/8890)   [Kremote: Compressing objects:  54% (4801/8890)   [Kremote: Compressing objects:  55% (4890/8890)   [Kremote: Compressing objects:  56% (4979/8890)   [Kremote: Compressing objects:  57% (5068/8890)   [Kremote: Compressing objects:  58% (5157/8890)   [Kremote: Compressing objects:  59% (5246/8890)   [Kremote: Compressing objects:  60% (5334/8890)   [Kremote: Compressing objects:  61% (5423/8890)   [Kremote: Compressing objects:  62% (5512/8890)   [Kremote: Compressing objects:  63% (5601/8890)   [Kremote: Compressing objects:  64% (5690/8890)   [Kremote: Compressing objects:  65% (5779/8890)   [Kremote: Compressing objects:  66% (5868/8890)   [Kremote: Compressing objects:  67% (5957/8890)   [Kremote: Compressing objects:  68% (6046/8890)   [Kremote: Compressing objects:  69% (6135/8890)   [Kremote: Compressing objects:  70% (6223/8890)   [Kremote: Compressing objects:  71% (6312/8890)   [Kremote: Compressing objects:  72% (6401/8890)   [Kremote: Compressing objects:  73% (6490/8890)   [Kremote: Compressing objects:  74% (6579/8890)   [Kremote: Compressing objects:  75% (6668/8890)   [Kremote: Compressing objects:  76% (6757/8890)   [Kremote: Compressing objects:  77% (6846/8890)   [Kremote: Compressing objects:  78% (6935/8890)   [Kremote: Compressing objects:  79% (7024/8890)   [Kremote: Compressing objects:  80% (7112/8890)   [Kremote: Compressing objects:  81% (7201/8890)   [Kremote: Compressing objects:  82% (7290/8890)   [Kremote: Compressing objects:  83% (7379/8890)   [Kremote: Compressing objects:  84% (7468/8890)   [Kremote: Compressing objects:  85% (7557/8890)   [Kremote: Compressing objects:  86% (7646/8890)   [Kremote: Compressing objects:  87% (7735/8890)   [Kremote: Compressing objects:  88% (7824/8890)   [Kremote: Compressing objects:  89% (7913/8890)   [Kremote: Compressing objects:  90% (8001/8890)   [Kremote: Compressing objects:  91% (8090/8890)   [Kremote: Compressing objects:  92% (8179/8890)   [Kremote: Compressing objects:  93% (8268/8890)   [Kremote: Compressing objects:  94% (8357/8890)   [Kremote: Compressing objects:  95% (8446/8890)   [Kremote: Compressing objects:  96% (8535/8890)   [Kremote: Compressing objects:  97% (8624/8890)   [Kremote: Compressing objects:  98% (8713/8890)   [Kremote: Compressing objects:  99% (8802/8890)   [Kremote: Compressing objects:  99% (8882/8890)   [Kremote: Compressing objects: 100% (8890/8890)   [Kremote: Compressing objects: 100% (8890/8890), done.[K
+Receiving objects:   0% (1/29301)   Receiving objects:   1% (294/29301)   Receiving objects:   2% (587/29301)   Receiving objects:   3% (880/29301), 276.00 KiB | 474.00 KiB/s   Receiving objects:   4% (1173/29301), 276.00 KiB | 474.00 KiB/s   Receiving objects:   5% (1466/29301), 276.00 KiB | 474.00 KiB/s   Receiving objects:   6% (1759/29301), 276.00 KiB | 474.00 KiB/s   Receiving objects:   7% (2052/29301), 276.00 KiB | 474.00 KiB/s   Receiving objects:   8% (2345/29301), 276.00 KiB | 474.00 KiB/s   Receiving objects:   9% (2638/29301), 276.00 KiB | 474.00 KiB/s   Receiving objects:  10% (2931/29301), 276.00 KiB | 474.00 KiB/s   Receiving objects:  10% (3175/29301), 276.00 KiB | 474.00 KiB/s   Receiving objects:  11% (3224/29301), 1.29 MiB | 1.20 MiB/s   Receiving objects:  11% (3482/29301), 2.25 MiB | 1.39 MiB/s   Receiving objects:  12% (3517/29301), 2.25 MiB | 1.39 MiB/s   Receiving objects:  13% (3810/29301), 3.31 MiB | 1.56 MiB/s   Receiving objects:  14% (4103/29301), 3.31 MiB | 1.56 MiB/s   Receiving objects:  15% (4396/29301), 3.31 MiB | 1.56 MiB/s   Receiving objects:  16% (4689/29301), 3.31 MiB | 1.56 MiB/s   Receiving objects:  17% (4982/29301), 4.43 MiB | 1.67 MiB/s   Receiving objects:  18% (5275/29301), 4.43 MiB | 1.67 MiB/s   Receiving objects:  19% (5568/29301), 4.43 MiB | 1.67 MiB/s   Receiving objects:  20% (5861/29301), 4.43 MiB | 1.67 MiB/s   Receiving objects:  21% (6154/29301), 4.43 MiB | 1.67 MiB/s   Receiving objects:  21% (6242/29301), 5.21 MiB | 1.64 MiB/s   Receiving objects:  21% (6288/29301), 6.35 MiB | 1.72 MiB/s   Receiving objects:  21% (6289/29301), 8.83 MiB | 1.84 MiB/s   Receiving objects:  21% (6291/29301), 9.83 MiB | 1.82 MiB/s   Receiving objects:  22% (6447/29301), 10.96 MiB | 1.86 MiB/s   Receiving objects:  23% (6740/29301), 10.96 MiB | 1.86 MiB/s   Receiving objects:  24% (7033/29301), 10.96 MiB | 1.86 MiB/s   Receiving objects:  25% (7326/29301), 10.96 MiB | 1.86 MiB/s   Receiving objects:  26% (7619/29301), 12.01 MiB | 1.86 MiB/s   Receiving objects:  27% (7912/29301), 12.01 MiB | 1.86 MiB/s   Receiving objects:  27% (7958/29301), 12.01 MiB | 1.86 MiB/s   Receiving objects:  28% (8205/29301), 12.01 MiB | 1.86 MiB/s   Receiving objects:  29% (8498/29301), 12.01 MiB | 1.86 MiB/s   Receiving objects:  30% (8791/29301), 12.01 MiB | 1.86 MiB/s   Receiving objects:  31% (9084/29301), 12.01 MiB | 1.86 MiB/s   Receiving objects:  32% (9377/29301), 12.01 MiB | 1.86 MiB/s   Receiving objects:  33% (9670/29301), 12.01 MiB | 1.86 MiB/s   Receiving objects:  34% (9963/29301), 13.07 MiB | 1.85 MiB/s   Receiving objects:  35% (10256/29301), 13.07 MiB | 1.85 MiB/s   Receiving objects:  36% (10549/29301), 13.07 MiB | 1.85 MiB/s   Receiving objects:  37% (10842/29301), 13.07 MiB | 1.85 MiB/s   Receiving objects:  38% (11135/29301), 13.07 MiB | 1.85 MiB/s   Receiving objects:  39% (11428/29301), 13.07 MiB | 1.85 MiB/s   Receiving objects:  39% (11645/29301), 14.15 MiB | 1.92 MiB/s   Receiving objects:  40% (11721/29301), 14.15 MiB | 1.92 MiB/s   Receiving objects:  41% (12014/29301), 15.18 MiB | 1.91 MiB/s   Receiving objects:  42% (12307/29301), 15.18 MiB | 1.91 MiB/s   Receiving objects:  43% (12600/29301), 15.18 MiB | 1.91 MiB/s   Receiving objects:  43% (12732/29301), 16.25 MiB | 1.97 MiB/s   Receiving objects:  44% (12893/29301), 16.25 MiB | 1.97 MiB/s   Receiving objects:  45% (13186/29301), 16.25 MiB | 1.97 MiB/s   Receiving objects:  46% (13479/29301), 16.25 MiB | 1.97 MiB/s   Receiving objects:  47% (13772/29301), 16.25 MiB | 1.97 MiB/s   Receiving objects:  48% (14065/29301), 16.25 MiB | 1.97 MiB/s   Receiving objects:  49% (14358/29301), 16.25 MiB | 1.97 MiB/s   Receiving objects:  50% (14651/29301), 16.25 MiB | 1.97 MiB/s   Receiving objects:  51% (14944/29301), 16.25 MiB | 1.97 MiB/s   Receiving objects:  52% (15237/29301), 16.25 MiB | 1.97 MiB/s   Receiving objects:  53% (15530/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  54% (15823/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  55% (16116/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  56% (16409/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  57% (16702/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  58% (16995/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  59% (17288/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  60% (17581/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  61% (17874/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  62% (18167/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  63% (18460/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  64% (18753/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  65% (19046/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  66% (19339/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  67% (19632/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  68% (19925/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  69% (20218/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  70% (20511/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  71% (20804/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  72% (21097/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  73% (21390/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  74% (21683/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  75% (21976/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  76% (22269/29301), 17.31 MiB | 2.02 MiB/s   Receiving objects:  77% (22562/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  78% (22855/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  79% (23148/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  80% (23441/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  81% (23734/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  82% (24027/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  83% (24320/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  84% (24613/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  85% (24906/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  86% (25199/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  87% (25492/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  88% (25785/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  89% (26078/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  90% (26371/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  91% (26664/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  91% (26769/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  92% (26957/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  93% (27250/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  94% (27543/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  95% (27836/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  96% (28129/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  97% (28422/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  98% (28715/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects:  99% (29008/29301), 18.35 MiB | 2.07 MiB/s   remote: Total 29301 (delta 22097), reused 26578 (delta 19755)[K
+Receiving objects: 100% (29301/29301), 18.35 MiB | 2.07 MiB/s   Receiving objects: 100% (29301/29301), 19.06 MiB | 2.10 MiB/s, done.
+Resolving deltas:   0% (0/22097)   Resolving deltas:   1% (222/22097)   Resolving deltas:   2% (474/22097)   Resolving deltas:   3% (670/22097)   Resolving deltas:   4% (946/22097)   Resolving deltas:   5% (1128/22097)   Resolving deltas:   6% (1406/22097)   Resolving deltas:   8% (1811/22097)   Resolving deltas:   9% (1997/22097)   Resolving deltas:  10% (2393/22097)   Resolving deltas:  11% (2435/22097)   Resolving deltas:  12% (2736/22097)   Resolving deltas:  13% (2894/22097)   Resolving deltas:  14% (3101/22097)   Resolving deltas:  15% (3426/22097)   Resolving deltas:  16% (3537/22097)   Resolving deltas:  17% (3763/22097)   Resolving deltas:  18% (3978/22097)   Resolving deltas:  19% (4208/22097)   Resolving deltas:  20% (4420/22097)   Resolving deltas:  21% (4643/22097)   Resolving deltas:  22% (4883/22097)   Resolving deltas:  23% (5208/22097)   Resolving deltas:  24% (5316/22097)   Resolving deltas:  25% (5534/22097)   Resolving deltas:  26% (5775/22097)   Resolving deltas:  27% (5967/22097)   Resolving deltas:  28% (6190/22097)   Resolving deltas:  29% (6513/22097)   Resolving deltas:  30% (6636/22097)   Resolving deltas:  31% (6851/22097)   Resolving deltas:  32% (7078/22097)   Resolving deltas:  33% (7294/22097)   Resolving deltas:  34% (7513/22097)   Resolving deltas:  35% (7738/22097)   Resolving deltas:  36% (8002/22097)   Resolving deltas:  37% (8191/22097)   Resolving deltas:  38% (8403/22097)   Resolving deltas:  39% (8626/22097)   Resolving deltas:  40% (8850/22097)   Resolving deltas:  41% (9098/22097)   Resolving deltas:  42% (9284/22097)   Resolving deltas:  43% (9502/22097)   Resolving deltas:  44% (9728/22097)   Resolving deltas:  45% (9964/22097)   Resolving deltas:  46% (10165/22097)   Resolving deltas:  47% (10387/22097)   Resolving deltas:  48% (10618/22097)   Resolving deltas:  49% (10829/22097)   Resolving deltas:  50% (11057/22097)   Resolving deltas:  51% (11274/22097)   Resolving deltas:  52% (11502/22097)   Resolving deltas:  53% (11747/22097)   Resolving deltas:  54% (11968/22097)   Resolving deltas:  55% (12162/22097)   Resolving deltas:  56% (12397/22097)   Resolving deltas:  57% (12598/22097)   Resolving deltas:  58% (12827/22097)   Resolving deltas:  59% (13075/22097)   Resolving deltas:  60% (13262/22097)   Resolving deltas:  61% (13494/22097)   Resolving deltas:  62% (13701/22097)   Resolving deltas:  63% (13934/22097)   Resolving deltas:  64% (14229/22097)   Resolving deltas:  65% (14425/22097)   Resolving deltas:  66% (14748/22097)   Resolving deltas:  67% (14806/22097)   Resolving deltas:  68% (15058/22097)   Resolving deltas:  69% (15256/22097)   Resolving deltas:  70% (15527/22097)   Resolving deltas:  71% (15702/22097)   Resolving deltas:  72% (15910/22097)   Resolving deltas:  73% (16165/22097)   Resolving deltas:  74% (16362/22097)   Resolving deltas:  75% (16640/22097)   Resolving deltas:  76% (16800/22097)   Resolving deltas:  77% (17054/22097)   Resolving deltas:  78% (17308/22097)   Resolving deltas:  79% (17475/22097)   Resolving deltas:  80% (17695/22097)   Resolving deltas:  81% (17905/22097)   Resolving deltas:  82% (18129/22097)   Resolving deltas:  83% (18405/22097)   Resolving deltas:  84% (18571/22097)   Resolving deltas:  85% (18807/22097)   Resolving deltas:  86% (19005/22097)   Resolving deltas:  87% (19246/22097)   Resolving deltas:  88% (19460/22097)   Resolving deltas:  89% (19671/22097)   Resolving deltas:  90% (19898/22097)   Resolving deltas:  91% (20161/22097)   Resolving deltas:  92% (20346/22097)   Resolving deltas:  93% (20566/22097)   Resolving deltas:  94% (20781/22097)   Resolving deltas:  95% (21081/22097)   Resolving deltas:  96% (21266/22097)   Resolving deltas:  97% (21453/22097)   Resolving deltas:  98% (21657/22097)   Resolving deltas:  99% (21918/22097)   Resolving deltas: 100% (22097/22097)   Resolving deltas: 100% (22097/22097), done.
+
+
+
+Revert to original artifact evaluation version?
+[Y/n] >> Reset LLVM to bdf16bd55d2f96112213c455501dbbc23c043c96:
+
+Run: 'git -C /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src reset --hard bdf16bd55d2f96112213c455501dbbc23c043c96'
+Reset Clang to 1f955bd645a022ae16543b4dc05e50981d918f33:
+
+Run: 'git -C /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/tools/clang reset --hard 1f955bd645a022ae16543b4dc05e50981d918f33'
+Reset Polly to b6c62b2bc6d937fa5581f9027e2721d72600687c:
+
+Run: 'git -C /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/tools/polly reset --hard b6c62b2bc6d937fa5581f9027e2721d72600687c'
+
+Run: 'git -C /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src rev-parse HEAD'
+LLVM version: bdf16bd55d2f96112213c455501dbbc23c043c96
+
+Run: 'git -C /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/tools/clang rev-parse HEAD'
+Clang version: 1f955bd645a022ae16543b4dc05e50981d918f33
+
+Run: 'git -C /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/tools/polly rev-parse HEAD'
+Polly version: b6c62b2bc6d937fa5581f9027e2721d72600687c
+
+Configure LLVM in /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj
+
+
+Use Debug build?
+[y/N] >> 
+Enable assertions in build?
+[Y/n] >> 
+Run: 'which ninja'
+which: no ninja in (/home/johannes/.local/bin:/home/johannes/.local/bin:/usr/local/bin:/usr/local/sbin:/home/johannes/.bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl)
+Command 'which ninja' not successful. Continue!
+
+Run: 'cd /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj && cmake /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src -DLINK_POLLY_INTO_TOOLS=1 -DBUILD_SHARED_LIBS=1 -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_ASSERTIONS=True'
+
+
+
+Build LLVM (this might take some time [1-2h depending on the hardware])
+
+Run: 'make -C /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj -j 8'
+In file included from [01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/lib/Target/AArch64/AsmParser/AArch64AsmParser.cpp:4487:0[m[K:
+[01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/lib/Target/AArch64/AArch64GenAsmMatcher.inc:14356:6:[m[K [01;35m[Kwarning: [m[K‘[01m[Kbool {anonymous}::AArch64AsmParser::mnemonicIsValid(llvm::StringRef, unsigned int)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+ bool [01;35m[KAArch64AsmParser[m[K::
+      [01;35m[K^~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/lib/Target/ARM/AsmParser/ARMAsmParser.cpp:10227:0[m[K:
+[01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/lib/Target/ARM/ARMGenAsmMatcher.inc:10427:6:[m[K [01;35m[Kwarning: [m[K‘[01m[Kbool {anonymous}::ARMAsmParser::mnemonicIsValid(llvm::StringRef, unsigned int)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+ bool [01;35m[KARMAsmParser[m[K::
+      [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/lib/Target/Sparc/AsmParser/SparcAsmParser.cpp:1273:0[m[K:
+[01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/lib/Target/Sparc/SparcGenAsmMatcher.inc:3776:6:[m[K [01;35m[Kwarning: [m[K‘[01m[Kbool {anonymous}::SparcAsmParser::mnemonicIsValid(llvm::StringRef, unsigned int)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+ bool [01;35m[KSparcAsmParser[m[K::
+      [01;35m[K^~~~~~~~~~~~~~[m[K
+In file included from [01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/lib/Target/PowerPC/AsmParser/PPCAsmParser.cpp:1990:0[m[K:
+[01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/lib/Target/PowerPC/PPCGenAsmMatcher.inc:6276:6:[m[K [01;35m[Kwarning: [m[K‘[01m[Kbool {anonymous}::PPCAsmParser::mnemonicIsValid(llvm::StringRef, unsigned int)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+ bool [01;35m[KPPCAsmParser[m[K::
+      [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/lib/Target/SystemZ/AsmParser/SystemZAsmParser.cpp:511:0[m[K:
+[01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/lib/Target/SystemZ/SystemZGenAsmMatcher.inc:3698:6:[m[K [01;35m[Kwarning: [m[K‘[01m[Kbool {anonymous}::SystemZAsmParser::mnemonicIsValid(llvm::StringRef, unsigned int)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+ bool [01;35m[KSystemZAsmParser[m[K::
+      [01;35m[K^~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/lib/Target/Lanai/AsmParser/LanaiAsmParser.cpp:1206:0[m[K:
+[01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/lib/Target/Lanai/LanaiGenAsmMatcher.inc:901:6:[m[K [01;35m[Kwarning: [m[K‘[01m[Kbool llvm::{anonymous}::LanaiAsmParser::mnemonicIsValid(llvm::StringRef, unsigned int)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+ bool [01;35m[KLanaiAsmParser[m[K::
+      [01;35m[K^~~~~~~~~~~~~~[m[K
+In file included from [01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/lib/Target/AMDGPU/AsmParser/AMDGPUAsmParser.cpp:3078:0[m[K:
+[01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/lib/Target/AMDGPU/AMDGPUGenAsmMatcher.inc:15178:6:[m[K [01;35m[Kwarning: [m[K‘[01m[Kbool {anonymous}::AMDGPUAsmParser::mnemonicIsValid(llvm::StringRef, unsigned int)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+ bool [01;35m[KAMDGPUAsmParser[m[K::
+      [01;35m[K^~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_src/lib/Target/X86/AsmParser/X86AsmParser.cpp:3184:0[m[K:
+[01m[K/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/lib/Target/X86/X86GenAsmMatcher.inc:34141:6:[m[K [01;35m[Kwarning: [m[K‘[01m[Kbool {anonymous}::X86AsmParser::mnemonicIsValid(llvm::StringRef, unsigned int)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+ bool [01;35m[KX86AsmParser[m[K::
+      [01;35m[K^~~~~~~~~~~~[m[K
+
+Run: 'make -C /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj check-polly'
+
+/tmp/CGO_AE_OptimisticLoopOptimization/scripts/artifact_eval_helper.py is done!
+
+
+
+********************************************************************************
+                           2. Set up the benchmarks!                            
+********************************************************************************
+
+********************************************************************************
+Read /tmp/CGO_AE_OptimisticLoopOptimization/scripts/config.py
+Successfully initialized 13 values!
+
+********************************************************************************
+
+********************************************************************************
+    The setup_benchmarks.py script will download and organize all benchmarks    
+********************************************************************************
+
+********************************************************************************
+Read /tmp/CGO_AE_OptimisticLoopOptimization/scripts/config.py
+Successfully initialized 13 values!
+
+********************************************************************************
+
+
+[New] Path to LLVM test suite:
+[/tmp/CGO_AE_OptimisticLoopOptimization/test_suite] >> 
+
+Clone LLVM test suite to '/tmp/CGO_AE_OptimisticLoopOptimization/test_suite':
+
+Run: 'git clone http://llvm.org/git/test-suite /tmp/CGO_AE_OptimisticLoopOptimization/test_suite'
+Cloning into '/tmp/CGO_AE_OptimisticLoopOptimization/test_suite'...
+remote: Counting objects: 43991, done.[K
+remote: Compressing objects:   0% (1/20990)   [Kremote: Compressing objects:   1% (210/20990)   [Kremote: Compressing objects:   2% (420/20990)   [Kremote: Compressing objects:   3% (630/20990)   [Kremote: Compressing objects:   4% (840/20990)   [Kremote: Compressing objects:   5% (1050/20990)   [Kremote: Compressing objects:   6% (1260/20990)   [Kremote: Compressing objects:   7% (1470/20990)   [Kremote: Compressing objects:   8% (1680/20990)   [Kremote: Compressing objects:   9% (1890/20990)   [Kremote: Compressing objects:  10% (2099/20990)   [Kremote: Compressing objects:  11% (2309/20990)   [Kremote: Compressing objects:  12% (2519/20990)   [Kremote: Compressing objects:  13% (2729/20990)   [Kremote: Compressing objects:  14% (2939/20990)   [Kremote: Compressing objects:  15% (3149/20990)   [Kremote: Compressing objects:  16% (3359/20990)   [Kremote: Compressing objects:  17% (3569/20990)   [Kremote: Compressing objects:  18% (3779/20990)   [Kremote: Compressing objects:  19% (3989/20990)   [Kremote: Compressing objects:  20% (4198/20990)   [Kremote: Compressing objects:  21% (4408/20990)   [Kremote: Compressing objects:  22% (4618/20990)   [Kremote: Compressing objects:  23% (4828/20990)   [Kremote: Compressing objects:  24% (5038/20990)   [Kremote: Compressing objects:  25% (5248/20990)   [Kremote: Compressing objects:  26% (5458/20990)   [Kremote: Compressing objects:  27% (5668/20990)   [Kremote: Compressing objects:  28% (5878/20990)   [Kremote: Compressing objects:  29% (6088/20990)   [Kremote: Compressing objects:  30% (6297/20990)   [Kremote: Compressing objects:  31% (6507/20990)   [Kremote: Compressing objects:  32% (6717/20990)   [Kremote: Compressing objects:  33% (6927/20990)   [Kremote: Compressing objects:  34% (7137/20990)   [Kremote: Compressing objects:  35% (7347/20990)   [Kremote: Compressing objects:  36% (7557/20990)   [Kremote: Compressing objects:  37% (7767/20990)   [Kremote: Compressing objects:  38% (7977/20990)   [Kremote: Compressing objects:  39% (8187/20990)   [Kremote: Compressing objects:  40% (8396/20990)   [Kremote: Compressing objects:  41% (8606/20990)   [Kremote: Compressing objects:  42% (8816/20990)   [Kremote: Compressing objects:  43% (9026/20990)   [Kremote: Compressing objects:  44% (9236/20990)   [Kremote: Compressing objects:  45% (9446/20990)   [Kremote: Compressing objects:  46% (9656/20990)   [Kremote: Compressing objects:  47% (9866/20990)   [Kremote: Compressing objects:  48% (10076/20990)   [Kremote: Compressing objects:  49% (10286/20990)   [Kremote: Compressing objects:  50% (10495/20990)   [Kremote: Compressing objects:  51% (10705/20990)   [Kremote: Compressing objects:  52% (10915/20990)   [Kremote: Compressing objects:  53% (11125/20990)   [Kremote: Compressing objects:  54% (11335/20990)   [Kremote: Compressing objects:  55% (11545/20990)   [Kremote: Compressing objects:  56% (11755/20990)   [Kremote: Compressing objects:  57% (11965/20990)   [Kremote: Compressing objects:  58% (12175/20990)   [Kremote: Compressing objects:  59% (12385/20990)   [Kremote: Compressing objects:  60% (12594/20990)   [Kremote: Compressing objects:  61% (12804/20990)   [Kremote: Compressing objects:  62% (13014/20990)   [Kremote: Compressing objects:  63% (13224/20990)   [Kremote: Compressing objects:  64% (13434/20990)   [Kremote: Compressing objects:  65% (13644/20990)   [Kremote: Compressing objects:  66% (13854/20990)   [Kremote: Compressing objects:  67% (14064/20990)   [Kremote: Compressing objects:  68% (14274/20990)   [Kremote: Compressing objects:  69% (14484/20990)   [Kremote: Compressing objects:  70% (14693/20990)   [Kremote: Compressing objects:  70% (14753/20990)   [Kremote: Compressing objects:  71% (14903/20990)   [Kremote: Compressing objects:  72% (15113/20990)   [Kremote: Compressing objects:  73% (15323/20990)   [Kremote: Compressing objects:  74% (15533/20990)   [Kremote: Compressing objects:  75% (15743/20990)   [Kremote: Compressing objects:  76% (15953/20990)   [Kremote: Compressing objects:  77% (16163/20990)   [Kremote: Compressing objects:  78% (16373/20990)   [Kremote: Compressing objects:  79% (16583/20990)   [Kremote: Compressing objects:  80% (16792/20990)   [Kremote: Compressing objects:  81% (17002/20990)   [Kremote: Compressing objects:  82% (17212/20990)   [Kremote: Compressing objects:  83% (17422/20990)   [Kremote: Compressing objects:  84% (17632/20990)   [Kremote: Compressing objects:  85% (17842/20990)   [Kremote: Compressing objects:  86% (18052/20990)   [Kremote: Compressing objects:  87% (18262/20990)   [Kremote: Compressing objects:  88% (18472/20990)   [Kremote: Compressing objects:  89% (18682/20990)   [Kremote: Compressing objects:  90% (18891/20990)   [Kremote: Compressing objects:  91% (19101/20990)   [Kremote: Compressing objects:  92% (19311/20990)   [Kremote: Compressing objects:  93% (19521/20990)   [Kremote: Compressing objects:  94% (19731/20990)   [Kremote: Compressing objects:  95% (19941/20990)   [Kremote: Compressing objects:  96% (20151/20990)   [Kremote: Compressing objects:  97% (20361/20990)   [Kremote: Compressing objects:  98% (20571/20990)   [Kremote: Compressing objects:  99% (20781/20990)   [Kremote: Compressing objects:  99% (20967/20990)   [Kremote: Compressing objects: 100% (20990/20990)   [Kremote: Compressing objects: 100% (20990/20990), done.[K
+Receiving objects:   0% (1/43991)   Receiving objects:   1% (440/43991)   Receiving objects:   2% (880/43991), 196.00 KiB | 378.00 KiB/s   Receiving objects:   3% (1320/43991), 196.00 KiB | 378.00 KiB/s   Receiving objects:   4% (1760/43991), 196.00 KiB | 378.00 KiB/s   Receiving objects:   5% (2200/43991), 196.00 KiB | 378.00 KiB/s   Receiving objects:   6% (2640/43991), 196.00 KiB | 378.00 KiB/s   Receiving objects:   7% (3080/43991), 196.00 KiB | 378.00 KiB/s   Receiving objects:   7% (3378/43991), 916.00 KiB | 851.00 KiB/s   Receiving objects:   8% (3520/43991), 916.00 KiB | 851.00 KiB/s   Receiving objects:   9% (3960/43991), 916.00 KiB | 851.00 KiB/s   Receiving objects:   9% (4206/43991), 3.79 MiB | 1.81 MiB/s   Receiving objects:   9% (4209/43991), 5.18 MiB | 1.98 MiB/s   Receiving objects:   9% (4214/43991), 9.86 MiB | 2.38 MiB/s   Receiving objects:   9% (4217/43991), 13.15 MiB | 2.80 MiB/s   Receiving objects:   9% (4223/43991), 14.71 MiB | 3.02 MiB/s   Receiving objects:   9% (4225/43991), 19.74 MiB | 3.18 MiB/s   Receiving objects:   9% (4227/43991), 22.76 MiB | 3.15 MiB/s   Receiving objects:   9% (4233/43991), 24.39 MiB | 3.14 MiB/s   Receiving objects:   9% (4235/43991), 27.18 MiB | 3.01 MiB/s   Receiving objects:   9% (4240/43991), 30.23 MiB | 2.98 MiB/s   Receiving objects:   9% (4246/43991), 33.46 MiB | 2.97 MiB/s   Receiving objects:   9% (4249/43991), 36.77 MiB | 3.06 MiB/s   Receiving objects:   9% (4254/43991), 40.04 MiB | 3.12 MiB/s   Receiving objects:   9% (4260/43991), 43.32 MiB | 3.23 MiB/s   Receiving objects:   9% (4264/43991), 46.55 MiB | 3.22 MiB/s   Receiving objects:   9% (4269/43991), 49.84 MiB | 3.23 MiB/s   Receiving objects:   9% (4273/43991), 53.20 MiB | 3.26 MiB/s   Receiving objects:   9% (4277/43991), 56.87 MiB | 3.36 MiB/s   Receiving objects:   9% (4280/43991), 60.82 MiB | 3.48 MiB/s   Receiving objects:   9% (4287/43991), 65.17 MiB | 3.73 MiB/s   Receiving objects:   9% (4293/43991), 70.20 MiB | 4.13 MiB/s   Receiving objects:   9% (4306/43991), 75.93 MiB | 4.62 MiB/s   Receiving objects:   9% (4364/43991), 82.82 MiB | 5.29 MiB/s   Receiving objects:  10% (4400/43991), 90.88 MiB | 6.19 MiB/s   Receiving objects:  10% (4425/43991), 90.88 MiB | 6.19 MiB/s   Receiving objects:  10% (4501/43991), 100.52 MiB | 7.29 MiB/s   Receiving objects:  10% (4549/43991), 109.81 MiB | 8.16 MiB/s   Receiving objects:  10% (4591/43991), 118.30 MiB | 8.64 MiB/s   Receiving objects:  10% (4602/43991), 119.15 MiB | 7.04 MiB/s   Receiving objects:  10% (4606/43991), 120.27 MiB | 5.63 MiB/s   Receiving objects:  10% (4606/43991), 121.44 MiB | 3.98 MiB/s   Receiving objects:  10% (4606/43991), 122.60 MiB | 2.42 MiB/s   Receiving objects:  10% (4606/43991), 123.71 MiB | 1.02 MiB/s   Receiving objects:  10% (4606/43991), 124.83 MiB | 1.10 MiB/s   Receiving objects:  10% (4606/43991), 125.99 MiB | 1.10 MiB/s   Receiving objects:  10% (4606/43991), 127.22 MiB | 1.11 MiB/s   Receiving objects:  10% (4606/43991), 128.61 MiB | 1.17 MiB/s   Receiving objects:  10% (4606/43991), 130.31 MiB | 1.31 MiB/s   Receiving objects:  10% (4606/43991), 132.43 MiB | 1.53 MiB/s   Receiving objects:  10% (4621/43991), 133.43 MiB | 1.46 MiB/s   Receiving objects:  10% (4621/43991), 134.07 MiB | 1.47 MiB/s   Receiving objects:  10% (4621/43991), 135.31 MiB | 1.43 MiB/s   Receiving objects:  10% (4626/43991), 135.99 MiB | 1.40 MiB/s   Receiving objects:  10% (4730/43991), 137.61 MiB | 1.34 MiB/s   Receiving objects:  10% (4823/43991), 139.21 MiB | 1.37 MiB/s   Receiving objects:  11% (4840/43991), 140.02 MiB | 1.43 MiB/s   Receiving objects:  11% (4923/43991), 140.83 MiB | 1.47 MiB/s   Receiving objects:  11% (5018/43991), 142.46 MiB | 1.56 MiB/s   Receiving objects:  11% (5120/43991), 144.08 MiB | 1.59 MiB/s   Receiving objects:  11% (5214/43991), 145.77 MiB | 1.61 MiB/s   Receiving objects:  12% (5279/43991), 146.67 MiB | 1.62 MiB/s   Receiving objects:  12% (5336/43991), 147.65 MiB | 1.66 MiB/s   Receiving objects:  12% (5457/43991), 149.71 MiB | 1.77 MiB/s   Receiving objects:  12% (5625/43991), 152.38 MiB | 2.00 MiB/s   Receiving objects:  13% (5719/43991), 153.90 MiB | 2.16 MiB/s   Receiving objects:  13% (5822/43991), 155.65 MiB | 2.36 MiB/s   Receiving objects:  13% (6078/43991), 159.76 MiB | 2.89 MiB/s   Receiving objects:  14% (6159/43991), 162.24 MiB | 3.22 MiB/s   Receiving objects:  14% (6370/43991), 165.03 MiB | 3.62 MiB/s   Receiving objects:  15% (6599/43991), 168.16 MiB | 4.08 MiB/s   Receiving objects:  15% (6747/43991), 171.62 MiB | 4.56 MiB/s   Receiving objects:  16% (7039/43991), 175.46 MiB | 5.10 MiB/s   Receiving objects:  16% (7204/43991), 179.75 MiB | 5.71 MiB/s   Receiving objects:  17% (7479/43991), 184.59 MiB | 6.39 MiB/s   Receiving objects:  17% (7697/43991), 189.15 MiB | 6.98 MiB/s   Receiving objects:  18% (7919/43991), 192.96 MiB | 7.36 MiB/s   Receiving objects:  18% (8177/43991), 196.95 MiB | 7.71 MiB/s   Receiving objects:  19% (8359/43991), 201.21 MiB | 8.03 MiB/s   Receiving objects:  19% (8717/43991), 205.64 MiB | 8.32 MiB/s   Receiving objects:  20% (8799/43991), 205.64 MiB | 8.32 MiB/s   Receiving objects:  20% (9216/43991), 214.93 MiB | 8.76 MiB/s   Receiving objects:  21% (9239/43991), 214.93 MiB | 8.76 MiB/s   Receiving objects:  22% (9679/43991), 224.65 MiB | 8.89 MiB/s   Receiving objects:  22% (9715/43991), 224.65 MiB | 8.89 MiB/s   Receiving objects:  23% (10118/43991), 229.66 MiB | 8.99 MiB/s   Receiving objects:  23% (10291/43991), 234.68 MiB | 9.26 MiB/s   Receiving objects:  24% (10558/43991), 239.73 MiB | 9.50 MiB/s   Receiving objects:  25% (10998/43991), 244.84 MiB | 9.69 MiB/s   Receiving objects:  26% (11438/43991), 244.84 MiB | 9.69 MiB/s   Receiving objects:  26% (11664/43991), 244.84 MiB | 9.69 MiB/s   Receiving objects:  27% (11878/43991), 250.00 MiB | 9.84 MiB/s   Receiving objects:  28% (12318/43991), 250.00 MiB | 9.84 MiB/s   Receiving objects:  29% (12758/43991), 250.00 MiB | 9.84 MiB/s   Receiving objects:  29% (12935/43991), 255.17 MiB | 9.97 MiB/s   Receiving objects:  30% (13198/43991), 255.17 MiB | 9.97 MiB/s   Receiving objects:  31% (13638/43991), 255.17 MiB | 9.97 MiB/s   Receiving objects:  32% (14078/43991), 255.17 MiB | 9.97 MiB/s   Receiving objects:  33% (14518/43991), 260.33 MiB | 10.09 MiB/s   Receiving objects:  34% (14957/43991), 265.48 MiB | 10.17 MiB/s   Receiving objects:  34% (15277/43991), 265.48 MiB | 10.17 MiB/s   Receiving objects:  35% (15397/43991), 265.48 MiB | 10.17 MiB/s   Receiving objects:  35% (15764/43991), 281.00 MiB | 10.29 MiB/s   Receiving objects:  35% (15764/43991), 291.35 MiB | 10.34 MiB/s   Receiving objects:  35% (15765/43991), 296.53 MiB | 10.34 MiB/s   Receiving objects:  36% (15837/43991), 301.75 MiB | 10.35 MiB/s   Receiving objects:  37% (16277/43991), 301.75 MiB | 10.35 MiB/s   Receiving objects:  38% (16717/43991), 301.75 MiB | 10.35 MiB/s   Receiving objects:  38% (17068/43991), 312.29 MiB | 10.40 MiB/s   Receiving objects:  39% (17157/43991), 312.29 MiB | 10.40 MiB/s   Receiving objects:  40% (17597/43991), 317.61 MiB | 10.43 MiB/s   Receiving objects:  41% (18037/43991), 317.61 MiB | 10.43 MiB/s   Receiving objects:  42% (18477/43991), 317.61 MiB | 10.43 MiB/s   Receiving objects:  43% (18917/43991), 317.61 MiB | 10.43 MiB/s   Receiving objects:  44% (19357/43991), 317.61 MiB | 10.43 MiB/s   Receiving objects:  45% (19796/43991), 317.61 MiB | 10.43 MiB/s   Receiving objects:  45% (20010/43991), 317.61 MiB | 10.43 MiB/s   Receiving objects:  46% (20236/43991), 323.00 MiB | 10.48 MiB/s   Receiving objects:  47% (20676/43991), 323.00 MiB | 10.48 MiB/s   Receiving objects:  48% (21116/43991), 323.00 MiB | 10.48 MiB/s   Receiving objects:  48% (21350/43991), 328.46 MiB | 10.55 MiB/s   Receiving objects:  49% (21556/43991), 333.14 MiB | 10.44 MiB/s   Receiving objects:  49% (21857/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  50% (21996/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  51% (22436/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  52% (22876/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  53% (23316/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  54% (23756/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  55% (24196/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  56% (24635/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  57% (25075/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  58% (25515/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  59% (25955/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  60% (26395/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  61% (26835/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  62% (27275/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  63% (27715/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  64% (28155/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  65% (28595/43991), 337.30 MiB | 10.20 MiB/s   Receiving objects:  66% (29035/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  67% (29474/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  68% (29914/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  69% (30354/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  70% (30794/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  71% (31234/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  72% (31674/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  73% (32114/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  74% (32554/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  75% (32994/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  76% (33434/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  77% (33874/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  78% (34313/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  79% (34753/43991), 341.68 MiB | 10.03 MiB/s   Receiving objects:  80% (35193/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  81% (35633/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  82% (36073/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  83% (36513/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  84% (36953/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  85% (37393/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  86% (37833/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  87% (38273/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  88% (38713/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  89% (39152/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  90% (39592/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  91% (40032/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  92% (40472/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  93% (40912/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  94% (41352/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  95% (41792/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  96% (42232/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  97% (42672/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  98% (43112/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects:  99% (43552/43991), 346.25 MiB | 9.88 MiB/s   remote: Total 43991 (delta 23359), reused 41786 (delta 21769)[K
+Receiving objects: 100% (43991/43991), 346.25 MiB | 9.88 MiB/s   Receiving objects: 100% (43991/43991), 347.77 MiB | 9.80 MiB/s, done.
+Resolving deltas:   0% (0/23359)   Resolving deltas:   1% (352/23359)   Resolving deltas:   2% (470/23359)   Resolving deltas:   2% (502/23359)   Resolving deltas:   3% (701/23359)   Resolving deltas:   4% (935/23359)   Resolving deltas:   5% (1171/23359)   Resolving deltas:   6% (1402/23359)   Resolving deltas:   7% (1636/23359)   Resolving deltas:   8% (1995/23359)   Resolving deltas:   9% (2125/23359)   Resolving deltas:  10% (2340/23359)   Resolving deltas:  11% (2575/23359)   Resolving deltas:  12% (2804/23359)   Resolving deltas:  13% (3042/23359)   Resolving deltas:  14% (3272/23359)   Resolving deltas:  15% (3516/23359)   Resolving deltas:  16% (3754/23359)   Resolving deltas:  17% (3975/23359)   Resolving deltas:  18% (4205/23359)   Resolving deltas:  19% (4441/23359)   Resolving deltas:  20% (4685/23359)   Resolving deltas:  21% (4909/23359)   Resolving deltas:  22% (5139/23359)   Resolving deltas:  23% (5374/23359)   Resolving deltas:  24% (5609/23359)   Resolving deltas:  25% (5849/23359)   Resolving deltas:  26% (6082/23359)   Resolving deltas:  27% (6310/23359)   Resolving deltas:  28% (6542/23359)   Resolving deltas:  29% (6775/23359)   Resolving deltas:  30% (7015/23359)   Resolving deltas:  31% (7244/23359)   Resolving deltas:  32% (7484/23359)   Resolving deltas:  33% (7716/23359)   Resolving deltas:  34% (7951/23359)   Resolving deltas:  35% (8186/23359)   Resolving deltas:  36% (8413/23359)   Resolving deltas:  37% (8653/23359)   Resolving deltas:  38% (8907/23359)   Resolving deltas:  39% (9113/23359)   Resolving deltas:  40% (9348/23359)   Resolving deltas:  41% (9582/23359)   Resolving deltas:  42% (9811/23359)   Resolving deltas:  43% (10048/23359)   Resolving deltas:  44% (10281/23359)   Resolving deltas:  45% (10524/23359)   Resolving deltas:  46% (10747/23359)   Resolving deltas:  47% (10979/23359)   Resolving deltas:  48% (11227/23359)   Resolving deltas:  49% (11466/23359)   Resolving deltas:  50% (11697/23359)   Resolving deltas:  51% (11917/23359)   Resolving deltas:  52% (12147/23359)   Resolving deltas:  53% (12381/23359)   Resolving deltas:  54% (12632/23359)   Resolving deltas:  55% (12856/23359)   Resolving deltas:  56% (13083/23359)   Resolving deltas:  57% (13319/23359)   Resolving deltas:  58% (13587/23359)   Resolving deltas:  59% (13783/23359)   Resolving deltas:  60% (14027/23359)   Resolving deltas:  61% (14264/23359)   Resolving deltas:  62% (14493/23359)   Resolving deltas:  63% (14753/23359)   Resolving deltas:  64% (14972/23359)   Resolving deltas:  65% (15204/23359)   Resolving deltas:  66% (15418/23359)   Resolving deltas:  67% (15730/23359)   Resolving deltas:  68% (15892/23359)   Resolving deltas:  69% (16120/23359)   Resolving deltas:  70% (16357/23359)   Resolving deltas:  71% (16600/23359)   Resolving deltas:  72% (16866/23359)   Resolving deltas:  73% (17078/23359)   Resolving deltas:  75% (17747/23359)   Resolving deltas:  76% (17765/23359)   Resolving deltas:  77% (18089/23359)   Resolving deltas:  78% (18306/23359)   Resolving deltas:  79% (18464/23359)   Resolving deltas:  80% (18696/23359)   Resolving deltas:  81% (18924/23359)   Resolving deltas:  82% (19220/23359)   Resolving deltas:  83% (19404/23359)   Resolving deltas:  84% (19651/23359)   Resolving deltas:  85% (19923/23359)   Resolving deltas:  86% (20115/23359)   Resolving deltas:  87% (20388/23359)   Resolving deltas:  88% (20556/23359)   Resolving deltas:  89% (20806/23359)   Resolving deltas:  90% (21077/23359)   Resolving deltas:  91% (21291/23359)   Resolving deltas:  92% (21507/23359)   Resolving deltas:  93% (21745/23359)   Resolving deltas:  94% (21981/23359)   Resolving deltas:  95% (22197/23359)   Resolving deltas:  96% (22431/23359)   Resolving deltas:  97% (22670/23359)   Resolving deltas:  98% (22897/23359)   Resolving deltas:  99% (23136/23359)   Resolving deltas: 100% (23359/23359)   Resolving deltas: 100% (23359/23359), done.
+Checking out files:   0% (37/13778)   Checking out files:   0% (61/13778)   Checking out files:   0% (80/13778)   Checking out files:   0% (105/13778)   Checking out files:   1% (138/13778)   Checking out files:   1% (229/13778)   Checking out files:   2% (276/13778)   Checking out files:   3% (414/13778)   Checking out files:   4% (552/13778)   Checking out files:   5% (689/13778)   Checking out files:   6% (827/13778)   Checking out files:   7% (965/13778)   Checking out files:   8% (1103/13778)   Checking out files:   9% (1241/13778)   Checking out files:  10% (1378/13778)   Checking out files:  11% (1516/13778)   Checking out files:  12% (1654/13778)   Checking out files:  13% (1792/13778)   Checking out files:  14% (1929/13778)   Checking out files:  15% (2067/13778)   Checking out files:  16% (2205/13778)   Checking out files:  17% (2343/13778)   Checking out files:  18% (2481/13778)   Checking out files:  19% (2618/13778)   Checking out files:  20% (2756/13778)   Checking out files:  21% (2894/13778)   Checking out files:  22% (3032/13778)   Checking out files:  23% (3169/13778)   Checking out files:  24% (3307/13778)   Checking out files:  25% (3445/13778)   Checking out files:  26% (3583/13778)   Checking out files:  27% (3721/13778)   Checking out files:  28% (3858/13778)   Checking out files:  29% (3996/13778)   Checking out files:  30% (4134/13778)   Checking out files:  31% (4272/13778)   Checking out files:  32% (4409/13778)   Checking out files:  33% (4547/13778)   Checking out files:  34% (4685/13778)   Checking out files:  35% (4823/13778)   Checking out files:  36% (4961/13778)   Checking out files:  37% (5098/13778)   Checking out files:  38% (5236/13778)   Checking out files:  39% (5374/13778)   Checking out files:  40% (5512/13778)   Checking out files:  40% (5634/13778)   Checking out files:  41% (5649/13778)   Checking out files:  42% (5787/13778)   Checking out files:  43% (5925/13778)   Checking out files:  44% (6063/13778)   Checking out files:  45% (6201/13778)   Checking out files:  46% (6338/13778)   Checking out files:  47% (6476/13778)   Checking out files:  48% (6614/13778)   Checking out files:  49% (6752/13778)   Checking out files:  50% (6889/13778)   Checking out files:  51% (7027/13778)   Checking out files:  52% (7165/13778)   Checking out files:  53% (7303/13778)   Checking out files:  54% (7441/13778)   Checking out files:  55% (7578/13778)   Checking out files:  56% (7716/13778)   Checking out files:  57% (7854/13778)   Checking out files:  58% (7992/13778)   Checking out files:  59% (8130/13778)   Checking out files:  60% (8267/13778)   Checking out files:  61% (8405/13778)   Checking out files:  62% (8543/13778)   Checking out files:  63% (8681/13778)   Checking out files:  64% (8818/13778)   Checking out files:  65% (8956/13778)   Checking out files:  66% (9094/13778)   Checking out files:  67% (9232/13778)   Checking out files:  68% (9370/13778)   Checking out files:  69% (9507/13778)   Checking out files:  70% (9645/13778)   Checking out files:  71% (9783/13778)   Checking out files:  72% (9921/13778)   Checking out files:  73% (10058/13778)   Checking out files:  74% (10196/13778)   Checking out files:  75% (10334/13778)   Checking out files:  76% (10472/13778)   Checking out files:  77% (10610/13778)   Checking out files:  78% (10747/13778)   Checking out files:  79% (10885/13778)   Checking out files:  80% (11023/13778)   Checking out files:  81% (11161/13778)   Checking out files:  82% (11298/13778)   Checking out files:  83% (11436/13778)   Checking out files:  84% (11574/13778)   Checking out files:  85% (11712/13778)   Checking out files:  86% (11850/13778)   Checking out files:  87% (11987/13778)   Checking out files:  88% (12125/13778)   Checking out files:  89% (12263/13778)   Checking out files:  90% (12401/13778)   Checking out files:  91% (12538/13778)   Checking out files:  92% (12676/13778)   Checking out files:  93% (12814/13778)   Checking out files:  94% (12952/13778)   Checking out files:  95% (13090/13778)   Checking out files:  96% (13227/13778)   Checking out files:  97% (13365/13778)   Checking out files:  98% (13503/13778)   Checking out files:  99% (13641/13778)   Checking out files: 100% (13778/13778)   Checking out files: 100% (13778/13778), done.
+
+Run: 'git -C /tmp/CGO_AE_OptimisticLoopOptimization/test_suite reset --hard 52adbd5a3c508214ab96c3ba56b5ecd5f1ebcb68'
+
+Run: 'git -C /tmp/CGO_AE_OptimisticLoopOptimization/test_suite rev-parse HEAD'
+Test suite version: 52adbd5a3c508214ab96c3ba56b5ecd5f1ebcb68
+
+
+
+[Existing] SNU NPB test suite folder:
+[/tmp/CGO_AE_OptimisticLoopOptimization/resources/NPB3.3-SER-C] >> NPB was set up!
+--------------------------------------------------------------------------------
+Note: Please modify the config/make.def and the config/suite.def file to use
+LLVM+Polly. The manual lists all required options and the provided files have
+been modified accordingly. If you choose to use the provided version of the SNU
+NPB benchmarks there is nothing to do.
+--------------------------------------------------------------------------------
+
+
+
+
+Run: 'hostname'
+NOTE: Use `docker cp <src_path> arch-linux-jd:<dst_path>` to copy files/folder
+(e.g., SPEC) from the host system to a docker container.
+
+
+
+
+
+Skip SPEC2000 detection, /tmp/CGO_AE_OptimisticLoopOptimization/SPEC/speccpu2000 exists
+
+
+Skip SPEC2006 detection, /tmp/CGO_AE_OptimisticLoopOptimization/SPEC/speccpu2006 exists
+
+Run: 'cat /tmp/CGO_AE_OptimisticLoopOptimization/SPEC/speccpu2000/version'
+SPEC2000 version: 1.3.1
+
+Run: 'cat /tmp/CGO_AE_OptimisticLoopOptimization/SPEC/speccpu2006/version.txt'
+SPEC2006 version: 1.1
+
+Summary:
+
+   LLVM-TS: /tmp/CGO_AE_OptimisticLoopOptimization/test_suite
+   SNU NPB: /tmp/CGO_AE_OptimisticLoopOptimization/resources/NPB3.3-SER-C
+  SPEC_SRC: /tmp/CGO_AE_OptimisticLoopOptimization/SPEC
+  SPEC2000: /tmp/CGO_AE_OptimisticLoopOptimization/SPEC/speccpu2000
+  SPEC2006: /tmp/CGO_AE_OptimisticLoopOptimization/SPEC/speccpu2006
+
+/tmp/CGO_AE_OptimisticLoopOptimization/scripts/artifact_eval_helper.py is done!
+
+
+
+********************************************************************************
+                     3. Set up the test environment (lnt)!                      
+********************************************************************************
+
+********************************************************************************
+Read /tmp/CGO_AE_OptimisticLoopOptimization/scripts/config.py
+Successfully initialized 15 values!
+
+********************************************************************************
+
+********************************************************************************
+    The setup_lnt.py script will download and setup an lnt test environment.    
+********************************************************************************
+
+********************************************************************************
+Read /tmp/CGO_AE_OptimisticLoopOptimization/scripts/config.py
+Successfully initialized 15 values!
+
+********************************************************************************
+
+
+Run: 'which virtualenv2'
+
+[Existing] Path to virtualenv (python 2.X version!):
+[/usr/bin/virtualenv2] >> 
+[New] Path to the virtual environment (sandbox) in which tests should be executed in:
+[/tmp/CGO_AE_OptimisticLoopOptimization/sandbox] >> 
+Run: '/usr/bin/virtualenv2 /tmp/CGO_AE_OptimisticLoopOptimization/sandbox'
+Sandbox created!
+
+
+[New] Path to store lnt sources:
+[/tmp/CGO_AE_OptimisticLoopOptimization/lnt] >> Clone LNT:
+
+Run: 'git clone http://llvm.org/git/lnt /tmp/CGO_AE_OptimisticLoopOptimization/lnt'
+Cloning into '/tmp/CGO_AE_OptimisticLoopOptimization/lnt'...
+remote: Counting objects: 9821, done.[K
+remote: Compressing objects:   0% (1/2916)   [Kremote: Compressing objects:   1% (30/2916)   [Kremote: Compressing objects:   2% (59/2916)   [Kremote: Compressing objects:   3% (88/2916)   [Kremote: Compressing objects:   4% (117/2916)   [Kremote: Compressing objects:   5% (146/2916)   [Kremote: Compressing objects:   6% (175/2916)   [Kremote: Compressing objects:   7% (205/2916)   [Kremote: Compressing objects:   8% (234/2916)   [Kremote: Compressing objects:   9% (263/2916)   [Kremote: Compressing objects:  10% (292/2916)   [Kremote: Compressing objects:  11% (321/2916)   [Kremote: Compressing objects:  12% (350/2916)   [Kremote: Compressing objects:  13% (380/2916)   [Kremote: Compressing objects:  14% (409/2916)   [Kremote: Compressing objects:  15% (438/2916)   [Kremote: Compressing objects:  16% (467/2916)   [Kremote: Compressing objects:  17% (496/2916)   [Kremote: Compressing objects:  18% (525/2916)   [Kremote: Compressing objects:  19% (555/2916)   [Kremote: Compressing objects:  20% (584/2916)   [Kremote: Compressing objects:  21% (613/2916)   [Kremote: Compressing objects:  22% (642/2916)   [Kremote: Compressing objects:  23% (671/2916)   [Kremote: Compressing objects:  24% (700/2916)   [Kremote: Compressing objects:  25% (729/2916)   [Kremote: Compressing objects:  26% (759/2916)   [Kremote: Compressing objects:  27% (788/2916)   [Kremote: Compressing objects:  28% (817/2916)   [Kremote: Compressing objects:  29% (846/2916)   [Kremote: Compressing objects:  30% (875/2916)   [Kremote: Compressing objects:  31% (904/2916)   [Kremote: Compressing objects:  32% (934/2916)   [Kremote: Compressing objects:  33% (963/2916)   [Kremote: Compressing objects:  34% (992/2916)   [Kremote: Compressing objects:  35% (1021/2916)   [Kremote: Compressing objects:  36% (1050/2916)   [Kremote: Compressing objects:  37% (1079/2916)   [Kremote: Compressing objects:  38% (1109/2916)   [Kremote: Compressing objects:  39% (1138/2916)   [Kremote: Compressing objects:  40% (1167/2916)   [Kremote: Compressing objects:  41% (1196/2916)   [Kremote: Compressing objects:  42% (1225/2916)   [Kremote: Compressing objects:  43% (1254/2916)   [Kremote: Compressing objects:  44% (1284/2916)   [Kremote: Compressing objects:  45% (1313/2916)   [Kremote: Compressing objects:  46% (1342/2916)   [Kremote: Compressing objects:  47% (1371/2916)   [Kremote: Compressing objects:  48% (1400/2916)   [Kremote: Compressing objects:  49% (1429/2916)   [Kremote: Compressing objects:  50% (1458/2916)   [Kremote: Compressing objects:  51% (1488/2916)   [Kremote: Compressing objects:  52% (1517/2916)   [Kremote: Compressing objects:  53% (1546/2916)   [Kremote: Compressing objects:  54% (1575/2916)   [Kremote: Compressing objects:  55% (1604/2916)   [Kremote: Compressing objects:  56% (1633/2916)   [Kremote: Compressing objects:  57% (1663/2916)   [Kremote: Compressing objects:  58% (1692/2916)   [Kremote: Compressing objects:  59% (1721/2916)   [Kremote: Compressing objects:  60% (1750/2916)   [Kremote: Compressing objects:  61% (1779/2916)   [Kremote: Compressing objects:  62% (1808/2916)   [Kremote: Compressing objects:  63% (1838/2916)   [Kremote: Compressing objects:  64% (1867/2916)   [Kremote: Compressing objects:  65% (1896/2916)   [Kremote: Compressing objects:  66% (1925/2916)   [Kremote: Compressing objects:  67% (1954/2916)   [Kremote: Compressing objects:  68% (1983/2916)   [Kremote: Compressing objects:  69% (2013/2916)   [Kremote: Compressing objects:  70% (2042/2916)   [Kremote: Compressing objects:  71% (2071/2916)   [Kremote: Compressing objects:  72% (2100/2916)   [Kremote: Compressing objects:  73% (2129/2916)   [Kremote: Compressing objects:  74% (2158/2916)   [Kremote: Compressing objects:  75% (2187/2916)   [Kremote: Compressing objects:  76% (2217/2916)   [Kremote: Compressing objects:  77% (2246/2916)   [Kremote: Compressing objects:  78% (2275/2916)   [Kremote: Compressing objects:  79% (2304/2916)   [Kremote: Compressing objects:  80% (2333/2916)   [Kremote: Compressing objects:  81% (2362/2916)   [Kremote: Compressing objects:  82% (2392/2916)   [Kremote: Compressing objects:  83% (2421/2916)   [Kremote: Compressing objects:  84% (2450/2916)   [Kremote: Compressing objects:  85% (2479/2916)   [Kremote: Compressing objects:  86% (2508/2916)   [Kremote: Compressing objects:  87% (2537/2916)   [Kremote: Compressing objects:  88% (2567/2916)   [Kremote: Compressing objects:  89% (2596/2916)   [Kremote: Compressing objects:  90% (2625/2916)   [Kremote: Compressing objects:  91% (2654/2916)   [Kremote: Compressing objects:  92% (2683/2916)   [Kremote: Compressing objects:  93% (2712/2916)   [Kremote: Compressing objects:  94% (2742/2916)   [Kremote: Compressing objects:  95% (2771/2916)   [Kremote: Compressing objects:  96% (2800/2916)   [Kremote: Compressing objects:  97% (2829/2916)   [Kremote: Compressing objects:  98% (2858/2916)   [Kremote: Compressing objects:  99% (2887/2916)   [Kremote: Compressing objects: 100% (2916/2916)   [Kremote: Compressing objects: 100% (2916/2916), done.[K
+Receiving objects:   0% (1/9821)   Receiving objects:   1% (99/9821)   Receiving objects:   2% (197/9821)   Receiving objects:   3% (295/9821)   Receiving objects:   4% (393/9821)   Receiving objects:   5% (492/9821)   Receiving objects:   6% (590/9821)   Receiving objects:   7% (688/9821)   Receiving objects:   8% (786/9821)   Receiving objects:   9% (884/9821)   Receiving objects:  10% (983/9821)   Receiving objects:  11% (1081/9821)   Receiving objects:  12% (1179/9821)   Receiving objects:  13% (1277/9821)   Receiving objects:  14% (1375/9821)   Receiving objects:  15% (1474/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  16% (1572/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  17% (1670/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  18% (1768/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  19% (1866/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  20% (1965/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  21% (2063/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  22% (2161/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  23% (2259/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  24% (2358/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  25% (2456/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  26% (2554/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  27% (2652/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  28% (2750/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  29% (2849/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  30% (2947/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  31% (3045/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  32% (3143/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  33% (3241/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  34% (3340/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  35% (3438/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  36% (3536/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  37% (3634/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  38% (3732/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  39% (3831/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  40% (3929/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  41% (4027/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  42% (4125/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  43% (4224/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  44% (4322/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  45% (4420/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  46% (4518/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  47% (4616/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  48% (4715/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  49% (4813/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  50% (4911/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  51% (5009/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  52% (5107/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  53% (5206/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  54% (5304/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  55% (5402/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  56% (5500/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  57% (5598/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  58% (5697/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  59% (5795/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  60% (5893/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  61% (5991/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  62% (6090/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  63% (6188/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  64% (6286/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  65% (6384/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  66% (6482/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  66% (6572/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  67% (6581/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  68% (6679/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  69% (6777/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  70% (6875/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  71% (6973/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  72% (7072/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  73% (7170/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  74% (7268/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  75% (7366/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  76% (7464/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  77% (7563/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  78% (7661/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  79% (7759/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  80% (7857/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  81% (7956/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  82% (8054/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  83% (8152/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  84% (8250/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  85% (8348/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  86% (8447/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  87% (8545/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  88% (8643/9821), 524.00 KiB | 934.00 KiB/s   Receiving objects:  89% (8741/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects:  90% (8839/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects:  91% (8938/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects:  92% (9036/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects:  93% (9134/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects:  94% (9232/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects:  95% (9330/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects:  96% (9429/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects:  97% (9527/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects:  98% (9625/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects:  99% (9723/9821), 2.12 MiB | 1.99 MiB/s   remote: Total 9821 (delta 7416), reused 9008 (delta 6797)[K
+Receiving objects: 100% (9821/9821), 2.12 MiB | 1.99 MiB/s   Receiving objects: 100% (9821/9821), 2.24 MiB | 1.99 MiB/s, done.
+Resolving deltas:   0% (0/7416)   Resolving deltas:   1% (104/7416)   Resolving deltas:   2% (150/7416)   Resolving deltas:   3% (234/7416)   Resolving deltas:   4% (311/7416)   Resolving deltas:   6% (486/7416)   Resolving deltas:   7% (560/7416)   Resolving deltas:   8% (596/7416)   Resolving deltas:   9% (670/7416)   Resolving deltas:  10% (787/7416)   Resolving deltas:  11% (856/7416)   Resolving deltas:  12% (899/7416)   Resolving deltas:  13% (977/7416)   Resolving deltas:  14% (1041/7416)   Resolving deltas:  15% (1165/7416)   Resolving deltas:  16% (1187/7416)   Resolving deltas:  17% (1263/7416)   Resolving deltas:  18% (1335/7416)   Resolving deltas:  19% (1459/7416)   Resolving deltas:  20% (1527/7416)   Resolving deltas:  21% (1587/7416)   Resolving deltas:  22% (1636/7416)   Resolving deltas:  23% (1735/7416)   Resolving deltas:  24% (1782/7416)   Resolving deltas:  25% (1854/7416)   Resolving deltas:  26% (1952/7416)   Resolving deltas:  27% (2063/7416)   Resolving deltas:  28% (2083/7416)   Resolving deltas:  29% (2185/7416)   Resolving deltas:  30% (2275/7416)   Resolving deltas:  31% (2304/7416)   Resolving deltas:  32% (2383/7416)   Resolving deltas:  33% (2454/7416)   Resolving deltas:  34% (2530/7416)   Resolving deltas:  35% (2605/7416)   Resolving deltas:  36% (2678/7416)   Resolving deltas:  37% (2746/7416)   Resolving deltas:  38% (2828/7416)   Resolving deltas:  39% (2899/7416)   Resolving deltas:  42% (3121/7416)   Resolving deltas:  43% (3261/7416)   Resolving deltas:  44% (3268/7416)   Resolving deltas:  45% (3372/7416)   Resolving deltas:  46% (3414/7416)   Resolving deltas:  47% (3533/7416)   Resolving deltas:  48% (3560/7416)   Resolving deltas:  49% (3637/7416)   Resolving deltas:  50% (3716/7416)   Resolving deltas:  51% (3804/7416)   Resolving deltas:  52% (3895/7416)   Resolving deltas:  53% (3962/7416)   Resolving deltas:  54% (4006/7416)   Resolving deltas:  55% (4086/7416)   Resolving deltas:  56% (4187/7416)   Resolving deltas:  58% (4349/7416)   Resolving deltas:  59% (4433/7416)   Resolving deltas:  62% (4632/7416)   Resolving deltas:  63% (4674/7416)   Resolving deltas:  64% (4759/7416)   Resolving deltas:  65% (4868/7416)   Resolving deltas:  66% (4916/7416)   Resolving deltas:  67% (4975/7416)   Resolving deltas:  68% (5086/7416)   Resolving deltas:  72% (5345/7416)   Resolving deltas:  73% (5414/7416)   Resolving deltas:  74% (5492/7416)   Resolving deltas:  75% (5626/7416)   Resolving deltas:  76% (5642/7416)   Resolving deltas:  77% (5712/7416)   Resolving deltas:  78% (5804/7416)   Resolving deltas:  79% (5881/7416)   Resolving deltas:  80% (5987/7416)   Resolving deltas:  81% (6028/7416)   Resolving deltas:  82% (6096/7416)   Resolving deltas:  83% (6198/7416)   Resolving deltas:  84% (6238/7416)   Resolving deltas:  85% (6311/7416)   Resolving deltas:  86% (6451/7416)   Resolving deltas:  87% (6455/7416)   Resolving deltas:  88% (6538/7416)   Resolving deltas:  89% (6601/7416)   Resolving deltas:  90% (6734/7416)   Resolving deltas:  91% (6791/7416)   Resolving deltas:  92% (6825/7416)   Resolving deltas:  93% (6907/7416)   Resolving deltas:  94% (6982/7416)   Resolving deltas:  95% (7109/7416)   Resolving deltas:  96% (7168/7416)   Resolving deltas:  97% (7202/7416)   Resolving deltas:  98% (7270/7416)   Resolving deltas:  99% (7344/7416)   Resolving deltas: 100% (7416/7416)   Resolving deltas: 100% (7416/7416), done.
+
+Set up lnt in the sandbox:
+
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/bin/python /tmp/CGO_AE_OptimisticLoopOptimization/lnt/setup.py install'
+/usr/lib64/python2.7/distutils/extension.py:133: UserWarning: Unknown Extension options: 'optional'
+  warnings.warn(msg)
+/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/lib/python2.7/site-packages/setuptools/dist.py:332: UserWarning: Normalizing '0.4.1dev' to '0.4.1.dev0'
+  normalized_version,
+warning: no previously-included files matching '*pyc' found anywhere in distribution
+warning: no previously-included files matching '*~' found anywhere in distribution
+no previously-included directories found matching 'docs/_build'
+no previously-included directories found matching 'tests/*/Output'
+no previously-included directories found matching 'tests/*/*/Output'
+warning: no previously-included files matching '*.pyc' found under directory 'tests'
+warning: no previously-included files matching '*.pyc' found under directory 'tests'
+warning: no previously-included files matching '*.pyc' found under directory 'docs'
+warning: no previously-included files matching '*.pyo' found under directory 'docs'
+no previously-included directories found matching 'docs/_build'
+no previously-included directories found matching 'docs/_themes/.git'
+warning: no previously-included files matching '*' found under directory 'docs/_build'
+warning: no previously-included files matching '*.pyc' found under directory 'tests'
+zip_safe flag not set; analyzing archive contents...
+wtforms.i18n: module references __file__
+no previously-included directories found matching 'documentation/_build'
+zip_safe flag not set; analyzing archive contents...
+six: module references __path__
+zip_safe flag not set; analyzing archive contents...
+warning: no previously-included files matching '*' found under directory 'docs/_build'
+warning: no previously-included files matching '*.pyc' found anywhere in distribution
+warning: no previously-included files matching '*.pyo' found anywhere in distribution
+warning: no previously-included files matching '*.orig' found anywhere in distribution
+warning: no previously-included files matching '*.rej' found anywhere in distribution
+no previously-included directories found matching 'doc/_build'
+no previously-included directories found matching 'env24'
+no previously-included directories found matching 'env25'
+no previously-included directories found matching 'env26'
+no previously-included directories found matching 'env27'
+zip_safe flag not set; analyzing archive contents...
+zip_safe flag not set; analyzing archive contents...
+warning: no files found matching '*' under directory 'werkzeug/debug/templates'
+warning: no files found matching '*' under directory 'tests'
+warning: no previously-included files matching '*.pyc' found under directory 'docs'
+warning: no previously-included files matching '*.pyo' found under directory 'docs'
+warning: no previously-included files matching '*.pyc' found under directory 'tests'
+warning: no previously-included files matching '*.pyo' found under directory 'tests'
+warning: no previously-included files matching '*.pyc' found under directory 'examples'
+warning: no previously-included files matching '*.pyo' found under directory 'examples'
+no previously-included directories found matching 'docs/_build'
+warning: no files found matching '*.jpg' under directory 'doc'
+warning: no files found matching 'distribute_setup.py'
+warning: no files found matching 'sa2to3.py'
+warning: no files found matching 'ez_setup.py'
+no previously-included directories found matching 'doc/build/output'
+zip_safe flag not set; analyzing archive contents...
+sqlalchemy.testing.plugin.noseplugin: module references __file__
+warning: no files found matching '*' under directory 'custom_fixers'
+warning: no previously-included files matching '*' found under directory 'docs/_build'
+warning: no previously-included files matching '*.pyc' found under directory 'jinja2'
+warning: no previously-included files matching '*.pyc' found under directory 'docs'
+warning: no previously-included files matching '*.pyo' found under directory 'jinja2'
+warning: no previously-included files matching '*.pyo' found under directory 'docs'
+warning: no files found matching 'CHANGES'
+warning: no previously-included files matching '*.pyc' found under directory 'docs'
+warning: no previously-included files matching '*.pyo' found under directory 'docs'
+warning: no previously-included files matching '*.pyc' found under directory 'tests'
+warning: no previously-included files matching '*.pyo' found under directory 'tests'
+warning: no previously-included files matching '*.pyc' found under directory 'examples'
+warning: no previously-included files matching '*.pyo' found under directory 'examples'
+no previously-included directories found matching 'docs/_build'
+no previously-included directories found matching 'docs/_themes'
+warning: no files found matching '*' under directory 'tests'
+warning: no previously-included files matching '*.pyc' found under directory 'docs'
+warning: no previously-included files matching '*.pyo' found under directory 'docs'
+warning: no previously-included files matching '*.pyc' found under directory 'tests'
+warning: no previously-included files matching '*.pyo' found under directory 'tests'
+warning: no previously-included files matching '*.pyc' found under directory 'examples'
+warning: no previously-included files matching '*.pyo' found under directory 'examples'
+no previously-included directories found matching 'docs/_build'
+no previously-included directories found matching 'docs/_themes/.git'
+
+/tmp/CGO_AE_OptimisticLoopOptimization/scripts/artifact_eval_helper.py is done!
+
+
+
+********************************************************************************
+                               4. Run the tests!                                
+********************************************************************************
+
+********************************************************************************
+Read /tmp/CGO_AE_OptimisticLoopOptimization/scripts/config.py
+Successfully initialized 18 values!
+
+********************************************************************************
+
+********************************************************************************
+             The runtests.py script will run the lnt and NPB tests.             
+********************************************************************************
+
+********************************************************************************
+Read /tmp/CGO_AE_OptimisticLoopOptimization/scripts/config.py
+Successfully initialized 18 values!
+
+********************************************************************************
+
+0. Determine result folder and compiler for run:
+
+[New] Path to store pre-processed tests results:
+[/tmp/CGO_AE_OptimisticLoopOptimization/results] >>  clang: /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang
+ clang++: /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang++
+ Result folder: /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24
+
+
+1. Determine general configuration options:
+
+Run the inliner prior to Polly?
+[Y/n] >> 
+Assume scalars to be optimizable?
+[Y/n] >> 
+Allow to speculate on error blocks?
+[y/N] >> 
+Allow to speculate on unsigned operations?
+[y/N] >> 
+Collect runtime execution information (needed for #D and #E statistics)?
+[Y/n] >> 
+Output compile statistics?
+[Y/n] >> 
+Track only non-implied assumptions [Yes for Figure 16 (a), No for Figrue 16 (b)]
+[y/N] >> 
+Output compile remarks?
+[Y/n] >> 
+Add user compile time option:
+>> 
+
+Tests will be run with the following options:
+	-O3
+	-mllvm -polly
+	-mllvm -polly-invariant-load-hoisting=true
+	-mllvm -polly-run-inliner=true
+	-mllvm -polly-unprofitable-scalar-accs=false
+	-mllvm -polly-allow-error-blocks=false
+	-mllvm -polly-allow-unsigned-operations=false
+	-mllvm -polly-codegen-emit-rtc-print=true
+	-mllvm -stats
+	-mllvm -polly-remarks-minimal=false
+	-Rpass-analysis=polly
+==> Write configuration to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/config
+
+Compile the NPB suite?
+[Y/n] >>          NPB_SRC: /tmp/CGO_AE_OptimisticLoopOptimization/resources/NPB3.3-SER-C
+ std output file: /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_compile_out
+  std error file: /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_compile_err
+
+
+
+Clean the NPB source folder
+
+Run: 'cd /tmp/CGO_AE_OptimisticLoopOptimization/resources/NPB3.3-SER-C && make veryclean'
+
+
+
+Modify the NPB configuration for this run
+ Set CC=/tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang
+   Drop: 'CFLAGS += -O3'
+   Drop: 'CFLAGS += -mllvm -polly'
+   Drop: 'CFLAGS += -mllvm -polly-invariant-load-hoisting=true'
+   Drop: 'CFLAGS += -mllvm -polly-run-inliner=true'
+   Drop: 'CFLAGS += -mllvm -polly-unprofitable-scalar-accs=false'
+   Drop: 'CFLAGS += -mllvm -polly-allow-error-blocks=false'
+   Drop: 'CFLAGS += -mllvm -stats'
+   Drop: 'CFLAGS += -Rpass-analysis=polly'
+ Append: 'CFLAGS += -O3'
+ Append: 'CFLAGS += -mllvm -polly'
+ Append: 'CFLAGS += -mllvm -polly-invariant-load-hoisting=true'
+ Append: 'CFLAGS += -mllvm -polly-run-inliner=true'
+ Append: 'CFLAGS += -mllvm -polly-unprofitable-scalar-accs=false'
+ Append: 'CFLAGS += -mllvm -polly-allow-error-blocks=false'
+ Append: 'CFLAGS += -mllvm -polly-allow-unsigned-operations=false'
+ Append: 'CFLAGS += -mllvm -polly-codegen-emit-rtc-print=true'
+ Append: 'CFLAGS += -mllvm -stats'
+ Append: 'CFLAGS += -mllvm -polly-remarks-minimal=false'
+ Append: 'CFLAGS += -Rpass-analysis=polly'
+
+
+
+Create empty bin directory for the exectuables in /tmp/CGO_AE_OptimisticLoopOptimization/resources/NPB3.3-SER-C
+
+
+Compile the NPB test suite
+
+Run: 'cd /tmp/CGO_AE_OptimisticLoopOptimization/resources/NPB3.3-SER-C && make suite > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_compile_out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_compile_err'
+
+
+
+                        ====== DONE COMPILING NPB ======                        
+
+
+
+
+
+
+
+Copy benchmark binaries to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin
+
+Run: 'cp -R /tmp/CGO_AE_OptimisticLoopOptimization/resources/NPB3.3-SER-C/bin/* /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/'
+
+Run the NPB suite?
+[Y/n] >> 
+How often?
+[1] >> 
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/ua.W.x > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/ua.W.x.out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/ua.W.x.err'
+
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/sp.W.x > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/sp.W.x.out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/sp.W.x.err'
+
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/mg.W.x > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/mg.W.x.out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/mg.W.x.err'
+
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/lu.W.x > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/lu.W.x.out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/lu.W.x.err'
+
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/is.W.x > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/is.W.x.out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/is.W.x.err'
+
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/ft.W.x > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/ft.W.x.out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/ft.W.x.err'
+
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/ep.W.x > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/ep.W.x.out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/ep.W.x.err'
+
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/dc.W.x > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/dc.W.x.out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/dc.W.x.err'
+
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/cg.W.x > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/cg.W.x.out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/cg.W.x.err'
+
+Run: '/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/bt.W.x > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/bt.W.x.out 2> /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin/bt.W.x.err'
+
+
+
+                         ====== DONE RUNNING NPB ======                         
+
+
+
+
+
+
+
+Using 'grep' to extract Polly statistics [-stats] from /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_compile_err
+
+Run: 'grep  --no-filename -E " polly-scops | polly-codegen " /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_compile_err > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB.polly_stats'
+Output written to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB.polly_stats
+
+
+
+Summarize statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB.polly_stats
+
+Try to extract the number of failing runtime checks [#E (b)] for NPB
+
+Run: 'grep -R --no-filename 'RTC: 0' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin | wc -l '
+
+Try to extract the number of failing runtime check locations [#D (b)] for NPB
+
+Run: 'grep -R --no-filename 'RTC: 0' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin | sed -e 's|.*\(F: [-_.a-zA-Z0-9]* R:\)|\1|' -e 's|__RTC:.*||' | grep -v 'Binary file' | sort -u | wc -l'
+
+Try to extract the number of executed runtime checks [#E (a)] for NPB
+
+Run: 'grep -R --no-filename 'RTC: ' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin | wc -l '
+
+Try to extract the number of executed runtime check locations [#D (a)] for NPB
+
+Run: 'grep -R --no-filename 'RTC: ' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB_bin | sed -e 's|.*\(F: [-_.a-zA-Z0-9]* R:\)|\1|' -e 's|__RTC:.*||' | grep -v 'Binary file' | sort -u | wc -l'
+Summary written to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB.polly_stats_summary.txt
+Summary of the statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB.polly_stats
+
+===============
+===== NPB =====
+===============
+
+Summary contains runtime execution information [-mllm -polly-codegen-emit-rtc-print=true]
+All assumptions were tracked [-mllm -polly-remarks-minimal=false]
+
+Applicability & runtime results (if available):
+----------------------------------------------
+
+Figure 15:
+(a)   w/ A         (b) |  w/o A
+------------------------------|---------
+#S         50    |             2 |      3
+#D         41    |             5 |    n/a
+#E     214409    |         48498 |    n/a
+
+Assumptions taken:
+-----------------
+
+Figure 16:
+(a)   w/ A         (b)
+A[IB]       1021    |           n/a
+A[EE]        773    |           n/a
+A[BL]          0    |           n/a
+A[AA]         14    |           n/a
+A[RT]          1    |           n/a
+
+
+Raw data and processing step follow!
+
+
+Statistic data summarized [-mllvm -stats]:
+-----------------------------------------
+45 - Number of SCoPs that required versioning.
+3 - Number of SCoPs with statically infeasible context.
+48 - Number of Scops containing a loop
+14 - Number of aliasing assumptions taken.
+1021 - Number of inbounds assumptions taken.
+1 - Number of invariant loads assumptions taken.
+1 - Number of too complex SCoPs.
+48 - Number of valid Scops
+773 - Number of wrapping assumptions taken.
+
+
+Computed experimental result data:
+---------------------------------
+Number of valid non-trivial loop nests [#S (a)]:
+48 : Valid SCoPs
+-    1 : Too complex SCoPs
+-    0 : Unprofitable SCoPs
++    3 : valid infeasible SCoPs
+-------
+=   50 : Valid profitable SCoPs [#S (a)]
+
+
+Number of valid non-trivial loop nests with infeasible assumptions [#S (b)]:
+3 : Infeasible SCoPs
+-    1 : Too complex SCoPs
+-    0 : Unprofitable SCoPs
+-------
+=    2 : Valid infeasible SCoPs [#S (b)]
+
+
+Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:
+50 : Valid profitable SCoPs [#S (a)]
+-   45 : SCoPs that required versioning
+-------
+=    3 : Approximation of valid profitable SCoPs without assumptions [#S (w/o A)]
+
+
+Number of inbounds/delinearization assumptions taken [IB]:
+0 : Number of delinearization assumptions taken
++ 1021 : Number of inbounds assumptions taken
+-------
+= 1021 : inbounds assumptions [IB]
+
+
+Number of expression evaluation (wrapping) assumptions taken [EE]:
+=  773 : expression evaluation assumptions [EE]
+
+
+Number of bounded loop assumptions taken [BL]:
+=    0 : bounded loop assumptions [BL]
+
+
+Number of alias assumptions taken [AA]:
+=   14 : alias assumptions [AA]
+
+
+Number of referential transparent (invariant load) assumptions taken [RT]:
+=    1 : referential transparent assumptions [RT]
+
+
+Number of executed RTC locations [#D (a)]:      41
+
+Number of failing RTC locations [#D (b)]:       5
+
+Number of executed RTCs [#E (a)]:  214409
+
+Number of failing RTCs [#E (b)]:   48498
+
+
+Open text editor to show the results!
+
+
+Compile & run the LLVM test suite?
+[Y/n] >> 
+[New] LNT server to commit results to (if any):
+[/tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server] >> 
+Accumulate test data from multiple runs?
+[1] >> 
+Remove short running regression tests?
+[y/N] >> Create lnt server instance /tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server
+
+Run: '. /tmp/CGO_AE_OptimisticLoopOptimization/sandbox/bin/activate && lnt create /tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server'
+[m[38;5;231m[48;5;16m[39;49m2016-12-10 16:04:50 WARNING: ignoring item 'new_suite.py' in schema migration directory: '/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/lib/python2.7/site-packages/LNT-0.4.1.dev0-py2.7-linux-x86_64.egg/lnt/server/db/migrations'
+LNT runtest command:
+lnt runtest nt --sandbox /tmp/CGO_AE_OptimisticLoopOptimization/sandbox --cc /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang --cxx /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang++ --test-suite /tmp/CGO_AE_OptimisticLoopOptimization/test_suite --build-threads 8  -j 8  --multisample=1 --run-order=Dec_10_16-03-24_test_suite --submit=/tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server --cflag=-O3 --cflag=-mllvm --cflag=-polly --cflag=-mllvm --cflag=-polly-invariant-load-hoisting=true --cflag=-mllvm --cflag=-polly-run-inliner=true --cflag=-mllvm --cflag=-polly-unprofitable-scalar-accs=false --cflag=-mllvm --cflag=-polly-allow-error-blocks=false --cflag=-mllvm --cflag=-polly-allow-unsigned-operations=false --cflag=-mllvm --cflag=-polly-codegen-emit-rtc-print=true --cflag=-mllvm --cflag=-stats --cflag=-mllvm --cflag=-polly-remarks-minimal=false --cflag=-Rpass-analysis=polly
+Run LNT:
+
+Run: '. /tmp/CGO_AE_OptimisticLoopOptimization/sandbox/bin/activate && lnt runtest nt --sandbox /tmp/CGO_AE_OptimisticLoopOptimization/sandbox --cc /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang --cxx /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang++ --test-suite /tmp/CGO_AE_OptimisticLoopOptimization/test_suite --build-threads 8  -j 8  --multisample=1 --run-order=Dec_10_16-03-24_test_suite --submit=/tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server --cflag=-O3 --cflag=-mllvm --cflag=-polly --cflag=-mllvm --cflag=-polly-invariant-load-hoisting=true --cflag=-mllvm --cflag=-polly-run-inliner=true --cflag=-mllvm --cflag=-polly-unprofitable-scalar-accs=false --cflag=-mllvm --cflag=-polly-allow-error-blocks=false --cflag=-mllvm --cflag=-polly-allow-unsigned-operations=false --cflag=-mllvm --cflag=-polly-codegen-emit-rtc-print=true --cflag=-mllvm --cflag=-stats --cflag=-mllvm --cflag=-polly-remarks-minimal=false --cflag=-Rpass-analysis=polly; deactivate'
+2016-12-10 16:04:51 INFO: TARGET_FLAGS: -O3 -mllvm -polly -mllvm -polly-invariant-load-hoisting=true -mllvm -polly-run-inliner=true -mllvm -polly-unprofitable-scalar-accs=false -mllvm -polly-allow-error-blocks=false -mllvm -polly-allow-unsigned-operations=false -mllvm -polly-codegen-emit-rtc-print=true -mllvm -stats -mllvm -polly-remarks-minimal=false -Rpass-analysis=polly
+2016-12-10 15:04:51: (multisample) running iteration 0
+2016-12-10 15:04:51: checking source versions
+2016-12-10 15:04:51: scanning for LNT-based test modules
+2016-12-10 15:04:51: found 0 LNT-based test modules
+2016-12-10 15:04:51: using nickname: 'arch-linux-jd__clang_DEV__x86_64'
+2016-12-10 15:04:51: starting test in '/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/test-2016-12-10_15-04-51/sample-0'
+2016-12-10 15:04:51: configuring...
+2016-12-10 15:04:54: building test-suite tools
+2016-12-10 15:04:55: building "nightly tests" with -j8...
+2016-12-10 15:11:56: executing "nightly tests" with -j8...
+2016-12-10 15:15:51: executing test modules
+2016-12-10 15:15:51: loading nightly test data...
+2016-12-10 15:15:51: capturing machine information
+2016-12-10 15:15:51: generating report: '/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/test-2016-12-10_15-04-51/sample-0/report.json'
+2016-12-10 15:15:51: (multisample) creating merged report
+2016-12-10 15:04:51: submitting result to '/tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server'
+No handlers could be found for logger "lnt.server.db.migrate"
+2016-12-10 16:15:52 INFO: Queuing background job to process fieldchanges 21788
+2016-12-10 16:15:52 INFO: Starting workers
+2016-12-10 16:15:52 INFO: Job queue empty.
+2016-12-10 16:15:52 INFO: Successfully created db_default/v4/nts/1
+2016-12-10 16:15:52 INFO: Running async wrapper: post_submit_tasks 30418
+2016-12-10 16:15:52 ERROR: Subprocess failed with:Traceback (most recent call last):
+  File "/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/lib/python2.7/site-packages/LNT-0.4.1.dev0-py2.7-linux-x86_64.egg/lnt/util/async_ops.py", line 125, in async_wrapper
+    _v4db = current_app.old_config.get_database(ts_args['db'])
+  File "/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/lib/python2.7/site-packages/Werkzeug-0.9.4-py2.7.egg/werkzeug/local.py", line 338, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/lib/python2.7/site-packages/Werkzeug-0.9.4-py2.7.egg/werkzeug/local.py", line 297, in _get_current_object
+    return self.__local()
+  File "/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/globals.py", line 34, in _find_app
+    raise RuntimeError('working outside of application context')
+RuntimeError: working outside of application context
+
+2016-12-10 16:15:52 INFO: Running process cleanup.
+2016-12-10 16:15:52 INFO: Waiting for Process-2 30418
+LNT execution folder was: /tmp/CGO_AE_OptimisticLoopOptimization/sandbox/test-2016-12-10_15-04-51
+Move lnt execution folder to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite
+
+Run: 'mv /tmp/CGO_AE_OptimisticLoopOptimization/sandbox/test-2016-12-10_15-04-51 /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite'
+
+
+
+Using 'grep' to extract Polly statistics [-stats] from /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite/sample-0/
+
+Run: 'grep -r --no-filename -E " polly-scops | polly-codegen " /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite/sample-0/ > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite.polly_stats'
+Output written to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite.polly_stats
+
+
+
+Summarize statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite.polly_stats
+
+Try to extract the number of failing runtime checks [#E (b)] for test_suite
+
+Run: 'grep -R --no-filename 'RTC: 0' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite/sample-0/ | wc -l '
+
+Try to extract the number of failing runtime check locations [#D (b)] for test_suite
+
+Run: 'grep -R --no-filename 'RTC: 0' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite/sample-0/ | sed -e 's|.*\(F: [-_.a-zA-Z0-9]* R:\)|\1|' -e 's|__RTC:.*||' | grep -v 'Binary file' | sort -u | wc -l'
+
+Try to extract the number of executed runtime checks [#E (a)] for test_suite
+
+Run: 'grep -R --no-filename 'RTC: ' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite/sample-0/ | wc -l '
+
+Try to extract the number of executed runtime check locations [#D (a)] for test_suite
+
+Run: 'grep -R --no-filename 'RTC: ' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite/sample-0/ | sed -e 's|.*\(F: [-_.a-zA-Z0-9]* R:\)|\1|' -e 's|__RTC:.*||' | grep -v 'Binary file' | sort -u | wc -l'
+Summary written to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite.polly_stats_summary.txt
+Summary of the statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite.polly_stats
+
+======================
+===== test_suite =====
+======================
+
+Summary contains runtime execution information [-mllm -polly-codegen-emit-rtc-print=true]
+All assumptions were tracked [-mllm -polly-remarks-minimal=false]
+
+Applicability & runtime results (if available):
+----------------------------------------------
+
+Figure 15:
+(a)   w/ A         (b) |  w/o A
+------------------------------|---------
+#S        431    |            62 |    163
+#D         85    |             9 |    n/a
+#E    5175672    |         89255 |    n/a
+
+Assumptions taken:
+-----------------
+
+Figure 16:
+(a)   w/ A         (b)
+A[IB]        258    |           n/a
+A[EE]        671    |           n/a
+A[BL]         23    |           n/a
+A[AA]        258    |           n/a
+A[RT]        162    |           n/a
+
+
+Raw data and processing step follow!
+
+
+Statistic data summarized [-mllvm -stats]:
+-----------------------------------------
+206 - Number of SCoPs that required versioning.
+90 - Number of SCoPs with statically infeasible context.
+369 - Number of Scops containing a loop
+258 - Number of aliasing assumptions taken.
+23 - Number of bounded loop assumptions taken.
+7 - Number of delinearization assumptions taken.
+251 - Number of inbounds assumptions taken.
+162 - Number of invariant loads assumptions taken.
+3 - Number of too complex SCoPs.
+25 - Number of unprofitable SCoPs.
+369 - Number of valid Scops
+671 - Number of wrapping assumptions taken.
+
+
+Computed experimental result data:
+---------------------------------
+Number of valid non-trivial loop nests [#S (a)]:
+369 : Valid SCoPs
+-    3 : Too complex SCoPs
+-   25 : Unprofitable SCoPs
++   90 : valid infeasible SCoPs
+-------
+=  431 : Valid profitable SCoPs [#S (a)]
+
+
+Number of valid non-trivial loop nests with infeasible assumptions [#S (b)]:
+90 : Infeasible SCoPs
+-    3 : Too complex SCoPs
+-   25 : Unprofitable SCoPs
+-------
+=   62 : Valid infeasible SCoPs [#S (b)]
+
+
+Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:
+431 : Valid profitable SCoPs [#S (a)]
+-  206 : SCoPs that required versioning
+-------
+=  163 : Approximation of valid profitable SCoPs without assumptions [#S (w/o A)]
+
+
+Number of inbounds/delinearization assumptions taken [IB]:
+7 : Number of delinearization assumptions taken
++  251 : Number of inbounds assumptions taken
+-------
+=  258 : inbounds assumptions [IB]
+
+
+Number of expression evaluation (wrapping) assumptions taken [EE]:
+=  671 : expression evaluation assumptions [EE]
+
+
+Number of bounded loop assumptions taken [BL]:
+=   23 : bounded loop assumptions [BL]
+
+
+Number of alias assumptions taken [AA]:
+=  258 : alias assumptions [AA]
+
+
+Number of referential transparent (invariant load) assumptions taken [RT]:
+=  162 : referential transparent assumptions [RT]
+
+
+Number of executed RTC locations [#D (a)]:      85
+
+Number of failing RTC locations [#D (b)]:       9
+
+Number of executed RTCs [#E (a)]: 5175672
+
+Number of failing RTCs [#E (b)]:   89255
+
+
+Open text editor to show the results!
+
+
+
+
+                   ====== DONE COMPILING & RUNNING LNT ======                   
+
+
+
+
+
+Compile & run the SPEC test suite(s)?
+[Y/n] >> 
+[New] LNT server to commit results to (if any):
+[/tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server] >> 
+Accumulate test data from multiple runs?
+[1] >> 
+Remove short running regression tests?
+[y/N] >> LNT runtest command:
+lnt runtest nt --sandbox /tmp/CGO_AE_OptimisticLoopOptimization/sandbox --cc /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang --cxx /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang++ --test-suite /tmp/CGO_AE_OptimisticLoopOptimization/test_suite --build-threads 8  -j 8  --test-externals=/tmp/CGO_AE_OptimisticLoopOptimization/SPEC --only-test=External --multisample=1 --run-order=Dec_10_16-03-24_spec --submit=/tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server --cflag=-O3 --cflag=-mllvm --cflag=-polly --cflag=-mllvm --cflag=-polly-invariant-load-hoisting=true --cflag=-mllvm --cflag=-polly-run-inliner=true --cflag=-mllvm --cflag=-polly-unprofitable-scalar-accs=false --cflag=-mllvm --cflag=-polly-allow-error-blocks=false --cflag=-mllvm --cflag=-polly-allow-unsigned-operations=false --cflag=-mllvm --cflag=-polly-codegen-emit-rtc-print=true --cflag=-mllvm --cflag=-stats --cflag=-mllvm --cflag=-polly-remarks-minimal=false --cflag=-Rpass-analysis=polly
+Run LNT:
+
+Run: '. /tmp/CGO_AE_OptimisticLoopOptimization/sandbox/bin/activate && lnt runtest nt --sandbox /tmp/CGO_AE_OptimisticLoopOptimization/sandbox --cc /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang --cxx /tmp/CGO_AE_OptimisticLoopOptimization/toolchain/llvm_obj/bin/clang++ --test-suite /tmp/CGO_AE_OptimisticLoopOptimization/test_suite --build-threads 8  -j 8  --test-externals=/tmp/CGO_AE_OptimisticLoopOptimization/SPEC --only-test=External --multisample=1 --run-order=Dec_10_16-03-24_spec --submit=/tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server --cflag=-O3 --cflag=-mllvm --cflag=-polly --cflag=-mllvm --cflag=-polly-invariant-load-hoisting=true --cflag=-mllvm --cflag=-polly-run-inliner=true --cflag=-mllvm --cflag=-polly-unprofitable-scalar-accs=false --cflag=-mllvm --cflag=-polly-allow-error-blocks=false --cflag=-mllvm --cflag=-polly-allow-unsigned-operations=false --cflag=-mllvm --cflag=-polly-codegen-emit-rtc-print=true --cflag=-mllvm --cflag=-stats --cflag=-mllvm --cflag=-polly-remarks-minimal=false --cflag=-Rpass-analysis=polly; deactivate'
+[m[38;5;231m[48;5;16m[39;49m2016-12-10 16:16:54 INFO: TARGET_FLAGS: -O3 -mllvm -polly -mllvm -polly-invariant-load-hoisting=true -mllvm -polly-run-inliner=true -mllvm -polly-unprofitable-scalar-accs=false -mllvm -polly-allow-error-blocks=false -mllvm -polly-allow-unsigned-operations=false -mllvm -polly-codegen-emit-rtc-print=true -mllvm -stats -mllvm -polly-remarks-minimal=false -Rpass-analysis=polly
+2016-12-10 15:16:54: (multisample) running iteration 0
+2016-12-10 15:16:54: checking source versions
+2016-12-10 15:16:54: scanning for LNT-based test modules
+2016-12-10 15:16:54: found 0 LNT-based test modules
+2016-12-10 15:16:54: using nickname: 'arch-linux-jd__clang_DEV__x86_64'
+2016-12-10 15:16:54: starting test in '/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/test-2016-12-10_15-16-54/sample-0'
+2016-12-10 15:16:54: configuring...
+2016-12-10 15:16:57: building test-suite tools
+2016-12-10 15:16:58: building "nightly tests" with -j8...
+2016-12-10 15:24:47: executing "nightly tests" with -j8...
+2016-12-10 15:26:11: executing test modules
+2016-12-10 15:26:11: loading nightly test data...
+2016-12-10 15:26:11: capturing machine information
+2016-12-10 15:26:11: generating report: '/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/test-2016-12-10_15-16-54/sample-0/report.json'
+2016-12-10 15:26:11: (multisample) creating merged report
+2016-12-10 15:16:54: submitting result to '/tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server'
+No handlers could be found for logger "lnt.server.db.migrate"
+2016-12-10 16:26:11 INFO: Queuing background job to process fieldchanges 30463
+2016-12-10 16:26:11 INFO: Starting workers
+2016-12-10 16:26:11 INFO: Job queue empty.
+2016-12-10 16:26:11 INFO: Successfully created db_default/v4/nts/2
+2016-12-10 16:26:11 INFO: Running process cleanup.
+2016-12-10 16:26:11 INFO: Waiting for Process-2 5447
+2016-12-10 16:26:11 INFO: Running async wrapper: post_submit_tasks 5447
+2016-12-10 16:26:11 ERROR: Subprocess failed with:Traceback (most recent call last):
+  File "/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/lib/python2.7/site-packages/LNT-0.4.1.dev0-py2.7-linux-x86_64.egg/lnt/util/async_ops.py", line 125, in async_wrapper
+    _v4db = current_app.old_config.get_database(ts_args['db'])
+  File "/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/lib/python2.7/site-packages/Werkzeug-0.9.4-py2.7.egg/werkzeug/local.py", line 338, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/lib/python2.7/site-packages/Werkzeug-0.9.4-py2.7.egg/werkzeug/local.py", line 297, in _get_current_object
+    return self.__local()
+  File "/tmp/CGO_AE_OptimisticLoopOptimization/sandbox/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/globals.py", line 34, in _find_app
+    raise RuntimeError('working outside of application context')
+RuntimeError: working outside of application context
+
+LNT execution folder was: /tmp/CGO_AE_OptimisticLoopOptimization/sandbox/test-2016-12-10_15-16-54
+Move lnt execution folder to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec
+
+Run: 'mv /tmp/CGO_AE_OptimisticLoopOptimization/sandbox/test-2016-12-10_15-16-54 /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec'
+
+
+
+Using 'grep' to extract Polly statistics [-stats] from /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2000
+
+Run: 'grep -r --no-filename -E " polly-scops | polly-codegen " /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2000 > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2000.polly_stats'
+Output written to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2000.polly_stats
+
+
+
+Summarize statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2000.polly_stats
+
+Try to extract the number of failing runtime checks [#E (b)] for SPEC2000
+
+Run: 'grep -R --no-filename 'RTC: 0' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2000 | wc -l '
+
+Try to extract the number of failing runtime check locations [#D (b)] for SPEC2000
+
+Run: 'grep -R --no-filename 'RTC: 0' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2000 | sed -e 's|.*\(F: [-_.a-zA-Z0-9]* R:\)|\1|' -e 's|__RTC:.*||' | grep -v 'Binary file' | sort -u | wc -l'
+
+Try to extract the number of executed runtime checks [#E (a)] for SPEC2000
+
+Run: 'grep -R --no-filename 'RTC: ' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2000 | wc -l '
+
+Try to extract the number of executed runtime check locations [#D (a)] for SPEC2000
+
+Run: 'grep -R --no-filename 'RTC: ' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2000 | sed -e 's|.*\(F: [-_.a-zA-Z0-9]* R:\)|\1|' -e 's|__RTC:.*||' | grep -v 'Binary file' | sort -u | wc -l'
+Summary written to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2000.polly_stats_summary.txt
+Summary of the statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2000.polly_stats
+
+====================
+===== SPEC2000 =====
+====================
+
+Summary contains runtime execution information [-mllm -polly-codegen-emit-rtc-print=true]
+All assumptions were tracked [-mllm -polly-remarks-minimal=false]
+
+Applicability & runtime results (if available):
+----------------------------------------------
+
+Figure 15:
+(a)   w/ A         (b) |  w/o A
+------------------------------|---------
+#S         83    |             5 |     28
+#D         29    |             3 |    n/a
+#E     728856    |         78094 |    n/a
+
+Assumptions taken:
+-----------------
+
+Figure 16:
+(a)   w/ A         (b)
+A[IB]          6    |           n/a
+A[EE]         82    |           n/a
+A[BL]          6    |           n/a
+A[AA]         52    |           n/a
+A[RT]          6    |           n/a
+
+
+Raw data and processing step follow!
+
+
+Statistic data summarized [-mllvm -stats]:
+-----------------------------------------
+50 - Number of SCoPs that required versioning.
+6 - Number of SCoPs with statically infeasible context.
+78 - Number of Scops containing a loop
+52 - Number of aliasing assumptions taken.
+6 - Number of bounded loop assumptions taken.
+1 - Number of error block assumptions taken.
+6 - Number of inbounds assumptions taken.
+6 - Number of invariant loads assumptions taken.
+1 - Number of too complex SCoPs.
+78 - Number of valid Scops
+82 - Number of wrapping assumptions taken.
+
+
+Computed experimental result data:
+---------------------------------
+Number of valid non-trivial loop nests [#S (a)]:
+78 : Valid SCoPs
+-    1 : Too complex SCoPs
+-    0 : Unprofitable SCoPs
++    6 : valid infeasible SCoPs
+-------
+=   83 : Valid profitable SCoPs [#S (a)]
+
+
+Number of valid non-trivial loop nests with infeasible assumptions [#S (b)]:
+6 : Infeasible SCoPs
+-    1 : Too complex SCoPs
+-    0 : Unprofitable SCoPs
+-------
+=    5 : Valid infeasible SCoPs [#S (b)]
+
+
+Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:
+83 : Valid profitable SCoPs [#S (a)]
+-   50 : SCoPs that required versioning
+-------
+=   28 : Approximation of valid profitable SCoPs without assumptions [#S (w/o A)]
+
+
+Number of inbounds/delinearization assumptions taken [IB]:
+0 : Number of delinearization assumptions taken
++    6 : Number of inbounds assumptions taken
+-------
+=    6 : inbounds assumptions [IB]
+
+
+Number of expression evaluation (wrapping) assumptions taken [EE]:
+=   82 : expression evaluation assumptions [EE]
+
+
+Number of bounded loop assumptions taken [BL]:
+=    6 : bounded loop assumptions [BL]
+
+
+Number of alias assumptions taken [AA]:
+=   52 : alias assumptions [AA]
+
+
+Number of referential transparent (invariant load) assumptions taken [RT]:
+=    6 : referential transparent assumptions [RT]
+
+
+Number of executed RTC locations [#D (a)]:      29
+
+Number of failing RTC locations [#D (b)]:       3
+
+Number of executed RTCs [#E (a)]:  728856
+
+Number of failing RTCs [#E (b)]:   78094
+
+
+Open text editor to show the results!
+
+
+
+
+Using 'grep' to extract Polly statistics [-stats] from /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2006
+
+Run: 'grep -r --no-filename -E " polly-scops | polly-codegen " /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2006 > /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2006.polly_stats'
+[m[38;5;231m[48;5;16m[39;49mOutput written to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2006.polly_stats
+
+
+
+Summarize statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2006.polly_stats
+
+Try to extract the number of failing runtime checks [#E (b)] for SPEC2006
+
+Run: 'grep -R --no-filename 'RTC: 0' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2006 | wc -l '
+
+Try to extract the number of failing runtime check locations [#D (b)] for SPEC2006
+
+Run: 'grep -R --no-filename 'RTC: 0' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2006 | sed -e 's|.*\(F: [-_.a-zA-Z0-9]* R:\)|\1|' -e 's|__RTC:.*||' | grep -v 'Binary file' | sort -u | wc -l'
+
+Try to extract the number of executed runtime checks [#E (a)] for SPEC2006
+
+Run: 'grep -R --no-filename 'RTC: ' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2006 | wc -l '
+
+Try to extract the number of executed runtime check locations [#D (a)] for SPEC2006
+
+Run: 'grep -R --no-filename 'RTC: ' /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/spec/sample-0/External/SPEC/*2006 | sed -e 's|.*\(F: [-_.a-zA-Z0-9]* R:\)|\1|' -e 's|__RTC:.*||' | grep -v 'Binary file' | sort -u | wc -l'
+Summary written to /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2006.polly_stats_summary.txt
+Summary of the statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2006.polly_stats
+
+====================
+===== SPEC2006 =====
+====================
+
+Summary contains runtime execution information [-mllm -polly-codegen-emit-rtc-print=true]
+All assumptions were tracked [-mllm -polly-remarks-minimal=false]
+
+Applicability & runtime results (if available):
+----------------------------------------------
+
+Figure 15:
+(a)   w/ A         (b) |  w/o A
+------------------------------|---------
+#S        191    |            89 |     41
+#D         34    |             4 |    n/a
+#E    5367538    |         16447 |    n/a
+
+Assumptions taken:
+-----------------
+
+Figure 16:
+(a)   w/ A         (b)
+A[IB]          5    |           n/a
+A[EE]        611    |           n/a
+A[BL]         42    |           n/a
+A[AA]        132    |           n/a
+A[RT]        553    |           n/a
+
+
+Raw data and processing step follow!
+
+
+Statistic data summarized [-mllvm -stats]:
+-----------------------------------------
+61 - Number of SCoPs that required versioning.
+156 - Number of SCoPs with statically infeasible context.
+102 - Number of Scops containing a loop
+132 - Number of aliasing assumptions taken.
+42 - Number of bounded loop assumptions taken.
+1 - Number of error block assumptions taken.
+5 - Number of inbounds assumptions taken.
+553 - Number of invariant loads assumptions taken.
+8 - Number of too complex SCoPs.
+59 - Number of unprofitable SCoPs.
+102 - Number of valid Scops
+611 - Number of wrapping assumptions taken.
+
+
+Computed experimental result data:
+---------------------------------
+Number of valid non-trivial loop nests [#S (a)]:
+102 : Valid SCoPs
+-    8 : Too complex SCoPs
+-   59 : Unprofitable SCoPs
++  156 : valid infeasible SCoPs
+-------
+=  191 : Valid profitable SCoPs [#S (a)]
+
+
+Number of valid non-trivial loop nests with infeasible assumptions [#S (b)]:
+156 : Infeasible SCoPs
+-    8 : Too complex SCoPs
+-   59 : Unprofitable SCoPs
+-------
+=   89 : Valid infeasible SCoPs [#S (b)]
+
+
+Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:
+191 : Valid profitable SCoPs [#S (a)]
+-   61 : SCoPs that required versioning
+-------
+=   41 : Approximation of valid profitable SCoPs without assumptions [#S (w/o A)]
+
+
+Number of inbounds/delinearization assumptions taken [IB]:
+0 : Number of delinearization assumptions taken
++    5 : Number of inbounds assumptions taken
+-------
+=    5 : inbounds assumptions [IB]
+
+
+Number of expression evaluation (wrapping) assumptions taken [EE]:
+=  611 : expression evaluation assumptions [EE]
+
+
+Number of bounded loop assumptions taken [BL]:
+=   42 : bounded loop assumptions [BL]
+
+
+Number of alias assumptions taken [AA]:
+=  132 : alias assumptions [AA]
+
+
+Number of referential transparent (invariant load) assumptions taken [RT]:
+=  553 : referential transparent assumptions [RT]
+
+
+Number of executed RTC locations [#D (a)]:      34
+
+Number of failing RTC locations [#D (b)]:       4
+
+Number of executed RTCs [#E (a)]: 5367538
+
+Number of failing RTCs [#E (b)]:   16447
+
+
+Open text editor to show the results!
+
+
+
+
+                   ====== DONE COMPILING & RUNNING LNT ======                   
+
+
+
+
+LNT server: /tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server
+
+Run lnt server instance /tmp/CGO_AE_OptimisticLoopOptimization/results/lnt_server
+[y/N] >> 
+
+
+
+You can find all binaries and log files here:
+/tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24
+  - Summary for NPB is located here: /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB.polly_stats_summary.txt
+  - Summary for test_suite is located here: /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite.polly_stats_summary.txt
+  - Summary for SPEC2000 is located here: /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2000.polly_stats_summary.txt
+  - Summary for SPEC2006 is located here: /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2006.polly_stats_summary.txt
+
+
+
+NOTE: Use `docker cp <container>:<src_path> <dst_path>` to copy files/folder
+(e.g., result summaries, the lnt server, ...) from the docker container to the
+host system.
+
+
+
+
+/tmp/CGO_AE_OptimisticLoopOptimization/scripts/artifact_eval_helper.py is done!
+
+Written for the CGO'17 artifact evaluation of the "Optimistic Loop Optimization"
+paper. Please use with caution.
+
+********************************************************************************
+  The cat_summaries.py script will download and setup an lnt test environment.  
+********************************************************************************
+
+********************************************************************************
+Read /tmp/CGO_AE_OptimisticLoopOptimization/scripts/config.py
+Successfully initialized 20 values!
+
+********************************************************************************
+
+
+
+
+Do you want to print out the summary for NPB?
+[y/N] >> [m[38;5;231m[48;5;16m[39;49my
+Summary of the statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/NPB.polly_stats
+
+===============
+===== NPB =====
+===============
+
+	Summary contains runtime execution information [-mllm -polly-codegen-emit-rtc-print=true]
+	All assumptions were tracked [-mllm -polly-remarks-minimal=false]
+
+Applicability & runtime results (if available):
+----------------------------------------------
+
+Figure 15:
+          (a)   w/ A         (b) |  w/o A  
+   ------------------------------|---------
+#S         50    |             2 |      3    
+#D         41    |             5 |    n/a    
+#E     214409    |         48498 |    n/a    
+
+Assumptions taken:
+-----------------
+
+Figure 16:
+             (a)   w/ A         (b) 
+A[IB]       1021    |           n/a 
+A[EE]        773    |           n/a 
+A[BL]          0    |           n/a 
+A[AA]         14    |           n/a 
+A[RT]          1    |           n/a 
+
+
+Raw data and processing step follow!
+
+
+Statistic data summarized [-mllvm -stats]:
+-----------------------------------------
+        45 - Number of SCoPs that required versioning.
+         3 - Number of SCoPs with statically infeasible context.
+        48 - Number of Scops containing a loop
+        14 - Number of aliasing assumptions taken.
+      1021 - Number of inbounds assumptions taken.
+         1 - Number of invariant loads assumptions taken.
+         1 - Number of too complex SCoPs.
+        48 - Number of valid Scops
+       773 - Number of wrapping assumptions taken.
+
+
+Computed experimental result data:
+---------------------------------
+Number of valid non-trivial loop nests [#S (a)]:
+    48 : Valid SCoPs
+-    1 : Too complex SCoPs
+-    0 : Unprofitable SCoPs
++    3 : valid infeasible SCoPs
+-------
+=   50 : Valid profitable SCoPs [#S (a)]
+
+
+Number of valid non-trivial loop nests with infeasible assumptions [#S (b)]:
+     3 : Infeasible SCoPs
+-    1 : Too complex SCoPs
+-    0 : Unprofitable SCoPs
+-------
+=    2 : Valid infeasible SCoPs [#S (b)]
+
+
+Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:
+    50 : Valid profitable SCoPs [#S (a)]
+-   45 : SCoPs that required versioning
+-------
+=    3 : Approximation of valid profitable SCoPs without assumptions [#S (w/o A)]
+
+
+Number of inbounds/delinearization assumptions taken [IB]:
+     0 : Number of delinearization assumptions taken
++ 1021 : Number of inbounds assumptions taken
+-------
+= 1021 : inbounds assumptions [IB]
+
+
+Number of expression evaluation (wrapping) assumptions taken [EE]:
+=  773 : expression evaluation assumptions [EE]
+
+
+Number of bounded loop assumptions taken [BL]:
+=    0 : bounded loop assumptions [BL]
+
+
+Number of alias assumptions taken [AA]:
+=   14 : alias assumptions [AA]
+
+
+Number of referential transparent (invariant load) assumptions taken [RT]:
+=    1 : referential transparent assumptions [RT]
+
+
+Number of executed RTC locations [#D (a)]:      41
+
+Number of failing RTC locations [#D (b)]:       5
+
+Number of executed RTCs [#E (a)]:  214409
+
+Number of failing RTCs [#E (b)]:   48498
+
+
+
+
+Do you want to print out the summary for test_suite?
+[y/N] >> y
+Summary of the statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite.polly_stats
+
+======================
+===== test_suite =====
+======================
+
+	Summary contains runtime execution information [-mllm -polly-codegen-emit-rtc-print=true]
+	All assumptions were tracked [-mllm -polly-remarks-minimal=false]
+
+Applicability & runtime results (if available):
+----------------------------------------------
+
+Figure 15:
+          (a)   w/ A         (b) |  w/o A  
+   ------------------------------|---------
+#S        431    |            62 |    163    
+#D         85    |             9 |    n/a    
+#E    5175672    |         89255 |    n/a    
+
+Assumptions taken:
+-----------------
+
+Figure 16:
+             (a)   w/ A         (b) 
+A[IB]        258    |           n/a 
+A[EE]        671    |           n/a 
+A[BL]         23    |           n/a 
+A[AA]        258    |           n/a 
+A[RT]        162    |           n/a 
+
+
+Raw data and processing step follow!
+
+
+Statistic data summarized [-mllvm -stats]:
+-----------------------------------------
+       206 - Number of SCoPs that required versioning.
+        90 - Number of SCoPs with statically infeasible context.
+       369 - Number of Scops containing a loop
+       258 - Number of aliasing assumptions taken.
+        23 - Number of bounded loop assumptions taken.
+         7 - Number of delinearization assumptions taken.
+       251 - Number of inbounds assumptions taken.
+       162 - Number of invariant loads assumptions taken.
+         3 - Number of too complex SCoPs.
+        25 - Number of unprofitable SCoPs.
+       369 - Number of valid Scops
+       671 - Number of wrapping assumptions taken.
+
+
+Computed experimental result data:
+---------------------------------
+Number of valid non-trivial loop nests [#S (a)]:
+   369 : Valid SCoPs
+-    3 : Too complex SCoPs
+-   25 : Unprofitable SCoPs
++   90 : valid infeasible SCoPs
+-------
+=  431 : Valid profitable SCoPs [#S (a)]
+
+
+Number of valid non-trivial loop nests with infeasible assumptions [#S (b)]:
+    90 : Infeasible SCoPs
+-    3 : Too complex SCoPs
+-   25 : Unprofitable SCoPs
+-------
+=   62 : Valid infeasible SCoPs [#S (b)]
+
+
+Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:
+   431 : Valid profitable SCoPs [#S (a)]
+-  206 : SCoPs that required versioning
+-------
+=  163 : Approximation of valid profitable SCoPs without assumptions [#S (w/o A)]
+
+
+Number of inbounds/delinearization assumptions taken [IB]:
+     7 : Number of delinearization assumptions taken
++  251 : Number of inbounds assumptions taken
+-------
+=  258 : inbounds assumptions [IB]
+
+
+Number of expression evaluation (wrapping) assumptions taken [EE]:
+=  671 : expression evaluation assumptions [EE]
+
+
+Number of bounded loop assumptions taken [BL]:
+=   23 : bounded loop assumptions [BL]
+
+
+Number of alias assumptions taken [AA]:
+=  258 : alias assumptions [AA]
+
+
+Number of referential transparent (invariant load) assumptions taken [RT]:
+=  162 : referential transparent assumptions [RT]
+
+
+Number of executed RTC locations [#D (a)]:      85
+
+Number of failing RTC locations [#D (b)]:       9
+
+Number of executed RTCs [#E (a)]: 5175672
+
+Number of failing RTCs [#E (b)]:   89255
+
+
+
+
+Do you want to print out the summary for SPEC2000?
+[y/N] >> y
+Summary of the statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2000.polly_stats
+
+====================
+===== SPEC2000 =====
+====================
+
+	Summary contains runtime execution information [-mllm -polly-codegen-emit-rtc-print=true]
+	All assumptions were tracked [-mllm -polly-remarks-minimal=false]
+
+Applicability & runtime results (if available):
+----------------------------------------------
+
+Figure 15:
+          (a)   w/ A         (b) |  w/o A  
+   ------------------------------|---------
+#S         83    |             5 |     28    
+#D         29    |             3 |    n/a    
+#E     728856    |         78094 |    n/a    
+
+Assumptions taken:
+-----------------
+
+Figure 16:
+             (a)   w/ A         (b) 
+A[IB]          6    |           n/a 
+A[EE]         82    |           n/a 
+A[BL]          6    |           n/a 
+A[AA]         52    |           n/a 
+A[RT]          6    |           n/a 
+
+
+Raw data and processing step follow!
+
+
+Statistic data summarized [-mllvm -stats]:
+-----------------------------------------
+        50 - Number of SCoPs that required versioning.
+         6 - Number of SCoPs with statically infeasible context.
+        78 - Number of Scops containing a loop
+        52 - Number of aliasing assumptions taken.
+         6 - Number of bounded loop assumptions taken.
+         1 - Number of error block assumptions taken.
+         6 - Number of inbounds assumptions taken.
+         6 - Number of invariant loads assumptions taken.
+         1 - Number of too complex SCoPs.
+        78 - Number of valid Scops
+        82 - Number of wrapping assumptions taken.
+
+
+Computed experimental result data:
+---------------------------------
+Number of valid non-trivial loop nests [#S (a)]:
+    78 : Valid SCoPs
+-    1 : Too complex SCoPs
+-    0 : Unprofitable SCoPs
++    6 : valid infeasible SCoPs
+-------
+=   83 : Valid profitable SCoPs [#S (a)]
+
+
+Number of valid non-trivial loop nests with infeasible assumptions [#S (b)]:
+     6 : Infeasible SCoPs
+-    1 : Too complex SCoPs
+-    0 : Unprofitable SCoPs
+-------
+=    5 : Valid infeasible SCoPs [#S (b)]
+
+
+Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:
+    83 : Valid profitable SCoPs [#S (a)]
+-   50 : SCoPs that required versioning
+-------
+=   28 : Approximation of valid profitable SCoPs without assumptions [#S (w/o A)]
+
+
+Number of inbounds/delinearization assumptions taken [IB]:
+     0 : Number of delinearization assumptions taken
++    6 : Number of inbounds assumptions taken
+-------
+=    6 : inbounds assumptions [IB]
+
+
+Number of expression evaluation (wrapping) assumptions taken [EE]:
+=   82 : expression evaluation assumptions [EE]
+
+
+Number of bounded loop assumptions taken [BL]:
+=    6 : bounded loop assumptions [BL]
+
+
+Number of alias assumptions taken [AA]:
+=   52 : alias assumptions [AA]
+
+
+Number of referential transparent (invariant load) assumptions taken [RT]:
+=    6 : referential transparent assumptions [RT]
+
+
+Number of executed RTC locations [#D (a)]:      29
+
+Number of failing RTC locations [#D (b)]:       3
+
+Number of executed RTCs [#E (a)]:  728856
+
+Number of failing RTCs [#E (b)]:   78094
+
+
+
+
+Do you want to print out the summary for SPEC2006?
+[y/N] >> y
+Summary of the statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/SPEC2006.polly_stats
+
+====================
+===== SPEC2006 =====
+====================
+
+	Summary contains runtime execution information [-mllm -polly-codegen-emit-rtc-print=true]
+	All assumptions were tracked [-mllm -polly-remarks-minimal=false]
+
+Applicability & runtime results (if available):
+----------------------------------------------
+
+Figure 15:
+          (a)   w/ A         (b) |  w/o A  
+   ------------------------------|---------
+#S        191    |            89 |     41    
+#D         34    |             4 |    n/a    
+#E    5367538    |         16447 |    n/a    
+
+Assumptions taken:
+-----------------
+
+Figure 16:
+             (a)   w/ A         (b) 
+A[IB]          5    |           n/a 
+A[EE]        611    |           n/a 
+A[BL]         42    |           n/a 
+A[AA]        132    |           n/a 
+A[RT]        553    |           n/a 
+
+
+Raw data and processing step follow!
+
+
+Statistic data summarized [-mllvm -stats]:
+-----------------------------------------
+        61 - Number of SCoPs that required versioning.
+       156 - Number of SCoPs with statically infeasible context.
+       102 - Number of Scops containing a loop
+       132 - Number of aliasing assumptions taken.
+        42 - Number of bounded loop assumptions taken.
+         1 - Number of error block assumptions taken.
+         5 - Number of inbounds assumptions taken.
+       553 - Number of invariant loads assumptions taken.
+         8 - Number of too complex SCoPs.
+        59 - Number of unprofitable SCoPs.
+       102 - Number of valid Scops
+       611 - Number of wrapping assumptions taken.
+
+
+Computed experimental result data:
+---------------------------------
+Number of valid non-trivial loop nests [#S (a)]:
+   102 : Valid SCoPs
+-    8 : Too complex SCoPs
+-   59 : Unprofitable SCoPs
++  156 : valid infeasible SCoPs
+-------
+=  191 : Valid profitable SCoPs [#S (a)]
+
+
+Number of valid non-trivial loop nests with infeasible assumptions [#S (b)]:
+   156 : Infeasible SCoPs
+-    8 : Too complex SCoPs
+-   59 : Unprofitable SCoPs
+-------
+=   89 : Valid infeasible SCoPs [#S (b)]
+
+
+Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:
+   191 : Valid profitable SCoPs [#S (a)]
+-   61 : SCoPs that required versioning
+-------
+=   41 : Approximation of valid profitable SCoPs without assumptions [#S (w/o A)]
+
+
+Number of inbounds/delinearization assumptions taken [IB]:
+     0 : Number of delinearization assumptions taken
++    5 : Number of inbounds assumptions taken
+-------
+=    5 : inbounds assumptions [IB]
+
+
+Number of expression evaluation (wrapping) assumptions taken [EE]:
+=  611 : expression evaluation assumptions [EE]
+
+
+Number of bounded loop assumptions taken [BL]:
+=   42 : bounded loop assumptions [BL]
+
+
+Number of alias assumptions taken [AA]:
+=  132 : alias assumptions [AA]
+
+
+Number of referential transparent (invariant load) assumptions taken [RT]:
+=  553 : referential transparent assumptions [RT]
+
+
+Number of executed RTC locations [#D (a)]:      34
+
+Number of failing RTC locations [#D (b)]:       4
+
+Number of executed RTCs [#E (a)]: 5367538
+
+Number of failing RTCs [#E (b)]:   16447
+
+Script done on Sat 10 Dec 2016 04:29:10 PM CET

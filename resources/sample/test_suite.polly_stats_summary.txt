@@ -1,0 +1,107 @@
+Summary of the statistics in /tmp/CGO_AE_OptimisticLoopOptimization/results/Dec_10_16-03-24/test_suite.polly_stats
+
+======================
+===== test_suite =====
+======================
+
+	Summary contains runtime execution information [-mllm -polly-codegen-emit-rtc-print=true]
+	All assumptions were tracked [-mllm -polly-remarks-minimal=false]
+
+Applicability & runtime results (if available):
+----------------------------------------------
+
+Figure 15:
+          (a)   w/ A         (b) |  w/o A  
+   ------------------------------|---------
+#S        431    |            62 |    163    
+#D         85    |             9 |    n/a    
+#E    5175672    |         89255 |    n/a    
+
+Assumptions taken:
+-----------------
+
+Figure 16:
+             (a)   w/ A         (b) 
+A[IB]        258    |           n/a 
+A[EE]        671    |           n/a 
+A[BL]         23    |           n/a 
+A[AA]        258    |           n/a 
+A[RT]        162    |           n/a 
+
+
+Raw data and processing step follow!
+
+
+Statistic data summarized [-mllvm -stats]:
+-----------------------------------------
+       206 - Number of SCoPs that required versioning.
+        90 - Number of SCoPs with statically infeasible context.
+       369 - Number of Scops containing a loop
+       258 - Number of aliasing assumptions taken.
+        23 - Number of bounded loop assumptions taken.
+         7 - Number of delinearization assumptions taken.
+       251 - Number of inbounds assumptions taken.
+       162 - Number of invariant loads assumptions taken.
+         3 - Number of too complex SCoPs.
+        25 - Number of unprofitable SCoPs.
+       369 - Number of valid Scops
+       671 - Number of wrapping assumptions taken.
+
+
+Computed experimental result data:
+---------------------------------
+Number of valid non-trivial loop nests [#S (a)]:
+   369 : Valid SCoPs
+-    3 : Too complex SCoPs
+-   25 : Unprofitable SCoPs
++   90 : valid infeasible SCoPs
+-------
+=  431 : Valid profitable SCoPs [#S (a)]
+
+
+Number of valid non-trivial loop nests with infeasible assumptions [#S (b)]:
+    90 : Infeasible SCoPs
+-    3 : Too complex SCoPs
+-   25 : Unprofitable SCoPs
+-------
+=   62 : Valid infeasible SCoPs [#S (b)]
+
+
+Number of valid non-trivial loop nests without assumptions [#S (w/o A)]:
+   431 : Valid profitable SCoPs [#S (a)]
+-  206 : SCoPs that required versioning
+-------
+=  163 : Approximation of valid profitable SCoPs without assumptions [#S (w/o A)]
+
+
+Number of inbounds/delinearization assumptions taken [IB]:
+     7 : Number of delinearization assumptions taken
++  251 : Number of inbounds assumptions taken
+-------
+=  258 : inbounds assumptions [IB]
+
+
+Number of expression evaluation (wrapping) assumptions taken [EE]:
+=  671 : expression evaluation assumptions [EE]
+
+
+Number of bounded loop assumptions taken [BL]:
+=   23 : bounded loop assumptions [BL]
+
+
+Number of alias assumptions taken [AA]:
+=  258 : alias assumptions [AA]
+
+
+Number of referential transparent (invariant load) assumptions taken [RT]:
+=  162 : referential transparent assumptions [RT]
+
+
+Number of executed RTC locations [#D (a)]:      85
+
+Number of failing RTC locations [#D (b)]:       9
+
+Number of executed RTCs [#E (a)]: 5175672
+
+Number of failing RTCs [#E (b)]:   89255
+
